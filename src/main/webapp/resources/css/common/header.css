@@ -1,29 +1,32 @@
 @charset "UTF-8";
 
 .logo {
-    font-size: 1.5rem;
+    font-size: 30px;
     font-weight: bold;
     color: #964B4B;
 }
 
 
 .header-container {
-	width : 100%;
-	display : flex;
+	width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 	
 }
-.header {
-	width : 100%;
+.header-box {
+	width : 80%;
 	display : flex;
 }
 .search-container {
-	width : 100%;
+	width : 80%;
 	height : 70%;
 	margin-top: 26px ;
 }
 
 .search-input {
-	width : 1000px;
+	width : 100%;
 	height : 40px;
 	background-color: rgba(193, 186, 161, 0.7);
 	border-radius: 5px;

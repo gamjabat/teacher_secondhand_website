@@ -20,9 +20,9 @@
 </head>
 <body>	
 	<div class="header-container">
-    	<div class="header">
+    	<div class="header-box">
       	<div class="logo-container">
-	 <a href="${path }/">
+	 			<a href="${path }/">
 	      		<img src="${path}/resources/images/SSEULMANHAE_LOGO.png" class="logo" alt="Logo" onclick="mainPage();">
       		</a> 
       	</div>
@@ -33,7 +33,7 @@
 		</div>
       
       	<div class="interface-bar">
-	      	<div>슬라이드바</div>
+	      	<div>메뉴</div>
       	</div>
     </div>
   </div>
