@@ -28,7 +28,7 @@
       	</div>
       	<div class="search-container">
     		<form class="search-form" action="#" method="post">
-        		<input type="text" class="search-input" placeholder="검색어를 입력하세요">
+        		<input type="text" class="search-input" placeholder=" 검색어를 입력하세요">
     		</form>
 		</div>
       

@@ -28,7 +28,7 @@
 	height : 40px;
 	background-color: rgba(193, 186, 161, 0.7);
 	border-radius: 5px;
-	border-color: none;
+	border: 0;	
 }
 .logo-container{
 	margin-top: 36px ;
