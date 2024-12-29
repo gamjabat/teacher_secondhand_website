@@ -1,0 +1,19 @@
+footer {
+  color: #495057;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding: 10px;
+  border: 2px solid #ECEBDE;
+}
+
+.logo-container {
+  margin-bottom: 10px;
+}
+
+.footer strong {
+  font-weight: bold;
+}
+
+.footer p {
+  font-size: 12px;
+}

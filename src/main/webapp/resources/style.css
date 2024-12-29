@@ -1,0 +1,116 @@
+@charset "UTF-8";
+
+/* 메인콘테이너 */
+.main-container {
+	width : 100%;
+	display : flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	
+}
+
+/* 카테고리 박스 */
+.ct-box {
+	width : 80%;
+	border: 2px solid #ECEBDE;
+	margin: 10px;
+	border-radius: 10px;
+	display : flex;
+	align-items: center;
+}
+
+.ct-box div{
+	width : 100%;
+	height : 100px;
+	border: 2px solid #ECEBDE;
+	border-radius: 10px;
+	margin: 8px;
+	
+}
+
+/* 메인 박스. */
+.main-box {
+	width : 80%;
+	border: 2px solid #ECEBDE;
+	border-radius: 10px;
+	margin: 10px;
+
+}
+
+.main-box h2{
+	margin: 20px;
+	
+}
+
+.product-list{
+	width : 100%;
+	display : flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.product-list div {
+    width: 100%; /* 부모 셀(td)의 너비에 맞춤 */
+    height: 150px; /* 원하는 높이로 설정 */
+    border: 2px solid #ECEBDE;
+    box-sizing: border-box; /* 패딩이 크기에 영향을 주지 않도록 */
+    margin: 20; /* 불필요한 마진 제거 */
+}
+
+.product-list h5 {
+	font-size : 13px;
+	margin-left: 10px;
+	
+}
+
+.product-list h4 {
+	font-size : 13px;
+	margin-left: 10px;
+	
+}
+
+
+
+/* 페이징바 디자인 */
+
+.pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px; /* 아이템 간 간격 */
+    margin: 20px 0; /* 상하 여백 */
+}
+
+.pagination .prev,
+.pagination .next {
+    border: none;
+    background: none;
+    font-size: 1.2rem; /* 화살표 크기 */
+    color: #b3a898; /* 화살표 색상 */
+    cursor: pointer;
+}
+
+.pagination .prev:hover,
+.pagination .next:hover {
+    color: #6b4b3d; /* 호버 시 색상 */
+}
+
+.pagination .page {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #b3a898; /* 기본 색상 */
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.pagination .page.active {
+    background-color: #964b4b; /* 활성화된 페이지 색상 */
+}
+
+.pagination .page:hover {
+    background-color: #6b4b3d; /* 호버 시 색상 */
+}
+
+
