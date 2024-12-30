@@ -12,94 +12,125 @@
 	
 }
 
-/* 카테고리 박스 */
-.ct-box {
-	width : 80%;
-	border: 2px solid #ECEBDE;
-	margin-top: 10px;
-	border-radius: 10px;
+
+/* 상단 셀러 인포 & 후기 박스 */
+.seller-info-list {
+	width : 100%;
+	max-height : 200px;
 	display : flex;
-	align-items: center;
+	margin-right : 20px;
+	margin-bottom : 20px;
 }
 
-.title {
+.seller-info-list p {
+	margin : 12px;
+	font-weight: 700;
+    font-size: 14px;
+}
+
+/* 판매자 인포 박스 */
+.seller-info {
+	width :60%;
+	height : 200px;
+	border: 2px solid #ECEBDE;
+	border-radius: 10px;
+	margin-right: 20px;
+	display : flex;
+	flex-direction: column;
+}
+
+.profile-box {
+	display : flex;
+	margin-left : 20px;
+	margin-top : 20px;
+	margin-bottom : 20px;
 	
-  font-size: 15px;
-  font-weight: bold;
-  margin-bottom: 10px;
-  margin-top : 5px;
-  margin-left : 5px;
 }
 
-/* 스크롤바의 영역 */
-.checkbox-container {
-  width : 100%;
-  height : 150px;
-  max-height: 150px; /* 스크롤이 활성화될 최대 높이 */
-  overflow-y: scroll; /* 세로 스크롤 활성화 */
-  border: 2px solid #ECEBDE;
-  border-radius: 10px;
-  margin: 7px;
+.circle{
+    width: 60px;
+    height: 60px;
+    background-color: #ECEBDE;
+    border-radius: 50%;
+    margin-right :12px;
 }
 
-/* 스크롤바 디자인. */
-/* 스크롤바 너비 및 높이 설정 */
-.checkbox-container::-webkit-scrollbar {
-  width: 6px; /* 세로 스크롤 너비 */
-  height: 6px; /* 가로 스크롤 높이 */
+.id-address {
+	display : flex;
+	flex-direction: column;
+	justify-content: center;
 }
 
-/* 스크롤바 트랙(배경) 스타일 */
-.checkbox-container::-webkit-scrollbar-track {
-  background: #f1f1f1; /* 연한 회색 */
-  border-radius: 10px; /* 둥근 모서리 */
+.id-address h4 {
+	margin-top : 6px;
+	font-size: 20px;
 }
 
-/* 스크롤바 손잡이(스크롤바) 스타일 */
-.checkbox-container::-webkit-scrollbar-thumb {
-  background: #bbb; /* 중간 회색 */
-  border-radius: 10px; /* 둥근 모서리 */
+.id-address h5 {
+	 
+	font-size: 13px;
 }
 
-/* 스크롤바 손잡이 위에 커서를 올렸을 때 효과 */
-.checkbox-container::-webkit-scrollbar-thumb:hover {
-  background: #888; /* 더 진한 회색 */
-}
-
-.checkbox-container label {
-  display: block; /* 한 줄씩 표시 */
-  margin-bottom: 4px;
-  margin-left : 5px;
+.star-lv {
+	margin-right : 20px;
+	justify-content: end;
+	display : flex;
+	
 }
 
 
-/* 리셋 버튼. */
-.reset-btn-container{
-	  margin-right: 7px;
+
+
+
+/* 후기 박스  */
+.comment-list {
+	width :100%;
+	border: 2px solid #ECEBDE;
+	border-radius: 10px;
+	
 }
 
-.reset-btn-container p {
-	color: white;
-	font-size: 12px; /* 글자 크기 */
-    text-align: center; /* 텍스트 정렬 */
-    margin-bottom : 0px;
+.comment-photo {
+	display: flex;
+	margin-bottom : 10px;	
+	
 }
 
-.reset-btn {
-	color: white;
-	all: unset; /* 기본 스타일 초기화 */
-    cursor: pointer; /* 버튼 클릭 커서 */
-    padding: 10px 20px; /* 내부 여백 */
-    border: 1px solid #ccc; /* 테두리 */
-    background-color: #A95151; /* 배경색 */
-    border-radius: 10px; /* 모서리 둥글게 */
-    
+.photo-box {
+	width : 50%;
+	height : 130px;
+	border: 2px solid #ECEBDE;
+	border-radius: 10px;
+	margin-right : 3px;
 }
 
-.reset-btn:hover {
-    background-color: #C79494; /* 호버 효과 */
-
+.comment-box {
+	width : 100%;
+	height : 130px;
+	border: 2px solid #ECEBDE;
+	border-radius: 10px;
 }
+
+.comment-prev,
+.comment-next {
+    border: none;
+    background: none;
+    font-size: 1.2rem; /* 화살표 크기 */
+    color: #b3a898; /* 화살표 색상 */
+    cursor: pointer;
+}
+
+.comment-prev:hover,
+.comment-next:hover {
+    color: #6b4b3d; /* 호버 시 색상 */
+}
+
+
+
+
+
+
+
 
  /* 메인 박스. */
 .main-box {

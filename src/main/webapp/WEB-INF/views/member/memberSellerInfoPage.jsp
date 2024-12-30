@@ -4,82 +4,64 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
-<link rel="stylesheet" href="${path}/resources/style.css">
+<link rel="stylesheet" href="${path}/resources/css/member/memberSellerInfoPage.css">
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
 
 <section class="main-container">
 
-
-	<!-- 카테고리 박스 -->
-	 <div class="ct-box">
-		 <div class="checkbox-container">
-		 	<div class="title">지역</div>
-			    <label><input type="checkbox" /> 서울</label>
-			    <label><input type="checkbox" /> 부산</label>
-			    <label><input type="checkbox" /> 인천</label>
-			    <label><input type="checkbox" /> 군포</label>
-			    <label><input type="checkbox" /> 가산</label>
-			    <label><input type="checkbox" /> 대전</label>
-			    <label><input type="checkbox" /> 대구</label>
-			    <label><input type="checkbox" /> 울산</label>
-			    <label><input type="checkbox" /> 광주</label>
-			    <label><input type="checkbox" /> 강원</label>
-			    <label><input type="checkbox" /> 제주</label>  
-			</div>
-		 <div class="checkbox-container">
-		 	<div class="title">카테고리</div>
-			    <label><input type="checkbox" /> 도서</label>
-			    <label><input type="checkbox" /> 운동</label>
-			    <label><input type="checkbox" /> 전자기기</label>
-			    <label><input type="checkbox" /> 문구</label>
-			    <label><input type="checkbox" /> 생활용품</label> 
-			</div>
-		 <div class="checkbox-container">
-		 	<div class="title">거래방법</div>
-			    <label><input type="checkbox" /> 직거래</label>
-			    <label><input type="checkbox" /> 택배</label>
-			</div>
-		 <div class="checkbox-container">
-		 	<div class="title">정렬기준</div>
-			    <label><input type="checkbox" /> 오름차순</label>
-			    <label><input type="checkbox" /> 내림차순</label>
-			    <label><input type="checkbox" /> 인기순</label>
-			    <label><input type="checkbox" /> 최신순</label>
-			</div>
-		  <div class="checkbox-container">
-		 	<div class="title">금액</div>
-			    <label><input type="checkbox" /> 5000원 이하</label>
-			    <label><input type="checkbox" /> 10000원 이하</label>
-			    <label><input type="checkbox" /> 20000원 이하</label>
-			    <label><input type="checkbox" /> 30000원 이하</label>
-			    <label><input type="checkbox" /> 그 외</label>
-			    <label><input type="checkbox" /> 무료나눔</label>
-			</div>
-		  <div class="checkbox-container">
-		 	<div class="title">거래상태</div>
-			    <label><input type="checkbox" /> 거래가능</label>
-			    <label><input type="checkbox" /> 거래중</label>
-			    <label><input type="checkbox" /> 거래완료</label> 
-			</div>
-		  <div class="checkbox-container">
-		 	<div class="title">상품상태</div>
-			    <label><input type="checkbox" /> A급</label>
-			    <label><input type="checkbox" /> B급</label>
-			    <label><input type="checkbox" /> C급</label>
-			    <label><input type="checkbox" /> D급</label>
-			    <label><input type="checkbox" /> F급</label>  
-			</div>	
-		   <div class="reset-btn-container">
-		 	<button class="reset-btn"><p>리셋</p></button>				
-	       </div>
-	       
-	       <a href="${path }/member/membersellerinfopage.do">임시(수정예정)</a>
-	 </div>
-	  
-	 
 	 <!-- 메인박스  -->
 	 <div class="main-box">
-        <h2>"서울" 지역 "책" 카테고리 검색 결과입니다.</h2>
+	 
+	 
+		<!-- 상단 셀러 인포 & 후기 -->
+		 	<div class="seller-info-list">
+			 	
+			 	<!-- 판매자 인포 평점 박스 -->
+			 	<div class="seller-info">
+			 		
+			 		<!-- 구분 -->
+				 	<p>판매자</p>
+				 	
+				 	<!-- 프로필사진 - 아이디 - 주소 -->
+				 	<div class="profile-box">
+				 		<div class="circle"></div>
+				 		<div class="id-address">
+					 		<h4>아이디</h4>
+					 		<h5>지역</h5>
+				 		</div>
+				 	</div>
+				 	
+				 	<!-- 별 평점이 들어갈 자리. -->
+				 	<div class="star-lv">⭐⭐⭐⭐⭐</div>
+			 		
+			 	</div>
+			 	
+			 	
+			 	<!-- 판매자의 후기가 담기는 박스 -->
+			 	<div class="comment-list">
+			 	
+			 	<!-- 구분 -->
+			 	<p>후기</p>
+			 	
+			 	<!-- 사진에 해당하는 후기내용 을 슬라이드로 넘겨 랜덤 후기 -->
+			 	<div class="comment-photo">
+				 	<!-- 뒤로 가기 -->
+				 	<button class="comment-prev">&lt;</button>
+						<!-- 사진 박스 -->
+						<div class="photo-box"></div> 
+						<!-- 후기 박스 -->
+						<div class="comment-box"></div>
+					<!-- 앞으로 가기 -->
+				 	<button class="comment-next">&gt;</button>
+			 	</div>
+			 </div>
+		 	</div>
+		 	
+		 <!-- 중간 문구 -->
+        <h2>판매중인 상품</h2>
+        
+        
+        <!-- 판매중인 리스트 -->
         <table class="product-list">
             <tbody>
                 <tr>
@@ -161,6 +143,8 @@
 			    <button class="next">&gt;</button>
 			</div>
     </div>	
+    
+    </div>
 	 
 </section>
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
