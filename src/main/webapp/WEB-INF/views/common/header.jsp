@@ -33,7 +33,9 @@
 		</div>
       
       	<div class="interface-bar">
-	      	<div>메뉴</div>
+      		<a href="${path }/">
+	      	<img src="${path}/resources/images/메뉴버튼.png">
+	      	</a>
       	</div>
     </div>
   </div>

@@ -70,7 +70,7 @@
 			    <label><input type="checkbox" /> F급</label>  
 			</div>	
 		   <div class="reset-btn-container">
-		 	<button class="reset-btn">리셋</button>				
+		 	<button class="reset-btn"><p>리셋</p></button>				
 	       </div>
 	 </div>
 	 
@@ -88,68 +88,80 @@
                     </td>
                     
                     <td>
-                    <div>2</div>
-                     <h5>교육용 사랑의매2</h5>
+                    <div>1</div>
+                    <h5>교육용 사랑의매1</h5>
                     <h4>30,000원</h4>
                     </td>
                     
                     <td>
-                    <div>3</div>
-                    <h5>교육용 사랑의매3</h5>
+                    <div>1</div>
+                    <h5>교육용 사랑의매1</h5>
                     <h4>30,000원</h4>
                     </td>
                     
                     <td>
-                    <div>4</div>
-                    <h5>교육용 사랑의매4</h5>
-                    <h4>30,000원</h4>
-                    </td>
-                    
-                    <td>
-                    <div>5</div>
-                    <h5>교육용 사랑의매5</h5>
-                    <h4>30,000원</h4>
-                    </td>
-                    
-                     <td>
-                    <div>5</div>
-                    <h5>교육용 사랑의매5</h5>
+                    <div>1</div>
+                    <h5>교육용 사랑의매1</h5>
                     <h4>30,000원</h4>
                     </td>
                 </tr>
+                
                  <tr>
                     <td>
-                    <div>8</div>
-                    <h5>교육용 사랑의매8</h5>
+                    <div>1</div>
+                    <h5>교육용 사랑의매1</h5>
                     <h4>30,000원</h4>
                     </td>
                     
                     <td>
-                    <div>9</div>
-                     <h5>교육용 사랑의매9</h5>
-                    <h4>30,000원</h4>
-                    </td>
-
-                    <td>
-                    <div>10</div>
-                    <h5>교육용 사랑의매10</h5>
+                    <div>1</div>
+                    <h5>교육용 사랑의매1</h5>
                     <h4>30,000원</h4>
                     </td>
                     
                     <td>
-                    <div>11</div>
-                    <h5>교육용 사랑의매11</h5>
+                    <div>1</div>
+                    <h5>교육용 사랑의매1</h5>
                     <h4>30,000원</h4>
                     </td>
                     
                     <td>
-                    <div>12</div>
-                    <h5>교육용 사랑의매12</h5>
+                    <div>1</div>
+                    <h5>교육용 사랑의매1</h5>
+                    <h4>30,000원</h4>
+                    </td>
+                </tr>
+                
+                 <tr>
+                    <td>
+                    <div>1</div>
+                    <h5>교육용 사랑의매1</h5>
+                    <h4>30,000원</h4>
+                    </td>
+                    
+                    <td>
+                    <div>1</div>
+                    <h5>교육용 사랑의매1</h5>
+                    <h4>30,000원</h4>
+                    </td>
+                    
+                    <td>
+                    <div>1</div>
+                    <h5>교육용 사랑의매1</h5>
+                    <h4>30,000원</h4>
+                    </td>
+                    
+                    <td>
+                    <div>1</div>
+                    <h5>교육용 사랑의매1</h5>
                     <h4>30,000원</h4>
                     </td>
                 </tr>
             </tbody>
         </table>
+        
+        
+        <!-- 페이지 바 디자인. -->
 	        <div class="pagination">
 			    <button class="prev">&lt;</button>
 						    <span class="page active"></span>
