@@ -32,10 +32,57 @@
     		</form>
 		</div>
       
-      	<div class="interface-bar">
-      		<a href="${path }/">
-	      	<img src="${path}/resources/images/메뉴버튼.png">
-	      	</a>
+      
+      	<!-- 메뉴 바 영역 -->
+      	<div class="interface-container">
+      		<a class="info-btn">
+      			<img src="${path}/resources/images/메뉴버튼.png">
+	 	    </a>
+	 	    
+	 	    <!-- 슬라이드 패널 -->
+	 	    <div class="slide-bar">
+	 	    	<div class="content"> 
+		 	    	<!-- 프로필 영역 -->
+		 	        <div class="profile-box">
+					 		<div class="circle"></div>
+					 		<div class="id-address">
+						 		<h4>woogamjaa</h4>
+						 		<h5>지역</h5>
+					 		</div>
+					 	</div>
+		 	    	<!-- 목록 리스트  -->
+		 	    	<div class="m-list">
+			 	    	<a href="">마이페이지</a>
+			 	    	<a href="">상품관리</a>
+			 	    	<a href="">상품등록</a>
+			 	    	<a href="">문의사항</a>
+			 	    	<a href="">관심상품 리스트</a>
+			 	    	<a href="">장바구니 리스트</a>
+			 	    	<a href="">로그아웃</a>
+		 	        </div>
+	 	        </div>
+	 	    </div>
       	</div>
     </div>
   </div>
+  
+<script>
+//슬라이드 여는 스크립트
+document.querySelector('.info-btn').addEventListener('click', (event) => {
+    event.stopPropagation(); // 이벤트 전파 방지
+    const slidebar = document.querySelector('.slide-bar');
+    slidebar.classList.add('open'); // 슬라이드 패널 열기
+});
+
+// 슬라이드 닫는 스크립트
+document.addEventListener('click', (event) => {
+    const slidebar = document.querySelector('.slide-bar');
+    const isClickInsideSlidebar = slidebar.contains(event.target); // 슬라이드 내부 클릭 감지
+    const isClickOnButton = event.target.closest('.info-btn'); // 버튼 클릭 감지
+
+    if (!isClickInsideSlidebar && !isClickOnButton) {
+        slidebar.classList.remove('open'); // 슬라이드 패널 닫기
+    }
+});
+
+</script>

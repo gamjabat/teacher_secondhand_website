@@ -161,6 +161,14 @@
 			    <button class="next">&gt;</button>
 			</div>
     </div>	
-	 
+    
+    
+
+<script>
+
+</script>
+
+
+
 </section>
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>

@@ -48,9 +48,9 @@
 				 	<!-- 뒤로 가기 -->
 				 	<button class="comment-prev">&lt;</button>
 						<!-- 사진 박스 -->
-						<div class="photo-box"></div> 
+						<div class="photo-box">사진</div> 
 						<!-- 후기 박스 -->
-						<div class="comment-box"></div>
+						<div class="comment-box">후기</div>
 					<!-- 앞으로 가기 -->
 				 	<button class="comment-next">&gt;</button>
 			 	</div>
@@ -144,7 +144,7 @@
 			</div>
     </div>	
     
-    </div>
+ 
 	 
 </section>
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
