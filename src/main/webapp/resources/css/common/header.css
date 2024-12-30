@@ -50,7 +50,7 @@
 		top: 1.4%;
 	    right: -100%;
 		width: 13%;
-	    height: 500px;
+	    height: 600px;
 	    background-color: white;
 	    border: 5px solid #ECEBDE;
 		border-radius: 10px;
@@ -77,7 +77,7 @@
 		justify-content: space-around;
 	}
 	
-	.s-circle1{
+	.s-circle{
 	    width: 60px;
 	    height: 60px;
 	    background-color: #ECEBDE;
@@ -85,9 +85,12 @@
 	}
 	
 	.s-id-address {
+		width:100%;
 		display : flex;
 		flex-direction: column;
 		justify-content: center;
+		word-wrap: break-word; /* 긴 단어를 강제로 줄바꿈 */
+    overflow-wrap: break-word; /* 긴 텍스트 줄바꿈 (표준 속성) */
 	}
 	
 	.id-address h4 {
