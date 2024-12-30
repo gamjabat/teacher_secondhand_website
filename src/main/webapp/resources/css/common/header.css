@@ -70,21 +70,21 @@
 	}
 	
 	
-	.profile-box {
+	.s-profile-box {
 		display : flex;
 		margin : 20px;
 		flex-wrap: wrap;
 		justify-content: space-around;
 	}
 	
-	.circle{
+	.s-circle1{
 	    width: 60px;
 	    height: 60px;
 	    background-color: #ECEBDE;
 	    border-radius: 50%;
 	}
 	
-	.id-address {
+	.s-id-address {
 		display : flex;
 		flex-direction: column;
 		justify-content: center;

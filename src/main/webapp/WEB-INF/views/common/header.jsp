@@ -43,9 +43,9 @@
 	 	    <div class="slide-bar">
 	 	    	<div class="content"> 
 		 	    	<!-- 프로필 영역 -->
-		 	        <div class="profile-box">
-					 		<div class="circle"></div>
-					 		<div class="id-address">
+		 	        <div class="s-profile-box">
+					 		<div class="s-circle"></div>
+					 		<div class="s-id-address">
 						 		<h4>woogamjaa</h4>
 						 		<h5>지역</h5>
 					 		</div>
