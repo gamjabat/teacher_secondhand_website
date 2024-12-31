@@ -9,7 +9,6 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="${path}/resources/style.css">
   <link rel="stylesheet" href="${path}/resources/css/common/header.css">
   <link rel="stylesheet" href="${path}/resources/css/common/footer.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
@@ -21,11 +20,14 @@
 <body>	
 	<div class="header-container">
     	<div class="header-box">
+    	<!-- 로고 -->
       	<div class="logo-container">
 	 			<a href="${path }/">
 	      		<img src="${path}/resources/images/SSEULMANHAE_LOGO.png" class="logo" alt="Logo" onclick="mainPage();">
       		</a> 
       	</div>
+      	
+      	<!-- 검색창 -->
       	<div class="search-container">
     		<form class="search-form" action="#" method="post">
         		<input type="text" class="search-input" placeholder=" 검색어를 입력하세요">
@@ -33,7 +35,7 @@
 		</div>
       
       
-      	<!-- 메뉴 바 영역 -->
+      	<!-- 슬라이드 컨데이너 -->
       	<div class="interface-container">
       		<a class="info-btn">
       			<img src="${path}/resources/images/메뉴버튼.png">
@@ -55,10 +57,13 @@
 			 	    	<a href="">마이페이지</a>
 			 	    	<a href="">상품관리</a>
 			 	    	<a href="">상품등록</a>
-			 	    	<a href="">문의사항</a>
+			 	    	<a href="${path}/board/boardquestionandanswer.do">문의 게시판</a>
 			 	    	<a href="">관심상품 리스트</a>
 			 	    	<a href="">장바구니 리스트</a>
 			 	    	<a href="">로그아웃</a>
+			 	    	
+			 	    	<!-- 관리자 로그인시에만 보이는 목록 예정 -->
+			 	    	<a href="${path}/admin/adminmain.do">관리자 페이지</a>
 		 	        </div>
 	 	        </div>
 	 	    </div>
@@ -69,7 +74,7 @@
 <script>
 //슬라이드 여는 스크립트
 document.querySelector('.info-btn').addEventListener('click', (event) => {
-    event.stopPropagation(); // 이벤트 전파 방지
+    event.stopPropagation();
     const slidebar = document.querySelector('.slide-bar');
     slidebar.classList.add('open'); // 슬라이드 패널 열기
 });

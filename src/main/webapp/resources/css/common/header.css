@@ -60,7 +60,7 @@
 	    
 	    overflow: hidden;
 	   /*  transition: transform 1.0s ease; */
-	    transition: right 0.3s ease-in-out;
+	    transition: right 0.4s ease-in-out;
 	}
 	 
 	
@@ -90,7 +90,7 @@
 		flex-direction: column;
 		justify-content: center;
 		word-wrap: break-word; /* 긴 단어를 강제로 줄바꿈 */
-    overflow-wrap: break-word; /* 긴 텍스트 줄바꿈 (표준 속성) */
+    	overflow-wrap: break-word; /* 긴 텍스트 줄바꿈 (표준 속성) */
 	}
 	
 	.id-address h4 {
@@ -113,7 +113,7 @@
 	}
 	
 	.m-list a{
-		 text-decoration: none;
+		  	
 		 color : black;
 		 margin-bottom : 15px;
 		 font-weight : 700;
