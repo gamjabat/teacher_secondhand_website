@@ -54,7 +54,7 @@
 					 	</div>
 		 	    	<!-- 목록 리스트  -->
 		 	    	<div class="m-list">
-			 	    	<a href="">마이페이지</a>
+			 	    	<a href="${path }/member/purchasehistory.do">마이페이지</a>
 			 	    	<a href="">상품관리</a>
 			 	    	<a href="">상품등록</a>
 			 	    	<a href="${path}/board/boardquestionandanswer.do">문의 게시판</a>

@@ -1,0 +1,87 @@
+@charset "UTF-8";
+
+
+
+/* 메인콘테이너 */
+.main-container {
+	width : 100%;
+	display : flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	
+}
+
+/* 메인 박스. */
+.main-box {
+	width : 80%;
+	border: 2px solid #ECEBDE;
+	border-radius: 10px;
+	margin: 10px;
+	/* padding :20px; */
+
+}
+
+.mypage-side-bar{
+	width: 20%;
+	border-right: 2px solid #ECEBDE;
+	margin: 0;
+	padding: 20px;
+}
+
+
+.member-info{
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	margin-bottom: 20px;
+}
+
+.member-img{
+	width: 40px;
+	height: 40px;
+	background-color: #A59D84;
+	border-radius: 50%;
+	margin: 10px;
+}
+
+.member-name{
+	font-size: 15px;
+	font-weight: bold;
+}
+
+.mypage-side-bar h3{
+	color:  #A59D84;
+	font-weight: bold;
+	text-align: center;
+}
+
+
+.mypage-side-bar ul{
+	list-style: none;
+	padding: 10px;
+	padding-bottom: 10px;
+}
+
+.mypage-side-bar li{
+	padding-bottom: 10px;
+}
+
+.mypage-side-bar a {
+	font-size: 15px;
+	font-weight: bold;
+    text-decoration: none;
+    color: #A59D84;
+    margin: 10px;
+}
+
+.active-sidebar a{
+	color: #646053;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.mypage-side-bar a:hover {
+    color: #646053;
+    font-weight: bold;
+}
