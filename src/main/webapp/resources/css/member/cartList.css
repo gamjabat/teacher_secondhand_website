@@ -1,0 +1,33 @@
+@charset "UTF-8";
+
+/* 체크박스 기본 스타일 초기화 */
+.checkbox {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 25px;
+    height: 25px;
+    border: 2px solid #BBA990;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #fff;
+    display: inline-block;
+    margin: 5px;
+}
+
+/* 체크박스 선택된 상태 */
+.checkbox:checked {
+    background-color: #A95151;
+    border-color: #A95151;
+}
+
+/* 체크박스 체크 아이콘 추가 */
+.checkbox:checked::after {
+	font-family: 'Roboto', sans-serif;
+    content: '✔';
+    color: white;
+    font-size: 14px;
+    display: block;
+    text-align: center;
+    line-height: 20px;
+}
