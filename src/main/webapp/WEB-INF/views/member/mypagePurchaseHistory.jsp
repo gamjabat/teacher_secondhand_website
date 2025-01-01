@@ -115,8 +115,19 @@
 			<div class="transaction-date">2024-12-11 결제</div>
 		</div>
 		
+	<!-- 페이지 바 디자인. -->
+    <div class="pagination">
+	    <button class="prev">&lt;</button>
+				    <span class="page active"></span>
+				    <span class="page"></span>
+				    <span class="page"></span>
+				    <span class="page"></span>
+				    <span class="page"></span>
+	    <button class="next">&gt;</button>
+	</div>
 	
 	</div>
+	
 	
 	
 	

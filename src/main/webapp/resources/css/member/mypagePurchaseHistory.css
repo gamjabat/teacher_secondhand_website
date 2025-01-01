@@ -44,5 +44,46 @@
 	align-items: center;
 }
 
+/* 페이징바 디자인 */
+
+.pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px; /* 아이템 간 간격 */
+    margin: 20px 0; /* 상하 여백 */
+}
+
+.pagination .prev,
+.pagination .next {
+    border: none;
+    background: none;
+    font-size: 1.2rem; /* 화살표 크기 */
+    color: #b3a898; /* 화살표 색상 */
+    cursor: pointer;
+}
+
+.pagination .prev:hover,
+.pagination .next:hover {
+    color: #6b4b3d; /* 호버 시 색상 */
+}
+
+.pagination .page {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #b3a898; /* 기본 색상 */
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.pagination .page.active {
+    background-color: #964b4b; /* 활성화된 페이지 색상 */
+}
+
+.pagination .page:hover {
+    background-color: #6b4b3d; /* 호버 시 색상 */
+}
+
 
 

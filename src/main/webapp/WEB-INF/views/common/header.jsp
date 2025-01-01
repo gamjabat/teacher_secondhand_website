@@ -58,7 +58,7 @@
 			 	    	<a href="">상품관리</a>
 			 	    	<a href="">상품등록</a>
 			 	    	<a href="${path}/board/boardquestionandanswer.do">문의 게시판</a>
-			 	    	<a href="">관심상품 리스트</a>
+			 	    	<a href="${path }/member/wishlist.do">관심상품 리스트</a>
 			 	    	<a href="">장바구니 리스트</a>
 			 	    	<a href="">로그아웃</a>
 			 	    	

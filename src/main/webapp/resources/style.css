@@ -198,4 +198,33 @@
     background-color: #6b4b3d; /* 호버 시 색상 */
 }
 
+.list-logo{
+	width: 35px;
+	height: 35px;
+	background-color: #ECEBDE;
+	border-radius:5px;
+	margin-left: 10px;
+}
 
+.list-title{
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	font-size: 25px;
+	font-weight: bold;
+	color: #A59D84;
+	gap: 10px;
+	padding: 20px;
+}
+
+.heart-btn {
+    background: none; /* 버튼 배경 제거 */
+    border: none; /* 버튼 테두리 제거 */
+    border-radius: 5px;
+    cursor: pointer; /* 클릭 가능한 커서 */
+    padding: 5px; /* 버튼 크기 조정 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 5px;
+}
