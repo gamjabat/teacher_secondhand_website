@@ -6,6 +6,7 @@
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 <link rel="stylesheet" href="${path}/resources/style.css">
 <link rel="stylesheet" href="${path}/resources/css/product/productDetail.css">
+<link rel="stylesheet" href="${path}/resources/css/product/productChatting.css">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
 
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
@@ -149,69 +150,99 @@
 					    <i class="far fa-star"></i>
 		        	</div>
 				    <span>후기 (230개)</span>
-				</div>			        
+				</div>		        
 	        </div>
 		</div>
 	</div>
 	
 	
     <div class="right-box d-flex flex-column">
-		<!-- 상품 정보 -->
-		    <div class="product-info-box d-flex flex-column justify-content-between">
-		        	<div class="product-info">
-			            <p class="title">BS언어 단어 100제 완전 강추! 쉬운 습득 가능!</p>
-			            <p class="category">책/교육</p>
-		        	</div>
-		        	<div class="product-info">
-			            <p class="price">35,000원</p>
-			            <p class="description">
-			                안녕하세요. 언어 공부에 탁월한 선택을 경험하실 수 있습니다. 노력을 배신하지 않는다. 인간 중심의 표준이 정해주는 코딩 책입니다.
-			                자바 기초부터 클로저 방향성 길라잡이로 초심자 눈높이에 맞게 설계된 목록으로 부담없이 배우실 수 있을 겁니다. 잘 쓰세요. 원가보다 싸게 팝니다.
-			            </p>
-		        	</div>
-		    </div>
-	    	
-    
-	    <!-- 버튼 영역 -->
-	    <div class="d-flex flex-row">
-		    <div class="button-group">
-		    	<div class="sub-button-group">
-			        <button class="btn chatting-btn" onclick="startChatting();">대화신청</button>
-			        <button class="btn cart-btn">장바구니</button>
-		    	</div>
-		        <button class="btn pay-btn">결제하기</button>
-		    </div>
-		    <div class="like-btn d-flex justify-content-center align-items-center">
-		    	<!-- 빈하트 -->
-	   			<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#BBA990" class="bi bi-heart mx-1" viewBox="0 0 16 16">
-					<path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143q.09.083.176.171a3 3 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15"/>
+    	<div class="product-chatting-info">
+    		<div class="title">BS언어 단어 100제 완전 강추 ! 쉬운 습득가능 !</div>
+    		<div class="price">35,000원</div>
+    	</div>
+    	
+    	<div class="chatting-box">
+    		<div class="receiver-chat">
+    			<div class="member-img d-flex justify-content-center align-items-center">
+	        		<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="#ECEBDE" class="bi bi-person-fill" viewBox="0 0 16 16">
+					  <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
+					</svg>
+	        	</div>
+	        	<div>
+		        	<span class="member-name">나BS아님</span>
+		        	<div class="chat-content">하이</div>
+	        	</div>
+    		</div>
+    		<div class="sender-chat">
+	        	<div>
+		        	<span class="member-name d-flex justify-content-end">나BS아님</span>
+		        	<div class="chat-content">하이</div>
+	        	</div>
+	        	<div class="member-img d-flex justify-content-center align-items-center">
+	        		<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="#ECEBDE" class="bi bi-person-fill" viewBox="0 0 16 16">
+					  <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
+					</svg>
+	        	</div>
+    		</div>
+    		<div class="receiver-chat">
+    			<div class="member-img d-flex justify-content-center align-items-center">
+	        		<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="#ECEBDE" class="bi bi-person-fill" viewBox="0 0 16 16">
+					  <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
+					</svg>
+	        	</div>
+	        	<div>
+		        	<span class="member-name">나BS아님</span>
+		        	<div class="chat-content">하이</div>
+	        	</div>
+    		</div>
+    		<div class="sender-chat">
+	        	<div>
+		        	<span class="member-name d-flex justify-content-end">나BS아님</span>
+		        	<div class="chat-content">하이</div>
+	        	</div>
+	        	<div class="member-img d-flex justify-content-center align-items-center">
+	        		<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="#ECEBDE" class="bi bi-person-fill" viewBox="0 0 16 16">
+					  <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
+					</svg>
+	        	</div>
+    		</div>
+    		<div class="receiver-chat">
+    			<div class="member-img d-flex justify-content-center align-items-center">
+	        		<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="#ECEBDE" class="bi bi-person-fill" viewBox="0 0 16 16">
+					  <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
+					</svg>
+	        	</div>
+	        	<div>
+		        	<span class="member-name">나BS아님</span>
+		        	<div class="chat-content">하이</div>
+	        	</div>
+    		</div>
+    		<div class="sender-chat">
+	        	<div>
+		        	<span class="member-name d-flex justify-content-end">나BS아님</span>
+		        	<div class="chat-content">하이</div>
+	        	</div>
+	        	<div class="member-img d-flex justify-content-center align-items-center">
+	        		<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="#ECEBDE" class="bi bi-person-fill" viewBox="0 0 16 16">
+					  <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
+					</svg>
+	        	</div>
+    		</div>
+    	</div>
+    	<form class="chatting-input-box">
+    		<textarea class="chatting-input" placeholder="메세지를 입력하세요"></textarea>
+    		<button type="submit" class="send-btn">
+				<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-send" viewBox="0 0 16 16">
+				  <path d="M15.854.146a.5.5 0 0 1 .11.54l-5.819 14.547a.75.75 0 0 1-1.329.124l-3.178-4.995L.643 7.184a.75.75 0 0 1 .124-1.33L15.314.037a.5.5 0 0 1 .54.11ZM6.636 10.07l2.761 4.338L14.13 2.576zm6.787-8.201L1.591 6.602l4.339 2.76z"/>
 				</svg>
-		    </div>
-	    </div>
+			</button>
+    	</form>		
     </div>
-	
-
 
 </div>
-	 
-<script>
-	const startChatting = () =>{
-		location.assign("${path}/product/productchatting.do");
-	}
-	
-</script>
-    
+  
 </section>    
-
-
-
-
-
-<script>
-
-</script>
-
-
 
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>

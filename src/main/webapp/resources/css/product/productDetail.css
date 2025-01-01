@@ -18,7 +18,7 @@
 
 .carousel-inner img {
     border-radius: 10px;
-    height: 500px;
+    aspect-ratio: 1 / 1;
     object-fit: cover;
 }
 
@@ -112,13 +112,13 @@
 }
 
 .seller-name{
-	font-size: 25px;
+	font-size: 20px;
 	font-weight: bold;
 	color: #857672;
 }
 
 .seller-address{
-	font-size: 18px;
+	font-size: 15px;
 	color: #857672;
 }
 
