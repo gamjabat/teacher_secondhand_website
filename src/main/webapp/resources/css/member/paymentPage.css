@@ -1,0 +1,159 @@
+@charset "UTF-8";
+
+/* 메인콘테이너 */
+.main-container {
+	width : 100%;
+	display : flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	
+}
+
+ /* 메인 박스. */
+.main-box {
+	width : 80%;
+	border: 2px solid #ECEBDE;
+	border-radius: 10px;
+	margin: 10px;
+	padding :20px;
+}
+
+.list-logo{
+	width: 35px;
+	height: 35px;
+	background-color: #ECEBDE;
+	border-radius:5px;
+	margin-left: 10px;
+}
+
+.list-title{
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	font-size: 25px;
+	font-weight: bold;
+	color: #A59D84;
+	gap: 10px;
+	padding: 20px;
+}
+
+.right-box, .left-box{
+	gap: 20px;
+	width: 50%;
+}
+
+.product-list{
+	margin-bottom: 20px;
+    border: 2px solid #ECEBDE;
+    border-radius: 10px;
+    padding: 10px 20px;
+    width: 100%;
+}
+
+.product-items{
+	max-height: 1000px;
+	overflow-y: auto;
+}
+
+.sub-title{
+	color: #A59D84;
+	font-size: 23px;
+	font-weight: bold;
+	padding: 10px;
+}
+
+.product-item{
+	border: 2px solid #ECEBDE;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 10px;
+    gap: 20px;
+    margin-bottom: 10px;
+}
+
+.product-item img{
+	width: 80px;
+	height: 80px;
+	border-radius: 10px;
+}
+
+.product-info{
+	font-size: 18px;
+	font-weight: bold;
+}
+
+.shipping-info .sub-title,
+.payment-info .sub-title{
+	border-top: 2px solid #ECEBDE;
+	border-bottom: 1px solid #D9D9D9;
+	margin:20px 0px;
+}
+.shipping-info>div,
+.payment-info>div{
+	padding: 10px;
+}
+
+.shipping-info>div>div>input{
+	margin: 5px 0px;
+}
+
+.shipping-info label{
+	width: 20%;
+	white-space: nowrap;
+}
+
+.price{
+	color: #A95151 !important;
+}
+
+.payment-info>div>div:first-child {
+	width: 15%;
+}
+
+.agreement-section {
+    border-top: 2px solid #ECEBDE;
+    padding: 10px;
+    font-size: 16px;
+    
+}
+
+.agreement-section .form-check {
+    margin-bottom: 10px;
+}
+
+#checkAll + .form-check-label{
+	font-weight: bold;
+}
+
+.payment-btn{
+	padding: 10px 40px;
+    height: 50px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    background-color: #A95151;
+    border-radius: 10px;
+    color: white;
+    font-weight: bold;
+    margin: 20px 10px;
+}
+
+.payment-btn:hover {
+    background-color: #7A3838;
+}
+
+.custom-btn{
+	font-size: 12px !important;
+    padding: 10px 20px !important;
+    border-radius: 5px;
+    white-space: nowrap;
+}
+
+.required {
+    color: red;
+    font-weight: bold;
+    padding-left: 3px;
+}
