@@ -5,7 +5,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 <link rel="stylesheet" href="${path}/resources/style.css">
-<link rel="stylesheet" href="${path}/resources/css/member/cartList.css">
+<link rel="stylesheet" href="${path}/resources/css/common/checkbox.css">
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
 
 <section class="main-container">

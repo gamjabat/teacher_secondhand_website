@@ -1,4 +1,4 @@
-package com.secondhand.controller.product;
+package com.secondhand.controller.member;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -8,16 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class ProductChatting
+ * Servlet implementation class PaymentPageServlet
  */
-@WebServlet("/product/productchatting.do")
-public class ProductChatting extends HttpServlet {
+@WebServlet("/member/paymentpage.do")
+public class PaymentPageServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ProductChatting() {
+    public PaymentPageServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -26,7 +26,7 @@ public class ProductChatting extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("/WEB-INF/views/product/productChatting.jsp")
+		request.getRequestDispatcher("/WEB-INF/views/member/paymentPage.jsp")
 		.forward(request, response);
 	}
 

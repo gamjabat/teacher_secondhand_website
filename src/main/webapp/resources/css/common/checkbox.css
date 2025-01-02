@@ -31,3 +31,32 @@
     text-align: center;
     line-height: 20px;
 }
+
+
+.form-check input{
+	-webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 15px;
+    height: 15px;
+    border: 1px solid #BBA990;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #fff;
+    display: inline-block;
+}
+
+/* 체크박스 선택된 상태 */
+.form-check input:checked {
+    background-color: #A95151;
+    border-color: #A95151;
+}
+
+/* 체크박스 체크 아이콘 추가 */
+.form-check input:checked::after {
+    color: white;
+    font-size: 14px;
+    display: block;
+    text-align: center;
+    line-height: 20px;
+}

@@ -180,7 +180,7 @@
 			        <button class="btn chatting-btn" onclick="startChatting();">대화신청</button>
 			        <button class="btn cart-btn">장바구니</button>
 		    	</div>
-		        <button class="btn pay-btn">결제하기</button>
+		        <button type="button" class="btn pay-btn" onclick="paymentPage();">결제하기</button>
 		    </div>
 		    <div class="like-btn d-flex justify-content-center align-items-center">
 		    	<!-- 빈하트 -->
@@ -200,10 +200,10 @@
 		location.assign("${path}/product/productchatting.do");
 	}
 	
-
-
-
-<script>
+	const paymentPage = () =>{
+		location.assign("${path}/member/paymentpage.do");
+	}
+	
 
 </script>
 
