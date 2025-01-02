@@ -194,6 +194,7 @@
 
 
 </div>
+</section>
 	 
 <script>
 	const startChatting = () =>{
@@ -204,9 +205,7 @@
 		location.assign("${path}/member/paymentpage.do");
 	}
 	
-
 </script>
-
 
 
 
