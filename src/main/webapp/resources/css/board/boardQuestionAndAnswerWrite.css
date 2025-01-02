@@ -1,0 +1,80 @@
+@charset "UTF-8";
+
+
+
+/* 메인콘테이너 */
+.main-container {
+	width : 100%;
+	display : flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	
+}
+
+
+
+
+ /* 메인 박스. */
+.main-box {
+	width : 80%;
+	border: 2px solid #ECEBDE;
+	border-radius: 10px;
+	margin: 10px;
+	padding :20px;
+	display : flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+
+}
+
+.main-box h2{
+	margin: 20px;
+	margin-bottom :50px; 
+	font-weight : 700;
+}
+
+.QnA-input-box{
+	width : 80%;
+	border: 0px solid #ECEBDE;
+	border-radius: 10px;
+	margin: 10px;
+	padding :20px;
+	
+}
+
+.QnA-input-box span{
+	color : black;
+	font-weight : 800;
+	
+}
+
+.QnA-input-box div{
+ 	margin-bottom: 50px;
+ 	display: flex;
+ 	flex-direction: column;
+	justify-content: center;
+}
+
+
+.QnA-save {
+	all: unset; /* 기본 스타일 초기화 */
+    cursor: pointer; /* 버튼 클릭 커서 */
+    padding: 10px; /* 내부 여백 */
+    border: 1px solid #ccc; /* 테두리 */
+    background-color: #A95151; /* 배경색 */
+    border-radius: 10px; /* 모서리 둥글게 */
+	
+}
+
+.QnA-save p {
+	color : white;
+	margin: 10px;
+}
+
+
+.QnA-save:hover {
+    background-color: #C79494; /* 호버 효과 */
+
+}
