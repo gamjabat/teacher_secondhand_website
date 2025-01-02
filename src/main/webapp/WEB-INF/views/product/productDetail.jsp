@@ -73,10 +73,11 @@
 			    <label><input type="checkbox" /> F급</label>  
 			</div>	
 		   <div class="reset-btn-container">
-		 	<button class="reset-btn"><p>RE</p></button>				
+		 	<button class="reset-btn"><p>RE</p></button>
+		 	<button class="push-btn"><p>PUSH</p></button>					
 	       </div>
 	       
-	       <a href="${path }/member/membersellerinfopage.do">임시(수정예정)</a>
+	     
 	 </div>
 	  
 	 
@@ -126,7 +127,7 @@
 	    <div class="seller-info-box">
 	        <div class="d-flex justify-content-between align-items-center mb-3">
 	            <span class="seller">판매자</span>
-	            <span class="more-info"><a href="#" class="text-muted">더보기</a></span>
+	            <span class="more-info"><a href="${path }/member/membersellerinfopage.do" class="text-muted">더보기</a></span>
 	        </div>
 	        <div class="d-flex justify-content-between align-items-center">
 	        	<div class="d-flex">
@@ -199,11 +200,6 @@
 		location.assign("${path}/product/productchatting.do");
 	}
 	
-</script>
-    
-</section>    
-
-
 
 
 

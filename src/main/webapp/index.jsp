@@ -70,10 +70,9 @@
 			    <label><input type="checkbox" /> F급</label>  
 			</div>	
 		   <div class="reset-btn-container">
-		 	<button class="reset-btn"><p>RE</p></button>				
+		 	<button class="reset-btn"><p>RE</p></button>	
+		 	<button class="push-btn"><p>PUSH</p></button>				
 	       </div>
-	       
-	       <a href="${path }/member/membersellerinfopage.do">임시(수정예정)</a>
 	 </div>
 	  
 	 
