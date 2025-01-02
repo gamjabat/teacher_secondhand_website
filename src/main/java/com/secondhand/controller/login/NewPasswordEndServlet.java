@@ -11,9 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.gamjabat.common.PasswordEncoding;
-import com.gamjabat.model.dto.member.Member;
-import com.gamjabat.service.member.MemberService;
+import com.secondhand.common.PasswordEncoding;
+import com.secondhand.model.servicce.member.MemberService;
 
 /**
  * Servlet implementation class NewPasswordEndServlet

@@ -9,9 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.gamjabat.common.PasswordEncoding;
-import com.gamjabat.model.dto.member.Member;
-import com.gamjabat.service.member.MemberService;
+import com.secondhand.common.PasswordEncoding;
+import com.secondhand.model.dto.member.Member;
+import com.secondhand.model.servicce.member.MemberService;
 
 /**
  * Servlet implementation class SignUpEndServlet
@@ -52,10 +52,23 @@ public class SignUpEndServlet extends HttpServlet {
         }
 		String birthDateStr = birthYear + "-" + birthMonth + "-" + birthDay;
 		Date birthDate = Date.valueOf(birthDateStr);
+		
 		String phone = request.getParameter("phone");
-		String sido = request.getParameter("sido");
-		String gugun = request.getParameter("gugun");
-		String address = sido + " " + gugun;
+		
+		
+		String postcode = request.getParameter("sample6_postcode"); // 우편번호
+	    String basicAddress = request.getParameter("sample6_address"); // 기본 주소
+	    String detailAddress = request.getParameter("sample6_detailAddress"); // 상세 주소
+	    String extraAddress = request.getParameter("sample6_extraAddress"); // 참고 항목
+		
+	    String fullAddress = String.join(" ", postcode, basicAddress, detailAddress, extraAddress).trim();
+	    if (fullAddress.isBlank()) {
+	        fullAddress = null; // 주소 정보가 없는 경우 null로 처리
+	    }
+		/*
+		 * String sido = request.getParameter("sido"); String gugun =
+		 * request.getParameter("gugun");
+		 */
 		
 		Member insertMember = Member.builder()
 								.memberName(name)
@@ -65,7 +78,7 @@ public class SignUpEndServlet extends HttpServlet {
 								.email(email)
 								.birthday(birthDate)
 								.phone(phone)
-								.address(address.equals("시/도 선택 구/군 선택")? null : address)
+								.address(fullAddress)
 								.build();
 		
 		MemberService service = new MemberService();
@@ -89,9 +102,7 @@ public class SignUpEndServlet extends HttpServlet {
 		request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp").forward(request, response);
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
 	}

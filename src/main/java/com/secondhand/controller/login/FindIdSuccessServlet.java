@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.gamjabat.model.dto.member.Member;
-import com.gamjabat.service.member.MemberService;
+import com.secondhand.model.dto.member.Member;
+import com.secondhand.model.servicce.member.MemberService;
 
 /**
  * Servlet implementation class FindIdSuccessServlet

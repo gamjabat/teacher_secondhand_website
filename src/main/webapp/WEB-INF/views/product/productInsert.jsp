@@ -32,7 +32,7 @@
        		<div class="box2">
        			<label for="product-category"><span>카테고리</span></label>
        			<select class="product-category">
-       				<option value="cat-1"> 도서 </option>
+       				<option value="ehtj"> 도서 </option>
        				<option value="cat-2"> 운동 </option>
        				<option value="cat-3"> 전자기기 </option>
        				<option value="cat-4"> 문구 </option>
