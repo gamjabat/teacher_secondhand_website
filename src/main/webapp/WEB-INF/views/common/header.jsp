@@ -40,18 +40,33 @@
       		<a class="info-btn">
       			<img src="${path}/resources/images/메뉴버튼.png">
 	 	    </a>
-	 	    
+	
 	 	    <!-- 슬라이드 패널 -->
 	 	    <div class="slide-bar">
 	 	    	<div class="content"> 
 		 	    	<!-- 프로필 영역 -->
+		 	    	<c:if test="${sessionScope.loginMember != null}">
 		 	        <div class="s-profile-box">
 					 		<div class="s-circle"></div>
 					 		<div class="s-id-address">
-						 		<h4>로그인 하세요.</h4>
-						 		<h5>지역</h5>
+						 		<!-- 이름 표시 -->
+						 		
+           						 <h4>${sessionScope.loginMember.nickname}님 환영합니다!</h4>
+            					<!-- 지역 표시 -->
+            					<%-- <h5>${sessionScope.loginMember.addressParsed}</h5> --%>
+            					<h5>지역</h5>
 					 		</div>
 					 </div>
+					 </c:if>
+						 <c:if test="${sessionScope.loginMember == null}">
+							    <div class="s-profile-box">
+							        <div class="s-circle"></div>
+							        <div class="s-id-address">
+							            <h4>로그인 하세요.</h4>
+							            <h5>지역</h5>
+							        </div>
+							    </div>
+							</c:if>
 		 	    		<!-- 목록 리스트  -->
 						<div class="m-list">
 						    <!-- 로그인 상태가 아닐 때만 보이는 메뉴 -->
