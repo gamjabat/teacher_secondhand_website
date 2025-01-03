@@ -1,4 +1,4 @@
-package com.secondhand.controller.member;
+	package com.secondhand.controller.member;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class PaymentPageServlet
  */
-@WebServlet("/member/paymentpage.do")
+@WebServlet(name="paymentpageservlet" ,urlPatterns = "/member/paymentpage.do")
 public class PaymentPageServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
