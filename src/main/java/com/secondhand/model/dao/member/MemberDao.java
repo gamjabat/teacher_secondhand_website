@@ -14,6 +14,18 @@ public class MemberDao {
 	}
 	
 	public Member loginInvlidCheck(SqlSession session, Member checkMember) {
-	 return session.selectOne("member.selectMemberById", checkMember);
+		return session.selectOne("member.loginInvlidCheck",checkMember);
 	}
+	
+	public boolean isNicknameDuplicate(SqlSession session, String nickname) {
+        return session.selectOne("member.isNicknameDuplicate", nickname) != null;
+    }
+
+    public boolean isPhoneDuplicate(SqlSession session, String phone) {
+        return session.selectOne("member.isPhoneDuplicate", phone) != null;
+    }
+
+    public boolean isEmailDuplicate(SqlSession session, String email) {
+        return session.selectOne("member.isEmailDuplicate", email) != null;
+    }
 }

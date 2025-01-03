@@ -339,7 +339,7 @@
 	    const phoneValue = phoneInput.value.trim();
 	    const emailInput = document.getElementById("email");
 	    const emailValue = emailInput.value.trim();
-	
+	    console.log(nicknameValue, phoneValue, emailValue);
 	    return new Promise((resolve) => {
 	        $.ajax({
 	            url: `${path}/member/checkduplicate.do`,
