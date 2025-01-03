@@ -7,7 +7,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import com.secondhand.model.dto.member.Member;
 import com.secondhand.model.dto.product.Product;
 import com.secondhand.model.service.product.ProductService;
 
@@ -43,13 +45,20 @@ public class ProductInsertEndServlet extends HttpServlet {
 		String sido = request.getParameter("sido");
 		String gugun = request.getParameter("gugun");
 		String tradeLocation = sido + " " + gugun;
+		if(tradeLocation.equals("시/도 선택 구/군 선택")){
+			tradeLocation = null;
+		}
 		String hashtag = request.getParameter("product-hashtag");
+		
+		HttpSession session = request.getSession();
+		Member loginMember = (Member)session.getAttribute("loginMember");
 		
 		Product insertProduct = Product.builder()
 									.productName(name)
 									.productCategoryNo(category)
 									.price(price)
 									.productDescription(description)
+									.productMemberNo(loginMember.getMemberNo())
 									.transMethodNo(transMethod)
 									.tradeLocation(tradeLocation)
 									.hashTags(hashtag)
