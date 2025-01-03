@@ -3,6 +3,8 @@ package com.secondhand.model.servicce.member;
 
 import static com.secondhand.common.SqlSessionTemplate.getSession;
 
+import java.util.HashMap;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
@@ -32,10 +34,25 @@ private MemberDao dao = new MemberDao();
 		return m;
 	}
 	
-	
-    public Member loginInvalidCheck(Member checkMember) {
+	//회원가입시 닉네임, 핸드폰, 이메일 중복체크.
+	public Map<String, Boolean> checkDuplicate(String nickname, String phone, String email) {
 		SqlSession session = getSession();
+        Map<String, Boolean> result = new HashMap<>();
+        result.put("nicknameIsDuplicate", dao.isNicknameDuplicate(session, nickname));
+        result.put("phoneIsDuplicate", dao.isPhoneDuplicate(session, phone));
+        result.put("emailIsDuplicate", dao.isEmailDuplicate(session, email));
+        session.close();
+        return result;
+	 }
+	
+	//로그인 id체크.
+	public Member loginInvalidCheck(Member checkMember) {
+		SqlSession session = getSession();
+		
 		Member invalidMember = dao.loginInvlidCheck(session,checkMember);
 		return invalidMember;
 	}
+	
+	
+
 }
