@@ -26,4 +26,9 @@ public class Product {
 	private String productMemberNo;
 	private String transMethodNo;
 	private String productCategoryNo;
+	
+	private String memberName;
+	private String nickname;
+	private String transMethodName;
+	private String productCategoryName;
 }

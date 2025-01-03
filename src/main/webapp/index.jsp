@@ -92,7 +92,7 @@
                 <tr>
                     <td>
                     <div>1</div>
-                    <h5><a href="${path}/product/productdetail.do">교육용 사랑의매1</a></h5>
+                    <h5><a href="${path}/product/productdetail.do?productNo=PD_0008">교육용 사랑의매1</a></h5>
                     <h4>30,000원</h4>
                     </td>
                     
