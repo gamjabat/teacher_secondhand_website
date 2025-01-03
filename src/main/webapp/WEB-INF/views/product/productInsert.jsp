@@ -18,14 +18,14 @@
        	</div>
        	<!-- 상세 정보 입력 컨테이너-->
        	<div class="insert-upload-box">
-       		<form id="product-form" method="post" action="">
+       		<form id="product-form" method="post" action="${path }/product/prodoctinsertend.do">
 	       		<div class="box1">
 	       			<label for="product-name"><span>상품명<span class="required">*</span></span></label>
-	                <input type="text" id="product-name" class="form-control product-name" placeholder="상품명을 입력해 주세요." name="" value="">
+	                <input type="text" id="product-name" name="product-name" class="form-control product-name" placeholder="상품명을 입력해 주세요." name="" value="">
 	       		</div>
 	       		<div class="box2">
 	       			<label for="product-category"><span>카테고리<span class="required">*</span></span></label>
-	       			<select id="product-category" class="form-select product-category">
+	       			<select id="product-category" name="product-category" class="form-select product-category">
 	       				<option value="">카테고리를 선택하세요</option>
 	       				<option value="PCT-1">책</option>
 	       				<option value="PCT-2">수업자료</option>
@@ -39,7 +39,7 @@
 	       		</div>
 	       		<div class="box3">
 	       			<label for="product-price"><span>가격<span class="required">*</span></span></label>
-	                <input type="text" id="product-price" class="form-control product-price" placeholder="가격을 입력해 주세요." name="" value="">
+	                <input type="text" id="product-price" name="product-price" class="form-control product-price" placeholder="가격을 입력해 주세요." name="" value="">
 	       		</div>
 	       		<div class="box4 d-flex">
 		       		<div class="d-flex flex-row justify-content-between mb-3">
@@ -54,11 +54,11 @@
 				</div>
 	       		<div class="box5">
 	       			<label for="product-content"><span>상세내용<span class="required">*</span></span></label>
-	       			<textarea id="description" class="form-control"placeholder="상품에 대한 설명을 입력하세요"></textarea>
+	       			<textarea id="description" name="description" class="form-control"placeholder="상품에 대한 설명을 입력하세요"></textarea>
 	       		</div>
 	       		<div class="box6">
 	       			<label for="product-transmethod"><span>거래방식<span class="required">*</span></span></label>
-	       			<select id="trans-method" class="form-select product-transmethod">
+	       			<select id="trans-method" name="trans-method" class="form-select product-transmethod">
 	       				<option value="">거래방식를 선택하세요</option>
 	       				<option value="TMD-1">직거래</option>
 	       				<option value="TMD-2">택배 거래</option>
@@ -77,7 +77,7 @@
 	       		</div>
 	       		<div class="box8">
 	       			<label for="product-hashtag"><span>해시태그</span></label>
-	       			<input type="text" id="product-hashtag" class="form-control product-hashtag" placeholder="해시태그을 입력해 주세요." name="" value="">
+	       			<input type="text" id="product-hashtag" name="product-hashtag" class="form-control product-hashtag" placeholder="해시태그을 입력해 주세요." name="" value="">
 	       		</div>
 	       		<div class="d-flex align-items-center">
 	       			<button type="submit" class="upload-allbtn"><p>상품등록</p></button>

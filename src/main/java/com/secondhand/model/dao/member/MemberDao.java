@@ -1,5 +1,7 @@
 package com.secondhand.model.dao.member;
 
+import java.util.Map;
+
 import org.apache.ibatis.session.SqlSession;
 
 import com.secondhand.model.dto.member.Member;
@@ -28,4 +30,11 @@ public class MemberDao {
     public boolean isEmailDuplicate(SqlSession session, String email) {
         return session.selectOne("member.isEmailDuplicate", email) != null;
     }
+    
+    public Member selectMemberToFindIdPwd(SqlSession session, Map<String, String> param) {
+		return session.selectOne("member.selectMemberToFindIdPwd", param);
+	}
+    public int updateMemberInfo(SqlSession session, Map<String, Object> param) {
+		return session.update("member.updateMemberInfo", param);
+	}
 }
