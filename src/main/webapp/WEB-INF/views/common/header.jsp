@@ -48,31 +48,42 @@
 		 	        <div class="s-profile-box">
 					 		<div class="s-circle"></div>
 					 		<div class="s-id-address">
-						 		<h4>woogamjaa</h4>
+						 		<h4>로그인 하세요.</h4>
 						 		<h5>지역</h5>
 					 		</div>
-					 	</div>
-		 	    	<!-- 목록 리스트  -->
-		 	    	<div class="m-list">
-			 	    	<a href="${path}/login/loginpage.do">로그인</a>
-			 	    	<a href="${path}/login/findid.do">아이디찾기</a>
-			 	    	<a href="${path}/login/findpassword.do">비밀번호찾기</a>
-			 	    	<a href="${path}/login/signupagreement.do">회원가입</a>
-			 	    	<a href="${path}/member/purchasehistory.do">마이페이지</a>
-			 	    	<a href="${path}/product/productinsert.do">상품등록</a>
-			 	    	<a href="${path}/board/boardquestionandanswer.do">문의 게시판</a>
-			 	    	<a href="${path}/member/wishlist.do">관심상품 리스트</a>
-			 	    	<a href="${path}/member/cartlist.do">장바구니 리스트</a>
-			 	    	<a href="">로그아웃</a>
-			 	    	
-			 	    	<!-- 관리자 로그인시에만 보이는 목록 예정 -->
-			 	    	<a href="${path}/admin/adminmain.do">관리자 페이지</a>
+					 </div>
+		 	    		<!-- 목록 리스트  -->
+						<div class="m-list">
+						    <!-- 로그인 상태가 아닐 때만 보이는 메뉴 -->
+						    <c:if test="${sessionScope.loginMember == null}">
+						        <a href="${path}/login/loginpage.do">로그인</a>
+						        <a href="${path}/login/findid.do">아이디 찾기</a>
+						        <a href="${path}/login/findpassword.do">비밀번호 찾기</a>
+						        <a href="${path}/login/signupagreement.do">회원가입</a>
+						    </c:if>
+		    
+						    <!-- 로그인 상태일 때만 보이는 메뉴 -->
+						    <c:if test="${sessionScope.loginMember != null}">
+						        <a href="${path}/member/purchasehistory.do">마이페이지</a>
+						        <a href="${path}/product/productinsert.do">상품 등록</a>
+						        <a href="${path}/board/boardquestionandanswer.do">문의 게시판</a>
+						        <a href="${path}/member/wishlist.do">관심상품 리스트</a>
+						        <a href="${path}/member/cartlist.do">장바구니 리스트</a>
+						        <a href="${path}/login/logout.do">로그아웃</a>
+						        <!-- 관리자 로그인시에만 보임 관리자 아이디 추가 가능.-->
+					 	    	<c:if test="${sessionScope.loginMember.memberId == 'admin1' || 
+					 	    				  sessionScope.loginMember.memberId == 'admin2' || 
+					 	    				  sessionScope.loginMember.memberId == 'admin3'}">
+		        					<a href="${path}/admin/adminmain.do">관리자 페이지</a>
+		    					</c:if>
+						    </c:if>
+						</div>
 		 	        </div>
 	 	        </div>
 	 	    </div>
       	</div>
     </div>
-  </div>
+  
   
 <script>
 //슬라이드 여는 스크립트

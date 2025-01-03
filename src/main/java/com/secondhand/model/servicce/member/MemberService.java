@@ -48,11 +48,26 @@ private MemberDao dao = new MemberDao();
 	//로그인 id체크.
 	public Member loginInvalidCheck(Member checkMember) {
 		SqlSession session = getSession();
-		
 		Member invalidMember = dao.loginInvlidCheck(session,checkMember);
 		return invalidMember;
 	}
 	
+	//아이디 찾기
+	public Member selectMemberToFindIdPwd(Map<String, String> param) {
+		SqlSession session = getSession();
+		Member m = dao.selectMemberToFindIdPwd(session, param);
+		session.close();
+		return m;
+	}
 	
+	//뉴 비밀번호
+	public int updateMemberInfo(Map<String, Object> param) {
+		SqlSession session = getSession();
+		int result = dao.updateMemberInfo(session, param);
+		if (result > 0) session.commit();
+		else session.rollback();
+		session.close();
+		return result;
+	}
 
 }
