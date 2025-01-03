@@ -47,12 +47,6 @@
 	    <artifactId>mybatis</artifactId>
 	    <version>3.5.16</version>
 	</dependency>
-
-	<dependency>
-		<groupId>com.web</groupId>
-		<artifactId>HelloMVC</artifactId>
-		<version>1.0</version>
-	</dependency>
   </dependencies>
   <!--프로젝트를 컴파일할때 적용하는 내용-->
   <build>
