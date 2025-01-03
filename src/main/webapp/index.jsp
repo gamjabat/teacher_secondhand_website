@@ -65,9 +65,9 @@
 			</div>
 		  <div class="checkbox-container">
 		 	<div class="title">거래상태</div>
-			    <label><input type="radio" name="transaction"/> 거래가능</label>
-			    <label><input type="radio" name="transaction"/> 거래중</label>
-			    <label><input type="radio" name="transaction"/> 거래완료</label> 
+			    <label><input type="radio" name="trade"/> 거래가능</label>
+			    <label><input type="radio" name="trade"/> 거래중</label>
+			    <label><input type="radio" name="trade"/> 거래완료</label> 
 			</div>
 		  <div class="checkbox-container">
 		 	<div class="title">상품상태</div>
@@ -78,7 +78,7 @@
 			    <label><input type="radio" name="status"/> F급</label>  
 			</div>	
 		   <div class="reset-btn-container">
-		 	<button class="reset-btn"><p>RE</p></button>	
+		 	<button class="reset-btn"><p>RESET</p></button>	
 		 	<button class="push-btn"><p>PUSH</p></button>				
 	       </div>
 	 </div>
@@ -177,6 +177,13 @@
 
 <script>
 
+//RESET 버튼을 누르면 라디오 체크가 다 해제 되는 스크립트
+document.querySelector('.reset-btn').addEventListener('click', function () {
+    const radioButtons = document.querySelectorAll('.ct-box input[type="radio"]');
+    radioButtons.forEach(radio => {
+        radio.checked = false;
+    }); 
+});
 </script>
 
 
