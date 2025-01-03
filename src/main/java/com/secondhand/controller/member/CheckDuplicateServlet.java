@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
-import com.secondhand.model.servicce.member.MemberService;
+import com.secondhand.model.service.member.MemberService;
 
 /**
  * Servlet implementation class CheckDuplicateServlet

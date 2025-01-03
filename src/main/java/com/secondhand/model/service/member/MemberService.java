@@ -1,4 +1,4 @@
-package com.secondhand.model.servicce.member;
+package com.secondhand.model.service.member;
 
 
 import static com.secondhand.common.SqlSessionTemplate.getSession;

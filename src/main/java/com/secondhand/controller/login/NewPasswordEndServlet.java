@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.secondhand.common.PasswordEncoding;
-import com.secondhand.model.servicce.member.MemberService;
+import com.secondhand.model.service.member.MemberService;
 
 /**
  * Servlet implementation class NewPasswordEndServlet

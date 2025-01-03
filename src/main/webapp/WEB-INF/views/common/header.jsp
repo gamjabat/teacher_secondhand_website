@@ -40,18 +40,32 @@
       		<a class="info-btn">
       			<img src="${path}/resources/images/메뉴버튼.png">
 	 	    </a>
-	 	    
+	
 	 	    <!-- 슬라이드 패널 -->
 	 	    <div class="slide-bar">
 	 	    	<div class="content"> 
 		 	    	<!-- 프로필 영역 -->
+		 	    	<c:if test="${sessionScope.loginMember != null}">
 		 	        <div class="s-profile-box">
 					 		<div class="s-circle"></div>
 					 		<div class="s-id-address">
-						 		<h4>로그인 하세요.</h4>
-						 		<h5>지역</h5>
+						 		<!-- 이름 표시 -->
+           						 <h4>${sessionScope.loginMember.nickname} 님 환영합니다!</h4>
+            					<!-- 지역 표시 -->
+            					<h5>${sessionScope.loginMember.address}</h5>	
 					 		</div>
 					 </div>
+					 </c:if>
+						 <c:if test="${sessionScope.loginMember == null}">
+							    <div class="s-profile-box">
+							        <div class="s-circle"></div>
+							        <div class="s-id-address">
+							            <h4>로그인 하세요.</h4>
+							            <h5>지역</h5>
+							        </div>
+							    </div>
+							</c:if>
+							
 		 	    		<!-- 목록 리스트  -->
 						<div class="m-list">
 						    <!-- 로그인 상태가 아닐 때만 보이는 메뉴 -->
@@ -65,7 +79,7 @@
 						    <!-- 로그인 상태일 때만 보이는 메뉴 -->
 						    <c:if test="${sessionScope.loginMember != null}">
 						        <a href="${path}/member/purchasehistory.do">마이페이지</a>
-						        <a href="${path}/product/productinsert.do">상품 등록</a>
+						        <a href="${path}/product/productinsert.do">상품등록</a>
 						        <a href="${path}/board/boardquestionandanswer.do">문의 게시판</a>
 						        <a href="${path}/member/wishlist.do">관심상품 리스트</a>
 						        <a href="${path}/member/cartlist.do">장바구니 리스트</a>
