@@ -14,60 +14,68 @@
 	 <div class="ct-box">
 		 <div class="checkbox-container">
 		 	<div class="title">지역</div>
-			    <label><input type="radio" /> 서울</label>
-			    <label><input type="radio" /> 부산</label>
-			    <label><input type="radio" /> 인천</label>
-			    <label><input type="radio" /> 군포</label>
-			    <label><input type="radio" /> 가산</label>
-			    <label><input type="radio" /> 대전</label>
-			    <label><input type="radio" /> 대구</label>
-			    <label><input type="radio" /> 울산</label>
-			    <label><input type="radio" /> 광주</label>
-			    <label><input type="radio" /> 강원</label>
-			    <label><input type="radio" /> 제주</label>  
+			    <label><input type="radio" name="region"/> 서울</label>
+			    <label><input type="radio" name="region"/> 부산</label>
+			    <label><input type="radio" name="region"/> 대구</label>
+			    <label><input type="radio" name="region"/> 인천</label>
+			    <label><input type="radio" name="region"/> 광주</label>
+			    <label><input type="radio" name="region"/> 대전</label>
+			    <label><input type="radio" name="region"/> 울산</label>
+			    <label><input type="radio" name="region"/> 세종</label>
+			    <label><input type="radio" name="region"/> 경기도</label>
+			    <label><input type="radio" name="region"/> 충청북도</label>
+			    <label><input type="radio" name="region"/> 충청남도</label>  
+			    <label><input type="radio" name="region"/> 전라북도</label>  
+			    <label><input type="radio" name="region"/> 전라남도</label>  
+			    <label><input type="radio" name="region"/> 경상북도</label>  
+			    <label><input type="radio" name="region"/> 경상남도</label>  
+			    <label><input type="radio" name="region"/> 제주</label>  
 			</div>
 		 <div class="checkbox-container">
 		 	<div class="title">카테고리</div>
-			    <label><input type="radio" /> 도서</label>
-			    <label><input type="radio" /> 운동</label>
-			    <label><input type="radio" /> 전자기기</label>
-			    <label><input type="radio" /> 문구</label>
-			    <label><input type="radio" /> 생활용품</label> 
+			    <label><input type="radio" name="category"/> 책</label>
+			    <label><input type="radio" name="category"/> 수업자료</label>
+			    <label><input type="radio" name="category"/> 교구</label>
+			    <label><input type="radio" name="category"/> 문구류</label>
+			    <label><input type="radio" name="category"/> 운동</label> 
+			    <label><input type="radio" name="category"/> 전자기기</label> 
+			    <label><input type="radio" name="category"/> 생활용품</label> 
+			    <label><input type="radio" name="category"/> 기타</label> 
 			</div>
 		 <div class="checkbox-container">
 		 	<div class="title">거래방법</div>
-			    <label><input type="radio" /> 직거래</label>
-			    <label><input type="radio" /> 택배</label>
+			    <label><input type="radio" name="transaction"/> 직거래</label>
+			    <label><input type="radio" name="transaction"/> 택배</label>
 			</div>
 		 <div class="checkbox-container">
 		 	<div class="title">정렬기준</div>
-			    <label><input type="radio" /> 오름차순</label>
-			    <label><input type="radio" /> 내림차순</label>
-			    <label><input type="radio" /> 인기순</label>
-			    <label><input type="radio" /> 최신순</label>
+			    <label><input type="radio" name="sorting"/> 오름차순</label>
+			    <label><input type="radio" name="sorting"/> 내림차순</label>
+			    <label><input type="radio" name="sorting"/> 인기순</label>
+			    <label><input type="radio" name="sorting"/> 최신순</label>
 			</div>
 		  <div class="checkbox-container">
 		 	<div class="title">금액</div>
-			    <label><input type="radio" /> 5000원 이하</label>
-			    <label><input type="radio" /> 10000원 이하</label>
-			    <label><input type="radio" /> 20000원 이하</label>
-			    <label><input type="radio" /> 30000원 이하</label>
-			    <label><input type="radio" /> 그 외</label>
-			    <label><input type="radio" /> 무료나눔</label>
+			    <label><input type="radio" name="price"/> 5000원 이하</label>
+			    <label><input type="radio" name="price"/> 10000원 이하</label>
+			    <label><input type="radio" name="price"/> 20000원 이하</label>
+			    <label><input type="radio" name="price"/> 30000원 이하</label>
+			    <label><input type="radio" name="price"/> 그 외</label>
+			    <label><input type="radio" name="price"/> 무료나눔</label>
 			</div>
 		  <div class="checkbox-container">
 		 	<div class="title">거래상태</div>
-			    <label><input type="radio" /> 거래가능</label>
-			    <label><input type="radio" /> 거래중</label>
-			    <label><input type="radio" /> 거래완료</label> 
+			    <label><input type="radio" name="transaction"/> 거래가능</label>
+			    <label><input type="radio" name="transaction"/> 거래중</label>
+			    <label><input type="radio" name="transaction"/> 거래완료</label> 
 			</div>
 		  <div class="checkbox-container">
 		 	<div class="title">상품상태</div>
-			    <label><input type="radio" /> A급</label>
-			    <label><input type="radio" /> B급</label>
-			    <label><input type="radio" /> C급</label>
-			    <label><input type="radio" /> D급</label>
-			    <label><input type="radio" /> F급</label>  
+			    <label><input type="radio" name="status" /> A급</label>
+			    <label><input type="radio" name="status"/> B급</label>
+			    <label><input type="radio" name="status"/> C급</label>
+			    <label><input type="radio" name="status"/> D급</label>
+			    <label><input type="radio" name="status"/> F급</label>  
 			</div>	
 		   <div class="reset-btn-container">
 		 	<button class="reset-btn"><p>RE</p></button>	

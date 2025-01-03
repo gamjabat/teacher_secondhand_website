@@ -18,7 +18,7 @@
 	        <h3>문의 게시판</h3>
 	        
 	        <!-- 글쓰기 버튼 -->
-	        <button class="write-btn">
+	        <button class="write-btn" onclick="window.location.href='${path}/board/boardquestionandanswerwrite.do'">
 	        	<h4>글쓰기</h4>
 	        </button>
       	
