@@ -18,7 +18,7 @@
        	</div>
        	<!-- 상세 정보 입력 컨테이너-->
        	<div class="insert-upload-box">
-       		<form id="product-form" method="post" action="${path }/product/prodoctinsertend.do">
+       		<form id="product-form">
 	       		<div class="box1">
 	       			<label for="product-name"><span>상품명<span class="required">*</span></span></label>
 	                <input type="text" id="product-name" name="product-name" class="form-control product-name" placeholder="상품명을 입력해 주세요." name="" value="">
@@ -67,10 +67,10 @@
 	       		<div class="box7"  id="location-box" style="display: none;">
 	       			<label for="product-location"><span>거래 지역<span class="required">*</span></span></label>
 	       			<div class="input-group my-2 flex-row" style="display: flex; gap: 10px;">
-			            <select name="sido" class="form-select">
+			            <select id="sido" name="sido" class="form-select">
 			                <option>시/도 선택</option>
 			            </select>
-			            <select name="gugun" class="form-select">
+			            <select id="gugun" name="gugun" class="form-select">
 			                <option>구/군 선택</option>
 			            </select>
 			        </div>
@@ -80,7 +80,7 @@
 	       			<input type="text" id="product-hashtag" name="product-hashtag" class="form-control product-hashtag" placeholder="해시태그을 입력해 주세요." name="" value="">
 	       		</div>
 	       		<div class="d-flex align-items-center">
-	       			<button type="submit" class="upload-allbtn"><p>상품등록</p></button>
+	       			<button type="button" id="upload-allbtn" class="upload-allbtn"><p>상품등록</p></button>
 	       		</div>
        		</form>
 
@@ -108,7 +108,6 @@
     var area16 = ["서귀포시", "제주시", "남제주군", "북제주군"];
     
 	$(document).ready(function () {
-	ㄴ
 	 	// 시/도 선택 박스 초기화
 	    $("select[name=sido]").each(function () {
 	        var $selsido = $(this);
@@ -219,7 +218,7 @@
         });
     });
     
-    document.getElementById("product-form").addEventListener("submit", async function (event) {
+    /* document.getElementById("product-form").addEventListener("submit", async function (event) {
 	    event.preventDefault(); // 기본 동작 방지
 	
 	    const isValid = fn_invalidate(); // 유효성 검사 결과
@@ -290,8 +289,50 @@
 	    }
 	    
 	    return true;
-	};
+	}; */
     
+	
+	$(document).ready(function () {
+	    $("#upload-allbtn").click(function () {
+	        const formdata = new FormData();
+
+	        // 파일 추가
+	        let files = $("#product-img-upload")[0].files;
+	        let count=0;
+	        for(let file of $("#product-img-upload")[0].files){
+				formdata.append("upfile"+ ++count,file);
+			};
+
+	        // 폼 데이터 추가
+	        formdata.append("productName", $("#product-name").val());
+	        formdata.append("productCategory", $("#product-category").val());
+	        formdata.append("price", $("#product-price").val());
+	        formdata.append("description", $("#description").val());
+	        formdata.append("transMethod", $("#trans-method").val());
+	        formdata.append("product-hashtag", $("#product-hashtag").val());
+	        formdata.append("sido", $("#sido").val());
+	        formdata.append("gugun", $("#gugun").val());
+
+	        // AJAX 요청
+	        $.ajax({
+	            url: "${path}/product/prodoctinsertend.do",
+	            type: "POST",
+	            data: formdata,
+	            processData: false,
+	            contentType: false,
+	            success: function (response) {
+	                alert("상품 등록이 완료되었습니다.");
+	                console.log(response);
+	                window.location.href = "${path}/product/productdetail.do";
+	            },
+	            error: function (xhr, status, error) {
+	                alert("상품 등록 중 오류가 발생했습니다.");
+	                console.error(error);
+	                location.reload();
+	            },
+	        });
+	    });
+	});
     
 </script>
 
