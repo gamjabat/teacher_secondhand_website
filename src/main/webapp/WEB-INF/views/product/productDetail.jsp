@@ -160,14 +160,13 @@
 		<!-- 상품 정보 -->
 		    <div class="product-info-box d-flex flex-column justify-content-between">
 		        	<div class="product-info">
-			            <p class="title">BS언어 단어 100제 완전 강추! 쉬운 습득 가능!</p>
-			            <p class="category">책/교육</p>
+			            <p class="title">${product.productName }</p>
+			            <p class="category">${product.productCategoryName }</p>
 		        	</div>
 		        	<div class="product-info">
-			            <p class="price">35,000원</p>
+			            <p class="price"><fmt:formatNumber value="${product.price}" type="number" groupingUsed="true"/>원</p>
 			            <p class="description">
-			                안녕하세요. 언어 공부에 탁월한 선택을 경험하실 수 있습니다. 노력을 배신하지 않는다. 인간 중심의 표준이 정해주는 코딩 책입니다.
-			                자바 기초부터 클로저 방향성 길라잡이로 초심자 눈높이에 맞게 설계된 목록으로 부담없이 배우실 수 있을 겁니다. 잘 쓰세요. 원가보다 싸게 팝니다.
+			                ${product.productDescription}
 			            </p>
 		        	</div>
 		    </div>

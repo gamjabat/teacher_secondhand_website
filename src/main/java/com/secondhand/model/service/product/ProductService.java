@@ -50,4 +50,11 @@ public class ProductService {
 	        session.close();
 	    }
 	}
+	
+	public Product selectByProductNo(String productNo) {
+		 SqlSession session = getSession();
+		 Product b = dao.selectByProductNo(session, productNo);
+		 session.close();
+		 return b;   
+	}
 }

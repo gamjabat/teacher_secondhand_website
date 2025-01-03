@@ -12,4 +12,8 @@ public class ProductDao {
 	public int insertProduct(SqlSession session, Product p) throws RuntimeException {
 		return session.insert("product.insertProduct" , p);
 	}
+	
+	public Product selectByProductNo(SqlSession session, String productNo) {
+        return session.selectOne("product.selectByProductNo", productNo);   	
+	}
 }
