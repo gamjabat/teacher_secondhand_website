@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.secondhand.model.dto.member.Member;
-import com.secondhand.model.servicce.member.MemberService;
+import com.secondhand.model.service.member.MemberService;
 
 /**
  * Servlet implementation class NewPasswordServlet
