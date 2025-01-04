@@ -2,6 +2,7 @@ package com.secondhand.controller.product;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -36,13 +37,15 @@ public class ProductDetailServlet extends HttpServlet {
 		String productNo = request.getParameter("productNo");
 		
 		if(productNo != null && !productNo.isEmpty()) {
-			ProductService service = new ProductService();
+			ProductService productService = new ProductService();
 			
-			ProductDetail product = new ProductService().selectByProductNo(productNo);
+			ProductDetail product = productService.selectByProductNo(productNo);
 			List<Attachment> attachments = new AttachmentService().selectAttachmentsByProductNo(productNo);
+			Map<String, Object> sellerInfo = productService.getSellerInfoByProductNo(productNo);
 			
 			request.setAttribute("product", product);
 			request.setAttribute("attachments", attachments);
+			request.setAttribute("sellerInfo", sellerInfo);
 		}
 		request.getRequestDispatcher("/WEB-INF/views/product/productDetail.jsp")
 		.forward(request, response);

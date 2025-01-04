@@ -1,5 +1,7 @@
 package com.secondhand.model.dao.product;
 
+import java.util.Map;
+
 import org.apache.ibatis.session.SqlSession;
 
 import com.secondhand.model.dto.product.Product;
@@ -17,4 +19,8 @@ public class ProductDao {
 	public ProductDetail selectByProductNo(SqlSession session, String productNo) {
         return session.selectOne("product.selectByProductNo", productNo);   	
 	}
+	
+	public Map<String, Object> selectSellerInfoByProductNo(SqlSession session, String productNo) {
+        return session.selectOne("product.selectSellerInfoByProductNo", productNo);
+    }
 }

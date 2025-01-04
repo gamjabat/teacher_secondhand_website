@@ -123,7 +123,7 @@
 		</div>
 	    
 	    <!-- 판매자 정보 -->
-	    <div class="seller-info-box">
+	    <%-- <div class="seller-info-box">
 	        <div class="d-flex justify-content-between align-items-center mb-3">
 	            <span class="seller">판매자</span>
 	            <span class="more-info"><a href="${path }/member/membersellerinfopage.do" class="text-muted">더보기</a></span>
@@ -151,7 +151,37 @@
 				    <span>후기 (230개)</span>
 				</div>			        
 	        </div>
-		</div>
+		</div> --%>
+		<div class="seller-info-box">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <span class="seller">판매자</span>
+        <span class="more-info">
+            <a href="${path}/member/membersellerinfopage.do?sellerId=${sellerInfo.MEMBERNO}" class="text-muted">더보기</a>
+        </span>
+    </div>
+    <div class="d-flex justify-content-between align-items-center">
+        <div class="d-flex">
+            <div class="seller-img d-flex justify-content-center align-items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="#ECEBDE" class="bi bi-person-fill" viewBox="0 0 16 16">
+                    <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
+                </svg>
+            </div>
+            <div class="d-flex flex-column justify-content-center">
+                <span class="seller-name">${sellerInfo.NICKNAMEORID}</span>
+                <span class="seller-address">${sellerInfo.ADDRESS}</span>
+            </div>
+        </div>
+        <div class="rating d-flex flex-column">
+            <div>
+                <c:forEach var="star" begin="1" end="5">
+                    <i class="${star <= sellerInfo.AVERAGERATING ? 'fas fa-star' : 'far fa-star'}"></i>
+                </c:forEach>
+            </div>
+            <span>후기 (${sellerInfo.REVIEWCOUNT}개)</span>
+        </div>			        
+    </div>
+</div>
+		
 	</div>
 	
 	

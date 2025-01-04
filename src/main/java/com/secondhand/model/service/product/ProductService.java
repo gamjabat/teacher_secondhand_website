@@ -3,6 +3,7 @@ package com.secondhand.model.service.product;
 import static com.secondhand.common.SqlSessionTemplate.getSession;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
@@ -19,20 +20,17 @@ public class ProductService {
 	public int insertProduct(Product p, List<Attachment> attachments) throws RuntimeException {
 		SqlSession session = getSession();
 		try {
-	        // 1. 상품 번호 생성
 	        String productNo = dao.generateProductNo(session);
-	        p.setProductNo(productNo); // 생성된 상품 번호를 Product 객체에 설정
+	        p.setProductNo(productNo);
 
-	        // 2. 상품 등록
 	        int result = dao.insertProduct(session, p);
 	        if (result <= 0) {
 	            session.rollback();
 	            throw new RuntimeException("상품 등록 실패");
 	        }
 
-	        // 3. 이미지 등록
 	        for (Attachment attachment : attachments) {
-	            attachment.setAttachmentProductNo(productNo); // 상품 번호를 이미지에 설정
+	            attachment.setAttachmentProductNo(productNo);
 	            int attachResult = attachmentDao.uploadImg(session, attachment);
 	            if (attachResult <= 0) {
 	                session.rollback();
@@ -40,7 +38,6 @@ public class ProductService {
 	            }
 	        }
 
-	        // 4. 트랜잭션 커밋
 	        session.commit();
 	        return result;
 
@@ -58,4 +55,11 @@ public class ProductService {
 		 session.close();
 		 return p;   
 	}
+	
+	public Map<String, Object> getSellerInfoByProductNo(String productNo) {
+        SqlSession session = getSession();
+        Map<String, Object> sellerInfo = dao.selectSellerInfoByProductNo(session, productNo);
+        session.close();
+		return sellerInfo;   
+    }
 }
