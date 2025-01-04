@@ -1,6 +1,8 @@
 package com.secondhand.controller.product;
 
 import java.io.IOException;
+import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -8,7 +10,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.secondhand.model.dto.product.Product;
+import com.secondhand.model.dto.attachment.Attachment;
+import com.secondhand.model.dto.product.ProductDetail;
+import com.secondhand.model.service.attachment.AttachmentService;
 import com.secondhand.model.service.product.ProductService;
 
 /**
@@ -31,14 +35,17 @@ public class ProductDetailServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String productNo = request.getParameter("productNo");
-		System.out.println(productNo);
 		
 		if(productNo != null && !productNo.isEmpty()) {
-			ProductService service = new ProductService();
+			ProductService productService = new ProductService();
 			
-			Product product = new ProductService().selectByProductNo(productNo);
+			ProductDetail product = productService.selectByProductNo(productNo);
+			List<Attachment> attachments = new AttachmentService().selectAttachmentsByProductNo(productNo);
+			Map<String, Object> sellerInfo = productService.getSellerInfoByProductNo(productNo);
 			
 			request.setAttribute("product", product);
+			request.setAttribute("attachments", attachments);
+			request.setAttribute("sellerInfo", sellerInfo);
 		}
 		request.getRequestDispatcher("/WEB-INF/views/product/productDetail.jsp")
 		.forward(request, response);
