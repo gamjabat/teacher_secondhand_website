@@ -1,7 +1,6 @@
 package com.secondhand.controller.board;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,16 +12,16 @@ import com.secondhand.model.dto.board.QnaBoard;
 import com.secondhand.model.service.board.QnaBoardService;
 
 /**
- * Servlet implementation class BoardQnA
+ * Servlet implementation class BoardQuestionAndAnswerDetailServlet
  */
-@WebServlet(name="boardquestionandanswerservlet" ,urlPatterns = "/board/boardquestionandanswer.do")
-public class BoardQuestionAndAnswerServlet extends HttpServlet {
+@WebServlet(name="boardquestionandanswerdetail" ,urlPatterns = "/board/boardquestionandanswerdetail.do")
+public class BoardQuestionAndAnswerDetailServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public BoardQuestionAndAnswerServlet() {
+    public BoardQuestionAndAnswerDetailServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,13 +30,14 @@ public class BoardQuestionAndAnswerServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		QnaBoardService service = new QnaBoardService();
-	    List<QnaBoard> qnaList = service.getAllQnaBoards(); // 모든 Q&A 데이터를 가져옴
+		String qnaNo = request.getParameter("qnaNo"); // 요청 파라미터에서 QnA 번호를 가져옵니다.
+		    
+			QnaBoardService service = new QnaBoardService();
+		    QnaBoard qna = service.selectByBoardNo(qnaNo); // QnA 데이터를 가져옵니다.
 
-	    request.setAttribute("qnaList", qnaList); // 데이터를 JSP로 전달
-		request.getRequestDispatcher("/WEB-INF/views/board/boardQuestionAndAnswer.jsp").forward(request, response);
+		    request.setAttribute("qna", qna); // JSP로 데이터 전달
+		    request.getRequestDispatcher("/WEB-INF/views/board/boardQuestionAndAnswerDetail.jsp").forward(request, response);
 	}
-	
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

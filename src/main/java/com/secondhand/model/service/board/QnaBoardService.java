@@ -1,6 +1,9 @@
 package com.secondhand.model.service.board;
 
+
 import static com.secondhand.common.SqlSessionTemplate.getSession;
+
+import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 
@@ -11,7 +14,14 @@ public class QnaBoardService {
 	
 		private QnaBoardDao dao=new QnaBoardDao();
 	
-		
+	public QnaBoard selectByBoardNo(String qnaNo) {
+			 
+			 SqlSession session = getSession();
+			 QnaBoard qb = dao.selectQnaBoardByNo(session, qnaNo);
+			 session.close();
+			 return qb;   
+	}
+	
 	public int insertQnaBoard(QnaBoard q) {
 		SqlSession session = getSession();
 		try {
@@ -38,6 +48,14 @@ public class QnaBoardService {
 	    }
 	}
 	
-	
+	public List<QnaBoard> getAllQnaBoards() {
+        try (SqlSession session = getSession()) {
+            QnaBoardDao dao = new QnaBoardDao();
+            return dao.selectAllQnaBoards(session);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException("Failed to fetch QnA boards", e);
+        }
+    }
 	
 }

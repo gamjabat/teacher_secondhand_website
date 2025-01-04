@@ -36,106 +36,20 @@
 		          <th>처리상태</th>
 		        </tr>
 		      </thead>
-		      <tbody>
-		        <!-- 빈 행 반복 -->
-		        <tr>
-		          <td>1</td>
-		          <td>제목이다냥2asdasdasdasdasdasdasdasdasd</td>
-		          <td>감자다냥</td>
-		          <td>3024.10.23</td>
-		          <td>100204292849</td>
-		          <td>미응답 답변</td>
-		        </tr>
-		        <tr>
-		          <td></td>
-		          <td></td>
-		          <td></td>
-		          <td></td>
-		          <td></td>
-		          <td></td>
-		        </tr>
-		        <tr>
-		          <td></td>
-		          <td></td>
-		          <td></td>
-		          <td></td>
-		          <td></td>
-		          <td></td>
-		        </tr>
-		        <tr>
-		          <td></td>
-		          <td></td>
-		          <td></td>
-		          <td></td>
-		          <td></td>
-		          <td></td>
-		        </tr>
-		        <tr>
-		          <td></td>
-		          <td></td>
-		          <td></td>
-		          <td></td>
-		          <td></td>
-		          <td></td>
-		        </tr>
-		        <tr>
-		          <td></td>
-		          <td></td>
-		          <td></td>
-		          <td></td>
-		          <td></td>
-		          <td></td>
-		        </tr>
-		        <tr>
-		          <td></td>
-		          <td></td>
-		          <td></td>
-		          <td></td>
-		          <td></td>
-		          <td></td>
-		        </tr>
-		        <tr>
-		          <td></td>
-		          <td></td>
-		          <td></td>
-		          <td></td>
-		          <td></td>
-		          <td></td>
-		        </tr>
-		        <tr>
-		          <td></td>
-		          <td></td>
-		          <td></td>
-		          <td></td>
-		          <td></td>
-		          <td></td>
-		        </tr>
-		        <tr>
-		          <td></td>
-		          <td></td>
-		          <td></td>
-		          <td></td>
-		          <td></td>
-		          <td></td>
-		        </tr>
-		        <tr>
-		          <td></td>
-		          <td></td>
-		          <td></td>
-		          <td></td>
-		          <td></td>
-		          <td></td>
-		        </tr>
-		        <tr>
-		          <td></td>
-		          <td></td>
-		          <td></td>
-		          <td></td>
-		          <td></td>
-		          <td></td>
-		        </tr>
-		        <!-- 필요한 만큼 행 추가 -->
-		      </tbody>
+			     <tbody>
+		           	 <c:forEach var="qna" items="${qnaList}">
+		                <tr>
+		                    <td>${qna.qnaNo}</td>
+		                    <td onclick="window.location.href='${path}/board/boardquestionandanswerdetail.do?qnaNo=${qna.qnaNo}'">
+		                        ${qna.qnaTitle}
+		                    </td>
+		                    <td>${qna.qnaMemberNo}</td>
+		                    <td>${qna.createdAt}</td>
+		                    <td>미구현</td> <!-- 조회수가 있다면 -->
+		                    <td>미구현</td> <!-- 처리 상태 -->
+		                </tr>
+		            </c:forEach>
+	       		</tbody>
 		    </table>
 		  </div>
         

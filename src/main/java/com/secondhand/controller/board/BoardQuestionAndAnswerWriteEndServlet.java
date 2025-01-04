@@ -47,11 +47,7 @@ public class BoardQuestionAndAnswerWriteEndServlet extends HttpServlet {
 		//외래키 QNA_MEMBER_NO , QNA_TYPE_NO 
 		String memberNo=request.getParameter("memberNo");
 		String type=request.getParameter("type"); // QCT-1 QCT-2 QCT-3 QCT-4
-		
-		
-		System.out.println("Title: " + title);  // JSP에서 입력한 제목 출력
-	    System.out.println("Content: " + content);  // 입력한 내용 출력
-	    System.out.println("Type: " + type);  // 선택된 카테고리 출력
+	
 		
 		//HttpSession session = request.getSession();
         //Member loginMember = (Member) session.getAttribute("loginMember");
