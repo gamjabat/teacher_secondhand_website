@@ -10,6 +10,7 @@ import com.secondhand.model.dao.attachment.AttachmentDao;
 import com.secondhand.model.dao.product.ProductDao;
 import com.secondhand.model.dto.attachment.Attachment;
 import com.secondhand.model.dto.product.Product;
+import com.secondhand.model.dto.product.ProductDetail;
 
 public class ProductService {
 	private ProductDao dao = new ProductDao();
@@ -51,10 +52,10 @@ public class ProductService {
 	    }
 	}
 	
-	public Product selectByProductNo(String productNo) {
+	public ProductDetail selectByProductNo(String productNo) {
 		 SqlSession session = getSession();
-		 Product b = dao.selectByProductNo(session, productNo);
+		 ProductDetail p = dao.selectByProductNo(session, productNo);
 		 session.close();
-		 return b;   
+		 return p;   
 	}
 }

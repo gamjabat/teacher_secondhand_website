@@ -2,6 +2,8 @@ package com.secondhand.model.service.attachment;
 
 import static com.secondhand.common.SqlSessionTemplate.getSession;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 
 import com.secondhand.model.dao.attachment.AttachmentDao;
@@ -18,4 +20,11 @@ public class AttachmentService {
 		session.close();
 		return result;
 	}
+	
+	public List<Attachment> selectAttachmentsByProductNo(String productNo) {
+        SqlSession session = getSession();
+        List<Attachment> result = dao.selectAttachmentsByProductNo(session, productNo);
+        session.close();
+        return result;
+    }
 }

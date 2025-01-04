@@ -84,44 +84,43 @@
 	<div class="main-box d-flex flex-row">
     <!-- 이미지 영역 -->
     <div class="left-box d-flex flex-column">
-	    <div class="img-box">
-	        <div id="productCarousel" class="carousel slide" data-bs-ride="carousel">
-	        	<!-- 점 표시 (Indicators) -->
+        <div class="img-box">
+		    <div id="productCarousel" class="carousel slide" data-bs-ride="carousel">
+		        <!-- 점 표시 (Indicators) -->
 		        <div class="carousel-indicators">
-		            <button type="button" data-bs-target="#productCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-		            <button type="button" data-bs-target="#productCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
-		            <button type="button" data-bs-target="#productCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+		            <c:forEach var="attachment" items="${attachments}" varStatus="status">
+		                <button 
+		                    type="button" 
+		                    data-bs-target="#productCarousel" 
+		                    data-bs-slide-to="${status.index}" 
+		                    class="${status.first ? 'active' : ''}" 
+		                    aria-current="${status.first ? 'true' : 'false'}" 
+		                    aria-label="Slide ${status.index + 1}">
+		                </button>
+		            </c:forEach>
 		        </div>
-        
-	            <div class="carousel-inner">
-	                <div class="carousel-item active">
-	                    <img src="${path}/resources/images/product1.jpg" class="d-block w-100" alt="Product Image 1">
-	                </div>
-	                <div class="carousel-item">
-	                    <img src="${path}/resources/images/product2.jpg" class="d-block w-100" alt="Product Image 2">
-	                </div>
-	                <div class="carousel-item">
-	                    <img src="${path}/resources/images/product3.jpg" class="d-block w-100" alt="Product Image 3">
-	                </div>
-	            </div>
-	            <button class="carousel-control-prev" type="button" data-bs-target="#productCarousel" data-bs-slide="prev">
-	                <span class="custom-icon">
-	                	<svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-chevron-left" viewBox="0 0 16 16">
-						  <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0"/>
-						</svg>
-					</span>
-	                <span class="visually-hidden">Previous</span>
-	            </button>
-	            <button class="carousel-control-next" type="button" data-bs-target="#productCarousel" data-bs-slide="next">
-	                <span class="custom-icon">
-	                	<svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">
-						  <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708"/>
-						</svg>
-	                </span>
-	                <span class="visually-hidden">Next</span>
-	            </button>
-	        </div>
-	    </div>
+		
+		        <!-- 이미지 슬라이드 -->
+		        <div class="carousel-inner">
+		            <c:forEach var="attachment" items="${attachments}" varStatus="status">
+		                <div class="carousel-item ${status.first ? 'active' : ''}">
+		                    <img src="${path}/resources/upload/product/${attachment.fileRename}" class="d-block w-100" alt="${attachment.fileOriginalName}">
+		                </div>
+		            </c:forEach>
+		        </div>
+		
+		        <!-- 이전 버튼 -->
+		        <button class="carousel-control-prev" type="button" data-bs-target="#productCarousel" data-bs-slide="prev">
+		            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+		            <span class="visually-hidden">Previous</span>
+		        </button>
+		        <!-- 다음 버튼 -->
+		        <button class="carousel-control-next" type="button" data-bs-target="#productCarousel" data-bs-slide="next">
+		            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+		            <span class="visually-hidden">Next</span>
+		        </button>
+		    </div>
+		</div>
 	    
 	    <!-- 판매자 정보 -->
 	    <div class="seller-info-box">

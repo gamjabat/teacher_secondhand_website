@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Product {
+public class ProductDetail {
 	private String productNo;
 	private String productName;
 	private int price;
@@ -26,4 +26,7 @@ public class Product {
 	private String productMemberNo;
 	private String transMethodNo;
 	private String productCategoryNo;
+	
+	private String transMethodName;
+	private String productCategoryName;
 }
