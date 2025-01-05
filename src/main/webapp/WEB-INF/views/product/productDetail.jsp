@@ -172,7 +172,7 @@
             <!-- 드롭다운 메뉴 -->
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                 <%-- <c:if test="${sessionScope.loginMember!=null }"> --%>
-	                <li><a class="dropdown-item" href="#">상품 수정</a></li>
+	                <li><a class="dropdown-item" href="${path }/product/editproductpage.do?productNo=${product.productNo }">상품 수정</a></li>
 	                <li><a class="dropdown-item" href="#" onclick="return confirm('이 게시물을 삭제하시겠습니까?');">상품 삭제</a></li>
 	                <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#reportModal" data-board-no="">상품 신고</a></li>
  					 	<%-- </c:if> --%>

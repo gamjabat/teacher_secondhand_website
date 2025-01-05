@@ -49,9 +49,16 @@ public class ProductService {
 	    }
 	}
 	
-	public ProductDetail selectByProductNo(String productNo) {
+	public ProductDetail selectProductDetailByProductNo(String productNo) {
 		 SqlSession session = getSession();
-		 ProductDetail p = dao.selectByProductNo(session, productNo);
+		 ProductDetail p = dao.selectProductDetailByProductNo(session, productNo);
+		 session.close();
+		 return p;   
+	}
+	
+	public Product selectProductByProductNo(String productNo) {
+		 SqlSession session = getSession();
+		 Product p = dao.selectProductByProductNo(session, productNo);
 		 session.close();
 		 return p;   
 	}
