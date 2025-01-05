@@ -2,12 +2,14 @@ package com.secondhand.controller.board;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 
 import com.secondhand.model.dto.board.QnaBoard;
 import com.secondhand.model.dto.member.Member;
@@ -34,14 +36,140 @@ public class BoardQuestionAndAnswerServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
+	
+		int cPage;
+		try {
+			cPage=Integer.parseInt(request.getParameter("cPage"));
+		}catch(NumberFormatException e) {
+			cPage=1;
+		}
 		
+		int numPerPage;
+		try {
+			numPerPage =Integer.parseInt(request.getParameter("numPerPage"));
+		}catch(NumberFormatException e) {
+			numPerPage=5;
+		}
+		Map<String, Integer> param = Map.of("cPage", cPage, "numPerPage", numPerPage);
+		
+	
+		
+		int totalData = new QnaBoardService().selectQnaCount();
+		int totalPage=(int)Math.ceil((double)totalData/numPerPage);
+		int pageBarSize=5; // 페이지바에 출력될 숫자의 개수
+		int pageNo = ((cPage-1)/pageBarSize)*pageBarSize+1;
+		int pageEnd = pageNo + pageBarSize-1;
+		
+		//기본 디자인
+//		String pageBar="<ul class='pagination justify-content-center'>";
+//		
+//		// 이전 페이지 버튼
+//		if (cPage == 1) {
+//		    pageBar += "<li class='page-item disabled'>";
+//		    pageBar += "<a class='page-link' href='#'>이전</a>";
+//		    pageBar += "</li>";
+//		} else {
+//		    pageBar += "<li class='page-item'>";
+//		    pageBar += "<a class='page-link' href='" +
+//		              request.getRequestURI() +
+//		              "?cPage=" + (cPage - 1) +
+//		              "&numPerPage=" + numPerPage +
+//		              "'>이전</a>";
+//		    pageBar += "</li>";
+//		}
+//		
+//		// 페이지 번호 출력
+//		while (pageNo <= totalPage && pageNo <= pageEnd) {
+//		    if (pageNo == cPage) {
+//		        pageBar += "<li class='page-item disabled'>";
+//		        pageBar += "<a class='page-link' href='#'>" + pageNo + "</a>";
+//		        pageBar += "</li>";
+//		    } else {
+//		        pageBar += "<li class='page-item'>";
+//		        pageBar += "<a class='page-link' href='" +
+//		                  request.getRequestURI() +
+//		                  "?cPage=" + pageNo +
+//		                  "&numPerPage=" + numPerPage +
+//		                  "'>" + pageNo + "</a>";
+//		        pageBar += "</li>";
+//		    }
+//		    pageNo++;
+//		}
+//		
+//		// 다음 페이지 버튼
+//		if (cPage == totalPage) {
+//		    pageBar += "<li class='page-item disabled'>";
+//		    pageBar += "<a class='page-link' href='#'>다음</a>";
+//		    pageBar += "</li>";
+//		} else {
+//		    pageBar += "<li class='page-item'>";
+//		    pageBar += "<a class='page-link' href='" +
+//		              request.getRequestURI() +
+//		              "?cPage=" + (cPage + 1) +
+//		              "&numPerPage=" + numPerPage +
+//		              "'>다음</a>";
+//		    pageBar += "</li>";
+//		}
+//		pageBar += "</ul>";
+		
+		
+		//새로운 디자인.
+		StringBuilder pageBar = new StringBuilder();
+		pageBar.append("<div class='pagination'>");
+
+		// 이전 페이지 버튼
+		if (cPage == 1) {
+		    pageBar.append("<button class='prev' disabled>&lt;</button>");
+		} else {
+		    pageBar.append("<button class='prev' onclick='window.location.href=\"")
+		           .append(request.getRequestURI())
+		           .append("?cPage=")
+		           .append(cPage - 1)
+		           .append("&numPerPage=")
+		           .append(numPerPage)
+		           .append("\"'>&lt;</button>");
+		}
+
+		// 페이지 번호 출력
+		while (pageNo <= totalPage && pageNo <= pageEnd) {
+			if (pageNo == cPage) {
+			    pageBar.append("<span class='page active'></span>");
+			} else {
+			    pageBar.append("<span class='page' onclick='window.location.href=\"")
+			           .append(request.getRequestURI())
+			           .append("?cPage=")
+			           .append(pageNo)
+			           .append("&numPerPage=")
+			           .append(numPerPage)
+			           .append("\"'></span>");
+			}
+		    pageNo++;
+		}
+
+		// 다음 페이지 버튼
+		if (cPage == totalPage) {
+		    pageBar.append("<button class='next' disabled>&gt;</button>");
+		} else {
+		    pageBar.append("<button class='next' onclick='window.location.href=\"")
+		           .append(request.getRequestURI())
+		           .append("?cPage=")
+		           .append(cPage + 1)
+		           .append("&numPerPage=")
+		           .append(numPerPage)
+		           .append("\"'>&gt;</button>");
+		}
+
+		pageBar.append("</div>");
+		
+		request.setAttribute("pageBar", pageBar);
+	
 		
 		QnaBoardService service = new QnaBoardService();
-	    List<QnaBoard> qnaList = service.getAllQnaBoards(); // 모든 Q&A 데이터를 가져옴
+	    List<QnaBoard> qnaList = service.getAllQnaBoards(param); 
 	    
 	 
 	    
-	    request.setAttribute("qnaList", qnaList); // 데이터를 JSP로 전달
+	    request.setAttribute("qnaList", qnaList); 
 	
 		request.getRequestDispatcher("/WEB-INF/views/board/boardQuestionAndAnswer.jsp").forward(request, response);
 	}
