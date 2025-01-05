@@ -5,7 +5,7 @@
 }
 
 .right-box, .left-box{
-	gap: 20px;
+	gap: 10px;
 	width: 50%;
 }
 
@@ -55,7 +55,6 @@
 
 /* 상품 정보 */
 .product-info-box{
-	padding: 25px 0px;
 	height: 500px;
 	margin-bottom: 30px;
 }
@@ -64,6 +63,7 @@
     font-size: 35px;
     font-weight: bold;
     color: #333;
+    margin: 0px;
 }
 
 .product-info .category {

@@ -161,6 +161,23 @@
 	
 	
     <div class="right-box d-flex flex-column">
+    	<!-- 드롭다운 -->
+        <div class="dropdown d-flex justify-content-end">
+            <!-- 아이콘 버튼 -->
+            <a href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="#857672" class="bi bi-three-dots dropdown-icon" viewBox="0 0 16 16">
+                    <path d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3m5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3m5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3"/>
+                </svg>
+            </a>
+            <!-- 드롭다운 메뉴 -->
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                <%-- <c:if test="${sessionScope.loginMember!=null }"> --%>
+	                <li><a class="dropdown-item" href="#">상품 수정</a></li>
+	                <li><a class="dropdown-item" href="#" onclick="return confirm('이 게시물을 삭제하시겠습니까?');">상품 삭제</a></li>
+	                <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#reportModal" data-board-no="">상품 신고</a></li>
+ 					 	<%-- </c:if> --%>
+            </ul>
+        </div>
 		<!-- 상품 정보 -->
 		    <div class="product-info-box d-flex flex-column justify-content-between">
 		        	<div class="product-info">
