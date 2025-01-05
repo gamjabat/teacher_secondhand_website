@@ -13,7 +13,7 @@
 <div class="container d-flex flex-column align-items-center justify-content-center">
         <div class="signup-container">
     <div class="signup-title">회원가입</div>
-    <form id="signup-form" method="post" action="${path}/login/signupend.do">
+    <form id="signup-form" method="post" action="${path}/login/signupend.do" enctype="multipart/form-data">
       <div class="form-group">
         <div class="input-label">
         	<label for="name">이름</label>

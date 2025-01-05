@@ -7,8 +7,16 @@ import org.apache.ibatis.session.SqlSession;
 import com.secondhand.model.dto.member.Member;
 
 public class MemberDao {
+	public String generateMemberNo(SqlSession session) {
+        return session.selectOne("member.generateMemberNo");
+    }
+	
 	public int signupMember(SqlSession session, Member m) throws RuntimeException {
 		return session.insert("member.signupMember" , m);
+	}
+	
+	public int signupMemberWithAttachment(SqlSession session, Member m) throws RuntimeException {
+		return session.insert("member.signupMemberWithAttachment" , m);
 	}
 	
 	public Member selectMemberById(SqlSession session, String id) {
