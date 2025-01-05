@@ -10,7 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.secondhand.model.dto.board.QnaBoard;
+import com.secondhand.model.dto.member.Member;
 import com.secondhand.model.service.board.QnaBoardService;
+import com.secondhand.model.service.member.MemberService;
 
 /**
  * Servlet implementation class BoardQnA
@@ -31,10 +33,16 @@ public class BoardQuestionAndAnswerServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	
+		
+		
 		QnaBoardService service = new QnaBoardService();
 	    List<QnaBoard> qnaList = service.getAllQnaBoards(); // 모든 Q&A 데이터를 가져옴
-
+	    
+	 
+	    
 	    request.setAttribute("qnaList", qnaList); // 데이터를 JSP로 전달
+	
 		request.getRequestDispatcher("/WEB-INF/views/board/boardQuestionAndAnswer.jsp").forward(request, response);
 	}
 	

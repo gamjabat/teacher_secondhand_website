@@ -27,4 +27,6 @@ public class QnaBoard {
 	    
 	    private String qnaMemberNo;    // 회원 번호
 	    private String qnaTypeNo;      // 문의 타입 번호
+	    
+	    private Member member;
 }
