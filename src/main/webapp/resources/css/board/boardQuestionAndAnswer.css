@@ -31,7 +31,7 @@
 .write-btn {
 	width : 15%;
 	height : 50px;
-	background-color : A95151;
+	background-color : #A95151;
 	border: 0;
 	border-radius: 10px;
 	color: white;
@@ -85,7 +85,6 @@ top-title-btn a {
 
 
 /* 페이징바 디자인 */
-
 .pagination {
     display: flex;
     align-items: center;

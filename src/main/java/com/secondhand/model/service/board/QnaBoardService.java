@@ -1,11 +1,12 @@
 package com.secondhand.model.service.board;
 
-
 import static com.secondhand.common.SqlSessionTemplate.getSession;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
+
 
 import com.secondhand.model.dao.board.QnaBoardDao;
 import com.secondhand.model.dto.board.QnaBoard;
@@ -49,10 +50,10 @@ public class QnaBoardService {
 	    }
 	}
 	
-	public List<QnaBoard> getAllQnaBoards() {
+	public List<QnaBoard> getAllQnaBoards(Map<String, Integer> param) {
         try (SqlSession session = getSession()) {
             QnaBoardDao dao = new QnaBoardDao();
-            return dao.selectAllQnaBoards(session);
+            return dao.selectAllQnaBoards(session,param);
         } catch (Exception e) {
             e.printStackTrace();
             throw new RuntimeException("Failed to fetch QnA boards", e);
@@ -60,4 +61,20 @@ public class QnaBoardService {
     }
 	
 	
+	 // 게시물 페이징바
+	 public List<QnaBoard> selectPagingQna(Map<String, Integer> param) {
+		 SqlSession session = getSession();
+		 List<QnaBoard> board = dao.selectPagingQna(session, param);
+		 session.close();
+		 return board;
+	 }
+	 
+	 // 게시물 페이징바(관련) 행의 총 개수 
+	 public int selectQnaCount() {
+		 SqlSession session = getSession();
+		 int count = dao.selectQnaCount(session);
+		 session.close();
+		 return count;
+	 }
+	 
 }

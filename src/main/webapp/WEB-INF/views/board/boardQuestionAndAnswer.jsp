@@ -4,9 +4,8 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
-<link rel="stylesheet" href="${path}/resources/css/board/boardQuestionAndAnswer.css">
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
-
+<link rel="stylesheet" href="${path}/resources/css/board/boardQuestionAndAnswer.css">
 <section class="main-container">
 
 	 <!-- 메인박스  -->
@@ -52,19 +51,10 @@
 	       		</tbody>
 		    </table>
 		  </div>
-        
-        <!-- 페이지 바 디자인. -->
-	     <div class="pagination">
-			 <button class="prev">&lt;</button>
-					    <span class="page active"></span>
-					    <span class="page"></span>
-					    <span class="page"></span>
-					    <span class="page"></span>
-					    <span class="page"></span>
-			 <button class="next">&gt;</button>
-		</div>
-     </div>	
+		<!-- 페이지 바 -->
+        ${pageBar}
+     </div>
     
     
-</section>   
+</section>
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
