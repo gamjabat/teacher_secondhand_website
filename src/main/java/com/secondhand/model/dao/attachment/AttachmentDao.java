@@ -18,4 +18,8 @@ public class AttachmentDao {
 	public List<Attachment> selectAttachmentsByProductNo(SqlSession session, String productNo) {
         return session.selectList("attachment.selectAttachmentsByProductNo", productNo);
     }
+	
+	public int deleteProductImg(SqlSession session, String productNo) throws RuntimeException {
+		return session.delete("attachment.deleteProductImg" , productNo);
+	}
 }

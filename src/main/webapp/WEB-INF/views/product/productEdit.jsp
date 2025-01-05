@@ -15,7 +15,8 @@
             <h2>상품 수정</h2>
         </div>
         <div class="insert-upload-box">
-            <form id="product-form" action="${path}/product/editend.do" method="post" enctype="multipart/form-data">
+            <form id="product-form">
+            	<input type="hidden" id="productNo" value="${product.productNo }">
                 <!-- 상품명 -->
                 <div class="box1">
                     <label for="product-name"><span>상품명<span class="required">*</span></span></label>
@@ -100,7 +101,7 @@
                 </div>
 
                 <div class="d-flex align-items-center">
-                    <button type="submit" id="upload-allbtn" class="upload-allbtn"><p>상품 수정</p></button>
+                    <button type="button" id="upload-allbtn" class="upload-allbtn"><p>상품 수정</p></button>
                 </div>
             </form>
         </div>
@@ -324,6 +325,7 @@
 			};
 
 	        // 폼 데이터 추가
+	        formdata.append("productNo", $("#productNo").val());
 	        formdata.append("productName", $("#product-name").val());
 	        formdata.append("productCategory", $("#product-category").val());
 	        formdata.append("price", $("#product-price").val());
