@@ -1,9 +1,8 @@
 package com.secondhand.model.dto.board;
 
-import java.sql.Date;
 import java.sql.Timestamp;
-import java.time.LocalDateTime;
 
+import com.secondhand.model.dto.code.Code;
 import com.secondhand.model.dto.member.Member;
 
 import lombok.AllArgsConstructor;

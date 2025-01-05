@@ -8,20 +8,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.secondhand.model.dto.board.QnaBoard;
-import com.secondhand.model.service.board.QnaBoardService;
+import com.secondhand.model.dto.board.Comments;
+import com.secondhand.model.service.board.CommentsService;
 
 /**
  * Servlet implementation class BoardQuestionAndAnswerDetailServlet
  */
-@WebServlet(name="boardquestionandanswerdetail" ,urlPatterns = "/board/boardquestionandanswerdetail.do")
-public class BoardQuestionAndAnswerDetailServlet extends HttpServlet {
+@WebServlet(urlPatterns = "/board/insertqnacomment.do")
+public class BoardQuestionAndAnswerCommentsInsertServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public BoardQuestionAndAnswerDetailServlet() {
+    public BoardQuestionAndAnswerCommentsInsertServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,13 +30,31 @@ public class BoardQuestionAndAnswerDetailServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-			String qnaNo = request.getParameter("qnaNo"); // 요청 파라미터에서 QnA 번호를 가져옵니다.
-		    
-			QnaBoardService service = new QnaBoardService();
-		    QnaBoard qna = service.selectByBoardNo(qnaNo); // QnA 데이터를 가져옵니다.
+		String content = request.getParameter("content");
+		String qnaNo = request.getParameter("commentQnaNo");
+		String writer = request.getParameter("commentMemberNo");
+		
 
-		    request.setAttribute("qna", qna); // JSP로 데이터 전달
-		    request.getRequestDispatcher("/WEB-INF/views/board/boardQuestionAndAnswerDetail.jsp").forward(request, response);
+		Comments c = Comments.builder()
+				.commentQnaNo(qnaNo)
+				.commentMemberNo(writer)
+				.commentContent(content)
+				.build();
+
+		int result = new CommentsService().insertQnaComment(c);
+
+		String msg, loc = "/board/boardquestionandanswerdetail.do?qnaNo=" + qnaNo;
+		if (result > 0) {
+			msg = "댓글 등록 성공";
+		} else {
+			msg = "댓글 등록 실패";
+		}
+		request.setAttribute("msg", msg);
+		request.setAttribute("loc", loc);
+
+		request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp").forward(request, response);
+			
+
 	}
 
 	/**

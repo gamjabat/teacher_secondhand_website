@@ -37,4 +37,6 @@ public class MemberDao {
     public int updateMemberInfo(SqlSession session, Map<String, Object> param) {
 		return session.update("member.updateMemberInfo", param);
 	}
+    
+    
 }

@@ -9,6 +9,7 @@ import org.apache.ibatis.session.SqlSession;
 
 import com.secondhand.model.dao.board.QnaBoardDao;
 import com.secondhand.model.dto.board.QnaBoard;
+import com.secondhand.model.dto.member.Member;
 
 public class QnaBoardService {
 	
@@ -57,5 +58,6 @@ public class QnaBoardService {
             throw new RuntimeException("Failed to fetch QnA boards", e);
         }
     }
+	
 	
 }

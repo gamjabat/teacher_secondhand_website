@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 
 import com.secondhand.model.dto.board.QnaBoard;
+import com.secondhand.model.dto.member.Member;
 
 
 public class QnaBoardDao {
