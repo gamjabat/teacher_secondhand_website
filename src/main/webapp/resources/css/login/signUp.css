@@ -1,6 +1,5 @@
 @charset "UTF-8";
 
-
 /* 메인콘테이너 */
 .main-container {
 	width : 100%;
@@ -160,4 +159,23 @@
 
 #id{
 	width: 60%;
+}
+
+#member-img{
+	border: none;
+	border-radius: 0;
+	padding: 0px 20px;
+}
+
+.default-img{
+	width: 70px;
+	height: 70px;
+	background-color: #A59D84;
+	border-radius: 50%;
+	margin: 0px !important;
+}
+
+#preview{
+	padding: 0;
+	margin: 0px !important;
 }
