@@ -7,8 +7,12 @@ import org.apache.ibatis.session.SqlSession;
 import com.secondhand.model.dto.attachment.Attachment;
 
 public class AttachmentDao {
-	public int uploadImg(SqlSession session, Attachment a) throws RuntimeException {
-		return session.insert("attachment.uploadImg" , a);
+	public int uploadProductImg(SqlSession session, Attachment a) throws RuntimeException {
+		return session.insert("attachment.uploadProductImg" , a);
+	}
+	
+	public int uploadMemberImg(SqlSession session, Attachment a) throws RuntimeException {
+		return session.insert("attachment.uploadMemberImg" , a);
 	}
 	
 	public List<Attachment> selectAttachmentsByProductNo(SqlSession session, String productNo) {

@@ -13,7 +13,7 @@
 <div class="container d-flex flex-column align-items-center justify-content-center">
         <div class="signup-container">
     <div class="signup-title">회원가입</div>
-    <form id="signup-form" method="post" action="${path}/login/signupend.do">
+    <form id="signup-form" method="post" action="${path}/login/signupend.do" enctype="multipart/form-data">
       <div class="form-group">
         <div class="input-label">
         	<label for="name">이름</label>
@@ -23,6 +23,22 @@
         	<input type="text" id="name" name="name" placeholder="이름 입력">
         </div>
       </div>
+      <div class="form-group">
+      	<div class="input-label">
+        	<label for="member-img">프로필 사진</label>
+        </div>
+        <div class=" input-group d-flex align-items-center">
+        	<div id="preview" class="d-flex">
+	        	<div class="default-img d-flex justify-content-center align-items-center">
+	               <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="#ECEBDE" class="bi bi-person-fill" viewBox="0 0 16 16">
+	                   <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
+	               </svg>
+	            </div>
+        	</div>
+	        <input type="file" id="member-img" name="member-img" accept="image/*">
+        </div>
+      </div>
+      
 
       <div class="form-group">
       	<div class="input-label">
@@ -420,6 +436,33 @@
 	            }
 	        }).open();
 	    }
+	    
+	    $("#member-img").change(e => {
+	        $("#preview").html(""); // 기존 미리보기 초기화
+	        const file = e.target.files[0];
+	        if (file) {
+	            const fileReader = new FileReader();
+	            fileReader.readAsDataURL(file);
+	            fileReader.onload = e => {
+	                const path = e.target.result;
+	                const $img = $("<img>").attr({
+	                    src: path,
+	                    class: "default-img", // class 추가
+	                });
+	                $("#preview").append($img);
+	            };
+	        } else {
+	            // 파일이 선택되지 않은 경우 기본 상태 유지
+	            $("#preview").html(`
+	                <div class="default-img d-flex justify-content-center align-items-center">
+	                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="#ECEBDE" class="bi bi-person-fill" viewBox="0 0 16 16">
+	                        <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
+	                    </svg>
+	                </div>
+	            `);
+	        }
+	    });
+
 	</script>
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>

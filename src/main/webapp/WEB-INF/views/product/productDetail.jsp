@@ -133,9 +133,14 @@
 		   <div class="d-flex justify-content-between align-items-center">
 		       <div class="d-flex">
 		           <div class="seller-img d-flex justify-content-center align-items-center">
-		               <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="#ECEBDE" class="bi bi-person-fill" viewBox="0 0 16 16">
-		                   <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
-		               </svg>
+		           		<c:if test="${sellerInfo.FILERENAME == null }">
+			               	<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="#ECEBDE" class="bi bi-person-fill" viewBox="0 0 16 16">
+			                   <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
+			               </svg>
+			            </c:if>
+			            <c:if test="${sellerInfo.FILERENAME != null }">
+			            	<img src="${path}/resources/upload/member/${sellerInfo.FILERENAME}" class="seller-img" alt="${sellerInfo.FILEORIGINALNAME}">
+			            </c:if>
 		           </div>
 		           <div class="d-flex flex-column justify-content-center">
 		               <span class="seller-name">${sellerInfo.NICKNAMEORID}</span>

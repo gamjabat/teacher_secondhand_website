@@ -8,11 +8,14 @@ import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
+import com.secondhand.model.dao.attachment.AttachmentDao;
 import com.secondhand.model.dao.member.MemberDao;
+import com.secondhand.model.dto.attachment.Attachment;
 import com.secondhand.model.dto.member.Member;
 
 public class MemberService {
-private MemberDao dao = new MemberDao();
+	private MemberDao dao = new MemberDao();
+	private AttachmentDao attachmentDao = new AttachmentDao();
 	
 	//회원가입 보내기.
 	public int signupMember(Member m) throws RuntimeException {
@@ -24,6 +27,37 @@ private MemberDao dao = new MemberDao();
 			session.rollback();
 		session.close();
 		return result;
+	}
+	
+	public int signupMemberWithAttachment(Member m, Attachment a) throws RuntimeException {
+		SqlSession session = getSession();
+		
+		try {
+	        String memberNo = dao.generateMemberNo(session);
+	        m.setMemberNo(memberNo);
+
+	        int result = dao.signupMemberWithAttachment(session, m);
+	        if (result <= 0) {
+	            session.rollback();
+	            throw new RuntimeException("상품 등록 실패");
+	        }
+
+	        a.setAttachmentMemberNo(memberNo);
+	        int attachResult = attachmentDao.uploadMemberImg(session, a);
+	        if (attachResult <= 0) {
+	            session.rollback();
+	            throw new RuntimeException("이미지 등록 실패");
+	        }
+
+	        session.commit();
+	        return result;
+
+	    } catch (Exception e) {
+	        session.rollback();
+	        throw new RuntimeException("등록 중 오류 발생: " + e.getMessage());
+	    } finally {
+	        session.close();
+	    }
 	}
 	
 	//회원가입 아이디 중복체크를 위한 ID 찾기.

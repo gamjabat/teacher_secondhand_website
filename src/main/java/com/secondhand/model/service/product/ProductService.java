@@ -31,7 +31,7 @@ public class ProductService {
 
 	        for (Attachment attachment : attachments) {
 	            attachment.setAttachmentProductNo(productNo);
-	            int attachResult = attachmentDao.uploadImg(session, attachment);
+	            int attachResult = attachmentDao.uploadProductImg(session, attachment);
 	            if (attachResult <= 0) {
 	                session.rollback();
 	                throw new RuntimeException("이미지 등록 실패");
