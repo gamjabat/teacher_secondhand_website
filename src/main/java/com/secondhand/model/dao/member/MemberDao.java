@@ -45,4 +45,9 @@ public class MemberDao {
     public int updateMemberInfo(SqlSession session, Map<String, Object> param) {
 		return session.update("member.updateMemberInfo", param);
 	}
+    //qnano으로 member 가져오기
+    public Member selectMemberByQnaNo(SqlSession session, String qnaNo) {
+        return session.selectOne("member.selectMemberByQnaNo", qnaNo);  // Mapper XML에서 SQL 실행
+    }
+    
 }

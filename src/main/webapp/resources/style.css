@@ -12,6 +12,7 @@
 	
 }
 
+
 /* 카테고리 박스 */
 .ct-box {
 	width : 80%;
@@ -22,8 +23,32 @@
 	align-items: center;
 }
 
+/* 라디오 버튼 기본 스타일 재정의 */
+.ct-box input[type="radio"] {
+    appearance: none; /* 기본 라디오 스타일 제거 */
+    width: 20px;
+    height: 20px;
+    border: 2px solid #A95151;
+    border-radius: 5px; /* 체크박스처럼 보이기 위해 둥글지 않게 */
+    background-color: #fff;
+    cursor: pointer;
+    vertical-align: middle;
+    transition: all 0.3s ease;
+}
+
+/* 선택된 상태 */
+.ct-box input[type="radio"]:checked {
+    background-color: #A95151;
+    border-color: #A95151;
+    box-shadow: inset 0 0 1 5px #fff; /* 체크박스 안의 체크 표시처럼 보이게 */
+}
+
+/* 호버 효과 */
+.ct-box input[type="radio"]:hover {
+    border-color: #A95151;
+}
+
 .title {
-	
   font-size: 15px;
   font-weight: bold;
   margin-bottom: 10px;

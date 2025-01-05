@@ -35,6 +35,8 @@ public class CheckDuplicateServlet extends HttpServlet {
 		String nickname = request.getParameter("nickname");
 		String phone = request.getParameter("phone");
 		String email = request.getParameter("email");
+
+	
 		
 		Map<String, Boolean> result = new MemberService().checkDuplicate(nickname, phone, email);
         response.setContentType("application/json; charset=UTF-8");

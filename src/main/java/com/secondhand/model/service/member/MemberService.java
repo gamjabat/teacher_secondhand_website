@@ -103,5 +103,12 @@ public class MemberService {
 		session.close();
 		return result;
 	}
-
+	
+	//qnano으로 member 정보 가져오기.
+	public Member getMemberByQnaNo(String qnaNo) {
+	    SqlSession session = getSession();  // 세션 열기
+	    Member m = dao.selectMemberByQnaNo(session, qnaNo);  // qnaNo를 기반으로 Member 조회
+	    session.close();  // 세션 닫기
+	    return m;  // 조회된 Member 반환
+	}
 }

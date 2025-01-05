@@ -24,6 +24,12 @@ import com.secondhand.model.service.member.MemberService;
 @WebFilter(servletNames = {
 				"productchattingservlet"
 				,"paymentpageservlet"
+				,"mypagepurchasehistoryservlet"
+				,"adminmainservlet"
+				,"productinsertservlet"
+				,"cartlistservlet"
+				,"wishlistservlet"
+				,""
 		} )
 public class LoginCheckFilter extends HttpFilter implements Filter {
        
