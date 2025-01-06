@@ -166,9 +166,25 @@
     height: 250px; /* 원하는 높이로 설정 */
     border: 2px solid #ECEBDE;
     box-sizing: border-box; /* 패딩이 크기에 영향을 주지 않도록 */
-	border-radius: 5px; /* 모서리 둥글게 */
-	
-  
+	border-radius: 5px; /* 모서리 둥글게 */ 
+}
+
+.product-list td {
+    width: 150px;
+    text-align: center;
+    vertical-align: middle;
+}
+.product-img-container {
+    width: 100%; /* 부모 크기 맞춤 */
+    height: 100%; /* 부모 크기 맞춤 */
+    display: flex; /* 자식 요소 중앙 정렬 */
+    justify-content: center;
+    align-items: center;
+}
+.product-img {
+	 width: 100%; /* 부모 크기 맞춤 */
+    height: 100%;
+    object-fit: contain; /* 이미지가 잘리지 않고 비율을 유지하면서 부모에 맞춤 */
 }
 	
 .product-list h5 {

@@ -199,7 +199,7 @@ $(document).ready(function () {
                             .css({
                                 width: "200px",
                                 height: "200px",
-                                objectFit: "cover",
+                                objectFit: "contain",
                                 border: "1px solid #ddd",
                                 borderRadius: "5px",
                                 marginRight: "10px"

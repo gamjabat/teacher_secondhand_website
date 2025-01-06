@@ -104,7 +104,7 @@
 		        <div class="carousel-inner">
 		            <c:forEach var="attachment" items="${attachments}" varStatus="status">
 		                <div class="carousel-item ${status.first ? 'active' : ''}">
-		                    <img src="${path}/resources/upload/product/${attachment.fileRename}" class="d-block w-100" alt="${attachment.fileOriginalName}">
+		                    <img src="${path}/resources/upload/product/${attachment.fileRename}" class="product-img d-block" alt="${attachment.fileOriginalName}">
 		                </div>
 		            </c:forEach>
 		        </div>

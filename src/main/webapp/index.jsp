@@ -86,87 +86,28 @@
 	 
 	 <!-- 메인박스  -->
 	 <div class="main-box">
-        <h2>"서울" 지역 "책" 카테고리 검색 결과입니다.</h2>
+        <!-- <h2>"서울" 지역 "책" 카테고리 검색 결과입니다.</h2> -->
         <table class="product-list">
             <tbody>
-                <tr>
-                    <td>
-                    <div>1</div>
-                    <h5><a href="${path}/product/productdetail.do?productNo=PD_0008">교육용 사랑의매1</a></h5>
-                    <h4>30,000원</h4>
-                    </td>
-                    
-                    <td>
-                    <div>1</div>
-                    <h5>교육용 사랑의매1</h5>
-                    <h4>30,000원</h4>
-                    </td>
-                    
-                    <td>
-                    <div>1</div>
-                    <h5>교육용 사랑의매1</h5>
-                    <h4>30,000원</h4>
-                    </td>
-                    
-                    <td>
-                    <div>1</div>
-                    <h5>교육용 사랑의매1</h5>
-                    <h4>30,000원</h4>
-                    </td>
-                    
-                    <td>
-                    <div>1</div>
-                    <h5>교육용 사랑의매1</h5>
-                    <h4>30,000원</h4>
-                    </td>
-                </tr>
-                
-                 <tr>
-                    <td>
-                    <div>1</div>
-                    <h5>교육용 사랑의매1</h5>
-                    <h4>30,000원</h4>
-                    </td>
-                    
-                    <td>
-                    <div>1</div>
-                    <h5>교육용 사랑의매1</h5>
-                    <h4>30,000원</h4>
-                    </td>
-                    
-                    <td>
-                    <div>1</div>
-                    <h5>교육용 사랑의매1</h5>
-                    <h4>30,000원</h4>
-                    </td>
-                    
-                    <td>
-                    <div>1</div>
-                    <h5>교육용 사랑의매1</h5>
-                    <h4>30,000원</h4>
-                    </td>
-                    
-                    <td>
-                    <div>1</div>
-                    <h5>교육용 사랑의매1</h5>
-                    <h4>30,000원</h4>
-                    </td>
-                </tr>
- 
+            <%-- ${products }
+                <c:forEach var="product" items="${products}">
+			      <tr>
+			          <!-- 5개의 열 생성 -->
+			          <c:forEach begin="1" end="5">
+			              <td>
+			                  <div>${product.id}</div>
+			                  <h5><a href="${path}/product/productdetail.do?productNo=${product.productNo}">${product.productName}</a></h5>
+			                  <h4>${product.price}원</h4>
+			              </td>
+			          </c:forEach>
+			      </tr>
+			  </c:forEach> --%>
             </tbody>
         </table>
         
         
-        <!-- 페이지 바 디자인. -->
-	        <div class="pagination">
-			    <button class="prev">&lt;</button>
-						    <span class="page active"></span>
-						    <span class="page"></span>
-						    <span class="page"></span>
-						    <span class="page"></span>
-						    <span class="page"></span>
-			    <button class="next">&gt;</button>
-			</div>
+        <!-- 페이지 바 -->
+        <div class="pagination"></div>
     </div>	
     
 </section>    
@@ -184,6 +125,57 @@ document.querySelector('.reset-btn').addEventListener('click', function () {
         radio.checked = false;
     }); 
 });
+
+
+const loadProductList = (cPage, numPerPage) => {
+    fetch(`${path}/products.do?cPage=\${cPage}&numPerPage=\${numPerPage}`)
+        .then(response => response.json())
+        .then(data => {
+            const tbody = document.querySelector('.product-list tbody');
+            const pagination = document.querySelector('.pagination');
+
+            // 기존 내용 초기화
+            tbody.innerHTML = '';
+            pagination.innerHTML = '';
+
+            // 상품 리스트를 5개씩 한 줄에 렌더링
+            let row;
+            data.products.forEach((product, index) => {
+                if (index % 5 === 0) {
+                    row = document.createElement('tr'); // 새 행 생성
+                    tbody.appendChild(row);
+                }
+
+                const cell = document.createElement('td'); // 열 생성
+                cell.innerHTML = `
+                    <div class="product-img-container"><img src="${path}/resources/upload/product/\${product.FILE_RENAME}" class="product-img" alt="${product.FILE_ORIGINAL_NAME}"></div>
+                    <h5><a href="${path}/product/productdetail.do?productNo=\${product.PRODUCT_NO}">\${product.PRODUCT_NAME}</a></h5>
+                    <h4>\${Number(product.PRICE).toLocaleString()}원</h4>
+                `;
+                row.appendChild(cell); // 행에 열 추가
+            });
+
+            // 빈 열 추가 (5개 미만일 경우)
+            const remainingCells = 5 - (data.products.length % 5);
+            if (remainingCells < 5) {
+                for (let i = 0; i < remainingCells; i++) {
+                    const emptyCell = document.createElement('td');
+                    row.appendChild(emptyCell);
+                }
+            }
+
+         // 페이지바 렌더링
+         pagination.innerHTML = data.pageBar;
+        })
+        .catch(error => console.error('Error loading product list:', error));
+};
+
+// 페이지 로드 시 기본 데이터 호출
+document.addEventListener('DOMContentLoaded', () => {
+    loadProductList(); // 기본 페이지는 1
+});
+
+
 </script>
 
 

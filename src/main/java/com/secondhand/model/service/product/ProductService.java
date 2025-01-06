@@ -124,4 +124,18 @@ public class ProductService {
             session.close();
         }
     }
+	
+	public List<Product> selectProductAll(Map<String, Object> param){
+	 	SqlSession session = getSession();
+		List<Product> reports = dao.selectProductAll(session, param);
+		session.close();
+		return reports;
+	}
+	
+	public int selectProductAllCount() {
+		 SqlSession session = getSession();
+		 int count = dao.selectProductAllCount(session);
+		 session.close();
+		 return count;
+	 }
 }
