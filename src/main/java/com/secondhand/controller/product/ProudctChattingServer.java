@@ -16,78 +16,61 @@ import com.google.gson.Gson;
 @ServerEndpoint("/chatting") //선언부에 어노테이션을 사용함. 스크립트에서 쓴 주소
 public class ProudctChattingServer {
 	@OnOpen
-	public void open(Session session,EndpointConfig config) {
-		System.out.println("손님 접속 ! ");
-//		try {
-//		session.getBasicRemote().sendText("채팅접속을 환영합니다.");  //클라에게 메세지를 전송하는거 알아서.
-//		
-//		}catch(IOException e){
-//			e.printStackTrace();
-//		}
-	}
+    public void open(Session session, EndpointConfig config) {
+        System.out.println("손님 접속: " + session.getId());
+        session.getUserProperties().put("room", ""); // 초기 room 값 설정
+    }
 
-	@OnMessage
-	public void message(Session session,String data) { 
-		
-		System.out.println(data);
-		
-		ProductChattingMessage m=new Gson().fromJson(data,ProductChattingMessage.class);  //형변환.
-		
-		//session에 접속한 회원 저장.
-		session.getUserProperties().put("info",m);		
-	    
-		//타입에 대한 분리.
-		Set<Session> clients=session.getOpenSessions();
-		switch (m.getType()) {
-			//새로운 클라이언트가 접속시
-		case "open" : initAlarm(clients,m); break;
-			//접속한 회원이 메세지를 전달시
-		case "msg" : sendChattingMessage(clients,m); break; 
-	}
-}
-	
-//		try {
-//		session.getBasicRemote().sendText(data);
-//		}catch(IOException e) {
-//			e.printStackTrace();
-//		}
-		
+    @OnMessage
+    public void message(Session session, String data) {
+        System.out.println("수신 데이터: " + data);
 
-	private void initAlarm(Set<Session> clients, ProductChattingMessage m) {
-		//000님이 접속했습니다. -> 알람
-		ProductChattingMessage msg=ProductChattingMessage.builder().type("alram").data(m.getSender()+"접속했습니다.").build();
-		clients.forEach(client->sendMessage(client,new Gson().toJson(msg)));
-		
-		//현재 접속한 회원을 전송
-		List<String> users=new ArrayList<>();
-		clients.forEach(client->{
-			ProductChattingMessage info=(ProductChattingMessage)client.getUserProperties().get("info");
-			users.add(info.getSender());
-		});
-		ProductChattingMessage msg2=ProductChattingMessage.builder().type("users").data(new Gson().toJson(users)).build();
-		clients.forEach(client->{
-			sendMessage(client,new Gson().toJson(msg2));
-		});
-	}	
-	
-	private void sendChattingMessage(Set<Session> clients, ProductChattingMessage m) {
-		//room, receiver의 값에 따라 분기처리해서 메세지를 전달
-		if(!m.getRoom().equals("")&&!m.getReceiver().equals("")) { //특정 타겟에게 분기			
-		
-		} else if (!m.getReceiver().equals("")) {
-			
-		} else {
-			//전체전송.
-			clients.forEach(client->sendMessage(client,new Gson().toJson(m)));
-		}
-	}
-	
-	private void sendMessage(Session session, String m) {
-		try {
-			session.getBasicRemote().sendText(m);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
+        ProductChattingMessage m = new Gson().fromJson(data, ProductChattingMessage.class);
+
+        switch (m.getType()) {
+            case "open":
+                session.getUserProperties().put("room", m.getRoom());
+                System.out.println("클라이언트가 룸에 접속: " + m.getRoom());
+                initAlarm(session.getOpenSessions(), m);
+                break;
+
+            case "msg":
+                sendToRoom(session.getOpenSessions(), m.getRoom(), m);
+                break;
+
+            default:
+                System.out.println("알 수 없는 메시지 타입: " + m.getType());
+        }
+    }
+
+    private void sendToRoom(Set<Session> sessions, String room, ProductChattingMessage m) {
+        sessions.forEach(client -> {
+            String clientRoom = (String) client.getUserProperties().get("room");
+            if (room.equals(clientRoom)) {
+                sendMessage(client, new Gson().toJson(m));
+            }
+        });
+    }
+
+    private void initAlarm(Set<Session> sessions, ProductChattingMessage m) {
+        String room = m.getRoom();
+        ProductChattingMessage msg = ProductChattingMessage.builder()
+                .type("alarm")
+                .room(room)
+                .data(m.getSender() + "님이 " + room + "에 접속했습니다.")
+                .build();
+
+        sendToRoom(sessions, room, msg);
+    }
+
+    private void sendMessage(Session session, String message) {
+        try {
+            session.getBasicRemote().sendText(message);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
+
+
 
