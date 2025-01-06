@@ -20,7 +20,7 @@ import com.secondhand.model.service.product.ProductService;
 /**
  * Servlet implementation class PaymentDetailServlet
  */
-@WebServlet("/payment/paymentdetail.do")
+@WebServlet(name= "paymentdetailservlet" ,urlPatterns = "/payment/paymentdetail.do")
 public class PaymentDetailServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

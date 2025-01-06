@@ -20,7 +20,7 @@ import com.secondhand.model.service.transcation.TransactionService;
 /**
  * Servlet implementation class PaymentServlet
  */
-@WebServlet("/payment.do")
+@WebServlet(name= "paymentservlet" ,urlPatterns = "/payment.do")
 public class PaymentServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
