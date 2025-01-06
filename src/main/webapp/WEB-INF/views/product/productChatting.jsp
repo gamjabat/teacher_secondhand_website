@@ -76,8 +76,7 @@
 		   <div class="reset-btn-container">
 		 	<button class="reset-btn"><p>RE</p></button>				
 	       </div>
-	       
-	       <a href="${path }/member/membersellerinfopage.do">임시(수정예정)</a>
+	  
 	 </div>
 	  
 	 
@@ -94,7 +93,7 @@
 		        </div>
         
 	            <div class="carousel-inner">
-	                <div class="carousel-item active">
+	               <%--  <div class="carousel-item active">
 	                    <img src="${path}/resources/images/product1.jpg" class="d-block w-100" alt="Product Image 1">
 	                </div>
 	                <div class="carousel-item">
@@ -102,7 +101,7 @@
 	                </div>
 	                <div class="carousel-item">
 	                    <img src="${path}/resources/images/product3.jpg" class="d-block w-100" alt="Product Image 3">
-	                </div>
+	                </div> --%>
 	            </div>
 	            <button class="carousel-control-prev" type="button" data-bs-target="#productCarousel" data-bs-slide="prev">
 	                <span class="custom-icon">
@@ -162,87 +161,142 @@
     		<div class="price">35,000원</div>
     	</div>
     	
-    	<div class="chatting-box">
-    		<div class="receiver-chat">
+    	 <div id="chatting-box">
+    		<!-- <div class="receiver-chat">
     			<div class="member-img d-flex justify-content-center align-items-center">
 	        		<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="#ECEBDE" class="bi bi-person-fill" viewBox="0 0 16 16">
 					  <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
 					</svg>
 	        	</div>
 	        	<div>
-		        	<span class="member-name">나BS아님</span>
-		        	<div class="chat-content">하이</div>
+		        	<span class="member-name"></span>
+		        	<div class="chat-content"></div>
 	        	</div>
     		</div>
     		<div class="sender-chat">
 	        	<div>
-		        	<span class="member-name d-flex justify-content-end">나BS아님</span>
-		        	<div class="chat-content">하이</div>
+		        	<span class="member-name d-flex justify-content-end"></span>
+		        	<div class="chat-content"></div>
 	        	</div>
 	        	<div class="member-img d-flex justify-content-center align-items-center">
 	        		<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="#ECEBDE" class="bi bi-person-fill" viewBox="0 0 16 16">
 					  <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
 					</svg>
 	        	</div>
-    		</div>
-    		<div class="receiver-chat">
-    			<div class="member-img d-flex justify-content-center align-items-center">
-	        		<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="#ECEBDE" class="bi bi-person-fill" viewBox="0 0 16 16">
-					  <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
-					</svg>
-	        	</div>
-	        	<div>
-		        	<span class="member-name">나BS아님</span>
-		        	<div class="chat-content">하이</div>
-	        	</div>
-    		</div>
-    		<div class="sender-chat">
-	        	<div>
-		        	<span class="member-name d-flex justify-content-end">나BS아님</span>
-		        	<div class="chat-content">하이</div>
-	        	</div>
-	        	<div class="member-img d-flex justify-content-center align-items-center">
-	        		<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="#ECEBDE" class="bi bi-person-fill" viewBox="0 0 16 16">
-					  <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
-					</svg>
-	        	</div>
-    		</div>
-    		<div class="receiver-chat">
-    			<div class="member-img d-flex justify-content-center align-items-center">
-	        		<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="#ECEBDE" class="bi bi-person-fill" viewBox="0 0 16 16">
-					  <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
-					</svg>
-	        	</div>
-	        	<div>
-		        	<span class="member-name">나BS아님</span>
-		        	<div class="chat-content">하이</div>
-	        	</div>
-    		</div>
-    		<div class="sender-chat">
-	        	<div>
-		        	<span class="member-name d-flex justify-content-end">나BS아님</span>
-		        	<div class="chat-content">하이</div>
-	        	</div>
-	        	<div class="member-img d-flex justify-content-center align-items-center">
-	        		<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="#ECEBDE" class="bi bi-person-fill" viewBox="0 0 16 16">
-					  <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
-					</svg>
-	        	</div>
-    		</div>
-    	</div>
-    	<form class="chatting-input-box">
-    		<textarea class="chatting-input" placeholder="메세지를 입력하세요"></textarea>
-    		<button type="submit" class="send-btn">
-				<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-send" viewBox="0 0 16 16">
-				  <path d="M15.854.146a.5.5 0 0 1 .11.54l-5.819 14.547a.75.75 0 0 1-1.329.124l-3.178-4.995L.643 7.184a.75.75 0 0 1 .124-1.33L15.314.037a.5.5 0 0 1 .54.11ZM6.636 10.07l2.761 4.338L14.13 2.576zm6.787-8.201L1.591 6.602l4.339 2.76z"/>
-				</svg>
-			</button>
-    	</form>		
+    		</div> -->
+    		
+    		<div id="msg-container"></div>
+			<div id="msgwrite-container">
+					<form class="chatting-input-box">
+		    		<textarea type="text" id="msg" class="chatting-input" placeholder="메세지를 입력하세요"></textarea>
+		    		<button type="button" class="send-btn" id="send-btn">
+						<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-send" viewBox="0 0 16 16">
+						  <path d="M15.854.146a.5.5 0 0 1 .11.54l-5.819 14.547a.75.75 0 0 1-1.329.124l-3.178-4.995L.643 7.184a.75.75 0 0 1 .124-1.33L15.314.037a.5.5 0 0 1 .54.11ZM6.636 10.07l2.761 4.338L14.13 2.576zm6.787-8.201L1.591 6.602l4.339 2.76z"/>
+						</svg>
+					</button>
+		    	</form>		
+				<!-- <input type="text" id="msg"> <button id="send-btn">전송</button> -->
+				
+			</div>
+		
+		<div id="info-container"></div>
+    	</div> 
+    	
     </div>
 
 </div>
   
 </section>    
+<script>
+		const sender='${sessionScope.loginMember.memberId}';
+		
+		let socket=new WebSocket("ws://localhost:9090/SSEULMANHAE/chatting"); 
+		
+		socket.onopen=(response)=>{
+			const msg=new Message("open",sender,"","","");
+			socket.send(msg.toJson()); 	
+		}
+		
+		socket.onmessage=(e)=>{
+		
+			const data=JSON.parse(e.data);
+			console.log(e);
+			switch(data.type){
+			case "alram": alramMessage(data);break;
+			case "users": userPrint(data);break;
+			case "msg" : msgprint(data);break;
+			}
+	
+		}
+		// 알림 메시지를 표시하는 함수
+		const alramMessage=(msg)=>{
+		const $h5 = $("<div>").text(msg.data).css(
+			        "textAlign", "center",
+			        "color", "#4CAF50", 
+			        "fontWeight", "bold"
+			    );
+		
+		$("#msg-container").append($h5);
+		}
+	
+		const userPrint=(msg)=>{
+			const users=JSON.parse(msg.data);
+			const $ul=$("<ul>");
+			users.forEach(user=> {
+				$("<li>").text(user).appendTo($ul);
+		});
+		$("#info-container").html($ul);
+		}
+		
+		const msgprint = (msg) => {
+		    const $container = $("<div>").css({"display": "flex"});
+		    const $div = $(`<div class="sender-chat">`).css({"display": "flex"});
+		    
+		    // 텍스트 메시지
+		    const $h5 = $("<h5>").text(msg.data).css("margin", "3%");
+		    
+		    // 발신자 이름
+		    const $span = $("<span>").text(msg.sender);
 
+		    
+		    // 발신자 이름과 아이콘을 $div에 추가
+		    $div.append($span).append($h5);
+		    
+		    if (sender == msg.sender) {
+		        $container.css("justifyContent", "end");
+		    }
+		    
+		    $container.append($div);
+		    $("#msg-container").append($container);
+		}
+		
+		 //소켓서버에 메세지 보내기
+	   $("#send-btn").click(e=>{
+   		 const message=$("#msg").val();
+   		 if(message.trim().length>0){	 
+   			 //object 로 넘어 가기 때문에 toJson() 메소드사용
+   			socket.send(new Message("msg",sender,'',message,'').toJson()); // type , sender , receiver , data , room 
+    	 } else {
+        	alert("메세지를 입력하세요 !");
+        	$("#msg").focus();
+    	 }
+       }); // 올바르게 닫기
+       
+       
+       
+       class Message{
+   		constructor(type,sender,receiver,data,room) {
+   			this.type=type;
+   			this.sender=sender;
+   			this.receiver=receiver;
+   			this.data=data;
+   			this.room=room;
+   		}
+   		/* 파싱해서 보내야함 */
+   		toJson(){
+   			return JSON.stringify(this); //this 객체를 반환
+   		}
+   	}
+</script>
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>

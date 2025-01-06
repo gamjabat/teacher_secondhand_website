@@ -14,7 +14,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-  <%-- <script src="${pageContext.request.contextPath }/resources/js/jquery-3.7.1.min.js"></script> --%>
+   <script src="${pageContext.request.contextPath }/resources/js/jquery-3.7.1.min.js"></script>
   <title>SSEULMANHAE</title>
 </head>
 <body>	
@@ -23,7 +23,8 @@
     	<!-- 로고 -->
       	<div class="logo-container">
 	 			<a href="${path }/">
-	      		<img src="${path}/resources/images/SSEULMANHAE_LOGO.png" class="logo" alt="Logo" onclick="mainPage();">
+	      		<%-- <img src="${path}/resources/images/SSEULMANHAE_LOGO.png" class="logo" alt="Logo" onclick="mainPage();"> --%>
+	      		<img src="${path}/resources/images/SSEULMANHAE_LOGO.png" class="logo" alt="Logo">
       		</a> 
       	</div>
       	
@@ -74,6 +75,7 @@
 						        <a href="${path}/login/findid.do">아이디 찾기</a>
 						        <a href="${path}/login/findpassword.do">비밀번호 찾기</a>
 						        <a href="${path}/login/signupagreement.do">회원가입</a>
+						        
 						    </c:if>
 		    
 						    <!-- 로그인 상태일 때만 보이는 메뉴 -->
@@ -84,6 +86,7 @@
 						        <a href="${path}/member/wishlist.do">관심상품 리스트</a>
 						        <a href="${path}/member/cartlist.do">장바구니 리스트</a>
 						        <a href="${path}/login/logout.do">로그아웃</a>
+						        <a href="${path}/product/productchatting.do">작업을 위해 임시로 만듬</a>
 						        <!-- 관리자 로그인시에만 보임 관리자 아이디 추가 가능.-->
 					 	    	<c:if test="${sessionScope.loginMember.memberId == 'admin1' || 
 					 	    				  sessionScope.loginMember.memberId == 'admin2' || 
