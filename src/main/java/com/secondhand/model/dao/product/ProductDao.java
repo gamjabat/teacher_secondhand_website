@@ -1,5 +1,6 @@
 package com.secondhand.model.dao.product;
 
+import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
@@ -31,4 +32,19 @@ public class ProductDao {
 	public int updateProduct(SqlSession session, Product p) throws RuntimeException {
 		return session.update("product.updateProduct", p);
 	}
+	
+	public void deleteProduct(SqlSession session, String productNo) {  
+        session.update("product.logicalDeleteProduct", productNo);
+	}
+	
+	public List<Product> selectProductAll(SqlSession session, Map<String, Object> param){	
+    	int cPage = (int)param.get("cPage");
+		int numPerPage = (int)param.get("numPerPage");
+    	
+    	return session.selectList("product.selectProductAll", Map.of("start",(cPage-1)*numPerPage+1, "end", cPage*numPerPage));
+    }
+	
+	public int selectProductAllCount(SqlSession session) {
+    	return session.selectOne("product.selectProductAllCount");
+    }
 }
