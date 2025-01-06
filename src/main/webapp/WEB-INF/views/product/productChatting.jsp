@@ -249,26 +249,63 @@
 		}
 		
 		const msgprint = (msg) => {
-		    const $container = $("<div>").css({"display": "flex"});
-		    const $div = $(`<div class="sender-chat">`).css({"display": "flex"});
-		    
-		    // 텍스트 메시지
-		    const $h5 = $("<h5>").text(msg.data).css("margin", "3%");
-		    
-		    // 발신자 이름
-		    const $span = $("<span>").text(msg.sender);
+		    const isSender = sender === msg.sender; // Check if the sender is the logged-in user
+		    const $container = $('<div>').addClass(isSender ? 'sender-chat' : 'receiver-chat').css('display', 'flex');
 
-		    
-		    // 발신자 이름과 아이콘을 $div에 추가
-		    $div.append($span).append($h5);
-		    
-		    if (sender == msg.sender) {
-		        $container.css("justifyContent", "end");
+		    if (isSender) {
+		        $container.css('justify-content', 'flex-end');
+		    } else {
+		        $container.css('justify-content', 'flex-start');
 		    }
-		    
-		    $container.append($div);
-		    $("#msg-container").append($container);
-		}
+
+		    const $chatBubble = $('<div>').addClass('chat-content').css({
+		        'max-width': '60%',
+		        'padding': '10px',
+		        'border-radius': '10px',
+		        'background-color': '#FFFFFF',
+		        'box-shadow': '0px 0px 5px rgba(0, 0, 0, 0.1)',
+		        'margin': '5px',
+		        'word-wrap': 'break-word'
+		    }).text(msg.data);
+
+		    const $nameTag = $('<span>').addClass('member-name').css({
+		        'font-size': '12px',
+		        'color': '#888',
+		        'margin': isSender ? '0 10px 0 0' : '0 0 0 10px'
+		    }).text(isSender ? '나' : msg.sender);
+
+		    const $profileIcon = $('<div>').addClass('member-img').css({
+		        'width': '30px',
+		        'height': '30px',
+		        'border-radius': '50%',
+		        'background-color': '#ECEBDE',
+		        'display': 'flex',
+		        'align-items': 'center',
+		        'justify-content': 'center',
+		        'margin': '5px'
+		    }).append(
+		        $('<svg>').attr({
+		            xmlns: 'http://www.w3.org/2000/svg',
+		            width: '20',
+		            height: '20',
+		            fill: 'currentColor',
+		            class: 'bi bi-person-fill',
+		            viewBox: '0 0 16 16'
+		        }).append(
+		            $('<path>').attr('d', 'M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6')
+		        )
+		    );
+
+		    if (isSender) {
+		        $container.append($chatBubble).append($nameTag);
+		    } else {
+		        $container.append($profileIcon).append($nameTag).append($chatBubble);
+		    }
+
+		    $('#msg-container').append($container);
+		    $('#msg-container').scrollTop($('#msg-container')[0].scrollHeight); // Auto-scroll to the bottom
+		};
+
 		
 		 //소켓서버에 메세지 보내기
 	   $("#send-btn").click(e=>{
