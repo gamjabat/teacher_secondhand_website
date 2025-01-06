@@ -464,12 +464,14 @@ const processPayment = () => {
                         pay_method: "card",
                         merchant_uid: data.paymentNo, // 서버에서 생성된 주문번호
                         name: "${product.productName}",
-                        amount: 1, // 결제 금액
+                        amount: 100, // 결제 금액
                         buyer_name: document.getElementById("member-name").value.trim(),
                         buyer_tel: document.getElementById("phone").value.trim(),
                         buyer_addr: "",
                     },
                     async (response) => {
+                    	console.log("결과결과: ",response); 
+                    	response.success = response.imp_uid ? true : false;
                         if (response.error_code != null) {
                             console.error(response.error_code);
                             return alert("결제에 실패하였습니다. 에러 내용: " + response.error_msg);
@@ -483,14 +485,16 @@ const processPayment = () => {
                                     action: "complete", // 완료 요청
                                     imp_uid: response.imp_uid, // 포트원 아이디
                                     merchant_uid: response.merchant_uid, // 주문번호
-                                    amount: response.paid_amount, // 실제 결제 금액
-                                    productNo: "${product.productNo}" // 상품 번호
-                                    paymentNo: response.paymentNo
+                                    amount: 100, // 실제 결제 금액
+                                    productNo: "${product.productNo}", // 상품 번호
+                                    paymentNo: response.merchant_uid,
+                                    receipt_url: "",
+                                    memberNo: "${loginMember.memberNo}"
                                 },
                                 (result) => {
                                     if (result.success) {
                                         alert("결제가 완료되었습니다!");
-                                        //location.assign("${path}/order/success"); // 성공 페이지로 이동
+                                        location.assign("${path}/payment/paymentdetail.do?paymentNo="+result.paymentNo); // 성공 페이지로 이동
                                     } else {
                                         alert("결제 검증 실패: " + result.message);
                                     }
