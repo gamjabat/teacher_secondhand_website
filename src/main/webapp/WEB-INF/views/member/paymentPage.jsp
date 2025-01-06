@@ -446,38 +446,66 @@
 	 	// 결제 API
 </script>
 <script>
-const processPayment=()=>{
-	$.post("${path}/payment.do",{productNo: "${product.productNo}" },data=>{
-			
-				IMP.init("imp02225488");
-				IMP.request_pay(
-					{
-						channelKey:"channel-key-9880c4ca-1f39-4e8e-9b44-c4222f6967aa",
-						pay_method:"card",
-						merchant_uid:data.payCode,	// 임의의 값. 나중에 수정하기.
-						name: "${product.productName}",
-						//amount:parseInt(document.querySelector(".total-price").textContent.replace(/[^0-9]/g, "")), // 결제 금액
-						amount: 1,
-					    buyer_name: document.getElementById('member-name').value.trim(),
-					    buyer_tel: document.getElementById('phone').value.trim(),
-					    buyer_addr: "",
-					},
-					async (response) => {
-						if (response.error_code != null) {
-						    console.log(response.error_code);
-						    // 결제 취소 메소드 만들기
-						    return alert("결제에 실패하였습니다. 에러 내용: "+response.error_msg);
-					    }
-						if(response.success){
-							alert("결제를 성공적으로 완료했습니다.");
-							location.assign("#");
-						}else{
-							// 결제 취소 메소드 만들기
-							alert("결제가 진행되지 않았습니다!");
-						}
-					}
-				);
-			});
+const processPayment = () => {
+    // Step 1: 결제 초기화 요청
+    $.post(
+        "${path}/payment.do",
+        {
+            action: "init" // 초기화 요청
+        },
+        (data) => {
+            if (data.success) {
+                // Step 2: 결제 요청
+                console.log("결제번호:",data.paymentNo);
+                IMP.init("imp02225488");
+                IMP.request_pay(
+                    {
+                        channelKey: "channel-key-9880c4ca-1f39-4e8e-9b44-c4222f6967aa",
+                        pay_method: "card",
+                        merchant_uid: data.paymentNo, // 서버에서 생성된 주문번호
+                        name: "${product.productName}",
+                        amount: 1, // 결제 금액
+                        buyer_name: document.getElementById("member-name").value.trim(),
+                        buyer_tel: document.getElementById("phone").value.trim(),
+                        buyer_addr: "",
+                    },
+                    async (response) => {
+                        if (response.error_code != null) {
+                            console.error(response.error_code);
+                            return alert("결제에 실패하였습니다. 에러 내용: " + response.error_msg);
+                        }
+
+                        if (response.success) {
+                            // Step 3: 결제 완료 요청
+                            $.post(
+                                "${path}/payment.do",
+                                {
+                                    action: "complete", // 완료 요청
+                                    imp_uid: response.imp_uid, // 포트원 아이디
+                                    merchant_uid: response.merchant_uid, // 주문번호
+                                    amount: response.paid_amount, // 실제 결제 금액
+                                    productNo: "${product.productNo}" // 상품 번호
+                                    paymentNo: response.paymentNo
+                                },
+                                (result) => {
+                                    if (result.success) {
+                                        alert("결제가 완료되었습니다!");
+                                        //location.assign("${path}/order/success"); // 성공 페이지로 이동
+                                    } else {
+                                        alert("결제 검증 실패: " + result.message);
+                                    }
+                                }
+                            );
+                        } else {
+                            alert("결제가 진행되지 않았습니다!");
+                        }
+                    }
+                );
+            } else {
+                alert("결제 초기화에 실패했습니다.");
+            }
+        }
+    );
 };
 </script>
 
