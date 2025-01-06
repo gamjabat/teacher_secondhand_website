@@ -180,16 +180,17 @@
         </div>
 		<!-- 상품 정보 -->
 		    <div class="product-info-box d-flex flex-column justify-content-between">
-		        	<div class="product-info">
-			            <p class="title">${product.productName }</p>
-			            <p class="category">${product.productCategoryName }</p>
-		        	</div>
-		        	<div class="product-info">
-			            <p class="price"><fmt:formatNumber value="${product.price}" type="number" groupingUsed="true"/>원</p>
-			            <p class="description">
-			                ${product.productDescription}
-			            </p>
-		        	</div>
+		    	<input type="hidden" id="productNo" value=${product.productNo }>
+	        	<div class="product-info">
+		            <p class="title">${product.productName }</p>
+		            <p class="category">${product.productCategoryName }</p>
+	        	</div>
+	        	<div class="product-info">
+		            <p class="price"><fmt:formatNumber value="${product.price}" type="number" groupingUsed="true"/>원</p>
+		            <p class="description">
+		                ${product.productDescription}
+		            </p>
+	        	</div>
 		    </div>
 	    	
     
@@ -222,7 +223,8 @@
 	}
 	
 	const paymentPage = () =>{
-		location.assign("${path}/member/paymentpage.do");
+		const productNo = document.getElementById('productNo').value
+		location.assign("${path}/member/paymentpage.do?productNo=" + productNo);
 	}
 	
 </script>
