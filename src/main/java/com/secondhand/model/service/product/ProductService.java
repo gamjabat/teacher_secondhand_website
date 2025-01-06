@@ -17,12 +17,16 @@ public class ProductService {
 	private ProductDao dao = new ProductDao();
 	private AttachmentDao attachmentDao = new AttachmentDao();
 	
+	public String generateProductNo() throws RuntimeException {
+		 SqlSession session = getSession();
+		 String productNo = dao.generateProductNo(session);
+		 session.close();
+		 return productNo;
+	}
+	
 	public int insertProduct(Product p, List<Attachment> attachments) throws RuntimeException {
 		SqlSession session = getSession();
 		try {
-	        String productNo = dao.generateProductNo(session);
-	        p.setProductNo(productNo);
-
 	        int result = dao.insertProduct(session, p);
 	        if (result <= 0) {
 	            session.rollback();
@@ -30,7 +34,7 @@ public class ProductService {
 	        }
 
 	        for (Attachment attachment : attachments) {
-	            attachment.setAttachmentProductNo(productNo);
+	            attachment.setAttachmentProductNo(p.getProductNo());
 	            int attachResult = attachmentDao.uploadProductImg(session, attachment);
 	            if (attachResult <= 0) {
 	                session.rollback();
@@ -49,9 +53,54 @@ public class ProductService {
 	    }
 	}
 	
-	public ProductDetail selectByProductNo(String productNo) {
+	public int updateProduct(Product p, List<Attachment> attachments) throws RuntimeException {
+		SqlSession session = getSession();
+		try {
+	        int result = dao.updateProduct(session, p);
+	        if (result <= 0) {
+	            session.rollback();
+	            throw new RuntimeException("상품 수정 실패");
+	        }
+	        
+	        if(!attachments.isEmpty()) {
+	        	int deleteAttachResult = attachmentDao.deleteProductImg(session, p.getProductNo());
+        		if (deleteAttachResult <= 0) {
+        			session.rollback();
+        			throw new RuntimeException("기존 이미지 삭제 실패");
+        		}
+	        	
+	        	for (Attachment attachment : attachments) {
+	        		attachment.setAttachmentProductNo(p.getProductNo());
+	        		int attachResult = attachmentDao.uploadProductImg(session, attachment);
+	        		if (attachResult <= 0) {
+	        			session.rollback();
+	        			throw new RuntimeException("이미지 수정 실패");
+	        		}
+	        	}
+	        }
+	        
+	        session.commit();
+	        return result;
+
+	    } catch (Exception e) {
+	        session.rollback();
+	        e.printStackTrace();
+	        throw new RuntimeException("수정 중 오류 발생: " + e.getMessage());
+	    } finally {
+	        session.close();
+	    }
+	}
+	
+	public ProductDetail selectProductDetailByProductNo(String productNo) {
 		 SqlSession session = getSession();
-		 ProductDetail p = dao.selectByProductNo(session, productNo);
+		 ProductDetail p = dao.selectProductDetailByProductNo(session, productNo);
+		 session.close();
+		 return p;   
+	}
+	
+	public Product selectProductByProductNo(String productNo) {
+		 SqlSession session = getSession();
+		 Product p = dao.selectProductByProductNo(session, productNo);
 		 session.close();
 		 return p;   
 	}

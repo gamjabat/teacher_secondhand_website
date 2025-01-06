@@ -16,11 +16,19 @@ public class ProductDao {
 		return session.insert("product.insertProduct" , p);
 	}
 	
-	public ProductDetail selectByProductNo(SqlSession session, String productNo) {
-        return session.selectOne("product.selectByProductNo", productNo);   	
+	public ProductDetail selectProductDetailByProductNo(SqlSession session, String productNo) {
+        return session.selectOne("product.selectProductDetailByProductNo", productNo);   	
+	}
+	
+	public Product selectProductByProductNo(SqlSession session, String productNo) {
+        return session.selectOne("product.selectProductByProductNo", productNo);   	
 	}
 	
 	public Map<String, Object> selectSellerInfoByProductNo(SqlSession session, String productNo) {
         return session.selectOne("product.selectSellerInfoByProductNo", productNo);
     }
+	
+	public int updateProduct(SqlSession session, Product p) throws RuntimeException {
+		return session.update("product.updateProduct", p);
+	}
 }

@@ -23,16 +23,16 @@ import com.secondhand.model.dto.product.Product;
 import com.secondhand.model.service.product.ProductService;
 
 /**
- * Servlet implementation class ProductInsertEndServlet
+ * Servlet implementation class ProductEditEndServlet
  */
-@WebServlet("/product/prodoctinsertend.do")
-public class ProductInsertEndServlet extends HttpServlet {
+@WebServlet("/product/editproduct.do")
+public class ProductEditEndServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ProductInsertEndServlet() {
+    public ProductEditEndServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -51,6 +51,7 @@ public class ProductInsertEndServlet extends HttpServlet {
             MultipartRequest mr = new MultipartRequest(request, path, maxSize, encoding, new DefaultFileRenamePolicy());
 
             // 상품 정보 수집
+            String productNo= mr.getParameter("productNo"); 
             String name = mr.getParameter("productName");
             String category = mr.getParameter("productCategory");
             int price = Integer.parseInt(mr.getParameter("price"));
@@ -63,11 +64,8 @@ public class ProductInsertEndServlet extends HttpServlet {
 
             HttpSession session = request.getSession();
             Member loginMember = (Member) session.getAttribute("loginMember");
-            
-            ProductService service = new ProductService();
-            String productNo = service.generateProductNo();
 
-            Product insertProduct = Product.builder()
+            Product updateProduct = Product.builder()
             	.productNo(productNo)
                 .productName(name)
                 .productCategoryNo(category)
@@ -96,15 +94,15 @@ public class ProductInsertEndServlet extends HttpServlet {
             }
 
             // 서비스 호출
-            int productResult = service.insertProduct(insertProduct, attachments);
+            ProductService service = new ProductService();
+            int productResult = service.updateProduct(updateProduct, attachments);
 
             if (productResult > 0) {
                 result.put("success", true);
-                result.put("message", "상품이 성공적으로 등록되었습니다.");
-                result.put("productNo", productNo);
+                result.put("message", "상품이 성공적으로 수정되었습니다.");
             } else {
                 result.put("success", false);
-                result.put("message", "상품 등록에 실패했습니다.");
+                result.put("message", "상품 수정에 실패했습니다.");
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -114,7 +112,6 @@ public class ProductInsertEndServlet extends HttpServlet {
 
         response.setContentType("application/json;charset=utf-8");
         new Gson().toJson(result, response.getWriter());
-    	
 	}
 
 	/**
