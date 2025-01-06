@@ -111,4 +111,17 @@ public class ProductService {
         session.close();
 		return sellerInfo;   
     }
+	
+	public void deleteProduct(String productNo) {
+        SqlSession session = getSession();
+        try {
+            dao.deleteProduct(session, productNo);  // 세션을 통해 논리적 삭제 수행
+            session.commit();
+        } catch (Exception e) {
+            session.rollback();
+            throw e;
+        } finally {
+            session.close();
+        }
+    }
 }

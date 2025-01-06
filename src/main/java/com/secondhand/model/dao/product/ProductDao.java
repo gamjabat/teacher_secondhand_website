@@ -31,4 +31,8 @@ public class ProductDao {
 	public int updateProduct(SqlSession session, Product p) throws RuntimeException {
 		return session.update("product.updateProduct", p);
 	}
+	
+	public void deleteProduct(SqlSession session, String productNo) {  
+        session.update("product.logicalDeleteProduct", productNo);
+	}
 }
