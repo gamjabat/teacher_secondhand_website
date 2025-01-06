@@ -6,6 +6,8 @@
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 <link rel="stylesheet" href="${path}/resources/css/member/paymentPage.css">
 <link rel="stylesheet" href="${path}/resources/css/common/checkbox.css">
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script src="https://cdn.iamport.kr/v1/iamport.js"></script>
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
 
 <section class="main-container">
@@ -380,7 +382,6 @@
 	
 		    // 필수 값 확인
 		    function validateForm() {
-		        const shippingName = document.getElementById('shipping-name').value.trim();
 		        const memberName = document.getElementById('member-name').value.trim();
 		        const phone = document.getElementById('phone').value.trim();
 		        const checkedProducts = Array.from(checkboxes).some(checkbox => checkbox.checked);
@@ -444,5 +445,41 @@
 
 	 	// 결제 API
 </script>
+<script>
+const processPayment=()=>{
+	$.post("${path}/payment.do",{productNo: "${product.productNo}" },data=>{
+			
+				IMP.init("imp02225488");
+				IMP.request_pay(
+					{
+						channelKey:"channel-key-9880c4ca-1f39-4e8e-9b44-c4222f6967aa",
+						pay_method:"card",
+						merchant_uid:data.payCode,	// 임의의 값. 나중에 수정하기.
+						name: "${product.productName}",
+						//amount:parseInt(document.querySelector(".total-price").textContent.replace(/[^0-9]/g, "")), // 결제 금액
+						amount: 1,
+					    buyer_name: document.getElementById('member-name').value.trim(),
+					    buyer_tel: document.getElementById('phone').value.trim(),
+					    buyer_addr: "",
+					},
+					async (response) => {
+						if (response.error_code != null) {
+						    console.log(response.error_code);
+						    // 결제 취소 메소드 만들기
+						    return alert("결제에 실패하였습니다. 에러 내용: "+response.error_msg);
+					    }
+						if(response.success){
+							alert("결제를 성공적으로 완료했습니다.");
+							location.assign("#");
+						}else{
+							// 결제 취소 메소드 만들기
+							alert("결제가 진행되지 않았습니다!");
+						}
+					}
+				);
+			});
+};
+</script>
+
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
