@@ -238,10 +238,10 @@
         <label for="deliveryRequest" class="form-label" style="width: 120px;">배송 요청사항</label>
         <select id="deliveryRequest" class="form-select">
             <option value="">배송 시 요청사항을 선택해 주세요</option>
-            <option value="no_contact">부재시 문 앞에 놓아주세요.</option>
-            <option value="call_before">배송 전에 연락 주세요.</option>
-            <option value="neighbor">부재시 경비실에 맡겨 주세요.</option>
-            <option value="specific_time">택배함에 넣어주세요.</option>
+            <option value="부재시 문 앞에 놓아주세요.">부재시 문 앞에 놓아주세요.</option>
+            <option value="배송 전에 연락 주세요.">배송 전에 연락 주세요.</option>
+            <option value="부재시 경비실에 맡겨 주세요.">부재시 경비실에 맡겨 주세요.</option>
+            <option value="택배함에 넣어주세요.">택배함에 넣어주세요.</option>
         </select>
     </div>
 </div>

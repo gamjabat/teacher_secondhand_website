@@ -2,6 +2,8 @@ package com.secondhand.model.service.payment;
 
 import static com.secondhand.common.SqlSessionTemplate.getSession;
 
+import java.util.Map;
+
 import org.apache.ibatis.session.SqlSession;
 
 import com.secondhand.model.dao.payment.PaymentDao;
@@ -27,5 +29,12 @@ public class PaymentService {
 		session.close();
 		return result;
     }
+	
+	public Map<String, Object> selectByPaymentNo(String paymentNo) {
+		SqlSession session = getSession();
+		Map<String, Object> p = dao.selectByPaymentNo(session, paymentNo);
+		session.close();
+		return p;
+	}
 
 }
