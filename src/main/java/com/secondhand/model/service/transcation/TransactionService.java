@@ -29,5 +29,5 @@ public class TransactionService {
 		Transaction t = dao.selectTransactionByProductAndMember(session, param);
 		session.close();
 		return t;
-	} 
+	}
 }

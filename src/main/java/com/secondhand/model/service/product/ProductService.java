@@ -152,4 +152,18 @@ public class ProductService {
 		session.close();
 		return count;
     }
+	
+	public List<Map<String, Object>> getPurchaseHistory(Map<String, Object> param){
+		SqlSession session = getSession();
+		List<Map<String, Object>> products = dao.getPurchaseHistory(session, param);
+		session.close();
+		return products;
+	}
+	
+	public int getPurchaseHistoryCount(String memberNo){
+		SqlSession session = getSession();
+		int count = dao.getPurchaseHistoryCount(session, memberNo);
+		session.close();
+		return count;
+	}
 }

@@ -33,98 +33,34 @@
 	<!-- 구매리스트 -->
 	<div class="item-container">
 		<h2>나의 구매내역</h2>
-		<div class="purchase-item">
-			<img src="${path}/resources/images/product1.jpg" class="d-block" alt="Product Image 1">
-			<div class="product-info">
-				<div class="title">상품명</div>
-				<div class="price">35,000원</div>
-			</div>
-			<div class="transaction-status">거래중</div>
-			<div class="transaction-date">2024-12-11 결제</div>
-		</div>
-		<div class="purchase-item">
-			<img src="${path}/resources/images/product1.jpg" class="d-block" alt="Product Image 1">
-			<div class="product-info">
-				<div class="title">상품명</div>
-				<div class="price">35,000원</div>
-			</div>
-			<div class="transaction-status">거래중</div>
-			<div class="transaction-date">2024-12-11 결제</div>
-		</div>
-		<div class="purchase-item">
-			<img src="${path}/resources/images/product1.jpg" class="d-block" alt="Product Image 1">
-			<div class="product-info">
-				<div class="title">상품명</div>
-				<div class="price">35,000원</div>
-			</div>
-			<div class="transaction-status">거래중</div>
-			<div class="transaction-date">2024-12-11 결제</div>
-		</div>
-		<div class="purchase-item">
-			<img src="${path}/resources/images/product1.jpg" class="d-block" alt="Product Image 1">
-			<div class="product-info">
-				<div class="title">상품명</div>
-				<div class="price">35,000원</div>
-			</div>
-			<div class="transaction-status">거래중</div>
-			<div class="transaction-date">2024-12-11 결제</div>
-		</div>
-		<div class="purchase-item">
-			<img src="${path}/resources/images/product1.jpg" class="d-block" alt="Product Image 1">
-			<div class="product-info">
-				<div class="title">상품명</div>
-				<div class="price">35,000원</div>
-			</div>
-			<div class="transaction-status">거래중</div>
-			<div class="transaction-date">2024-12-11 결제</div>
-		</div>
-		<div class="purchase-item">
-			<img src="${path}/resources/images/product1.jpg" class="d-block" alt="Product Image 1">
-			<div class="product-info">
-				<div class="title">상품명</div>
-				<div class="price">35,000원</div>
-			</div>
-			<div class="transaction-status">거래중</div>
-			<div class="transaction-date">2024-12-11 결제</div>
-		</div>
-		<div class="purchase-item">
-			<img src="${path}/resources/images/product1.jpg" class="d-block" alt="Product Image 1">
-			<div class="product-info">
-				<div class="title">상품명</div>
-				<div class="price">35,000원</div>
-			</div>
-			<div class="transaction-status">거래중</div>
-			<div class="transaction-date">2024-12-11 결제</div>
-		</div>
-		<div class="purchase-item">
-			<img src="${path}/resources/images/product1.jpg" class="d-block" alt="Product Image 1">
-			<div class="product-info">
-				<div class="title">상품명</div>
-				<div class="price">35,000원</div>
-			</div>
-			<div class="transaction-status">거래중</div>
-			<div class="transaction-date">2024-12-11 결제</div>
-		</div>
-		<div class="purchase-item">
-			<img src="${path}/resources/images/product1.jpg" class="d-block" alt="Product Image 1">
-			<div class="product-info">
-				<div class="title">상품명</div>
-				<div class="price">35,000원</div>
-			</div>
-			<div class="transaction-status">거래중</div>
-			<div class="transaction-date">2024-12-11 결제</div>
-		</div>
+			<c:if test="${not empty purchaseHistory}">
+		        <c:forEach var="history" items="${purchaseHistory}">
+		            <div class="purchase-item">
+		                <img src="${path}/resources/upload/product/${history['IMAGE_FILE']}" class="d-block" alt="${history.PRODUCT_NAME}">
+		                <div class="product-info">
+		                    <div class="title">${history.PRODUCT_NAME}</div>
+		                    <div class="price"><fmt:formatNumber value="${history.PRICE}"/>원</div>
+		                </div>
+		                <div class="transaction-status">${history.TRANSACTION_STATUS}</div>
+		                <div class="transaction-date">
+		                    <fmt:formatDate value="${history.TRANSACTION_DATE}" pattern="yyyy-MM-dd hh:mm:ss" />
+		                </div>
+		                <div class="button-group">
+		                	<button class="btn" data-bs-toggle="modal" data-bs-target="#reviewModal" data-board-no="${board.boardNo}">후기 작성</button>
+		                </div>
+		            </div>
+		        </c:forEach>
+		    </c:if>
+		    <c:if test="${empty purchaseHistory}">
+		        <div class="no-data">
+		            <p>구매 내역이 없습니다.</p>
+		        </div>
+		    </c:if>
 		
-	<!-- 페이지 바 디자인. -->
-    <div class="pagination">
-	    <button class="prev">&lt;</button>
-				    <span class="page active"></span>
-				    <span class="page"></span>
-				    <span class="page"></span>
-				    <span class="page"></span>
-				    <span class="page"></span>
-	    <button class="next">&gt;</button>
-	</div>
+		<!-- 페이지 바 디자인. -->
+	    <div class="pagination">
+		   ${pageBar }
+		</div>
 	
 	</div>
 	
@@ -134,10 +70,81 @@
 </div>
 </section>
 
+
+	<!-- 신고 모달 -->
+		<div class="modal fade" id="reviewModal" tabindex="-1" aria-labelledby="reviewModalLabel" aria-hidden="true">
+		  <div class="modal-dialog modal-dialog-centered">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <h5 class="modal-title" id="reviewModalLabel">판매자 후기 작성하기</h5>
+		        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+		      </div>
+		      <div class="modal-body d-flex justify-content-center">
+		        <form id="reviewForm" action="${path }/review/insertreview.do" method="post" onsubmit="return fn_invalidate();">
+		        	<input type="hidden" name="memberNo" value="${loginMember.memberNo}" />
+		        	<input type="hidden" name="boardNo" value="${boardNo || ''}">
+		        	<input type="hidden" name="commentNo" value="${commentNo || ''}">
+		          <div class="mb-3">
+		            <label for="reviewRating" class="form-label">별점</label>
+		            <div class="star-rating">
+				        <i class="far fa-star" data-value="1"></i>
+				        <i class="far fa-star" data-value="2"></i>
+				        <i class="far fa-star" data-value="3"></i>
+				        <i class="far fa-star" data-value="4"></i>
+				        <i class="far fa-star" data-value="5"></i>
+				    </div>
+				    <input type="hidden" id="reviewRating" name="rating" value="0">
+		          </div>
+		          <div class="mb-3">
+		            <label for="reportDetails" class="form-label">후기 내용</label>
+		            <textarea class="form-control" id="reviewContent" name="content" rows="3" placeholder="후기 내용을 입력하세요"></textarea>
+		          </div>
+		          <div class="text-center">
+		            <button type="submit" class="btn btn-danger">후기 등록</button>
+		            <button type="button" class="btn btn-secondary me-2" data-bs-dismiss="modal">취소</button>
+		          </div>
+		        </form>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+
 <script>
 document.addEventListener('DOMContentLoaded', () => {
 	 document.querySelector(".ct-box").style.display = "none";
 	 document.querySelector(".search-input").style.display = "none";
+	 
+	 const stars = document.querySelectorAll('.star-rating .fa-star, .star-rating .fa-star.empty');
+	    const ratingInput = document.getElementById('reviewRating');
+
+	    stars.forEach(star => {
+	        star.addEventListener('click', () => {
+	            const value = parseInt(star.getAttribute('data-value'), 10);
+	            const currentRating = parseInt(ratingInput.value, 10);
+
+	            if (value === 1 && currentRating === 1) {
+	                // 1번째 별이 클릭된 상태에서 다시 클릭하면 0점으로 설정
+	                ratingInput.value = 0;
+	                stars.forEach(s => {
+	                    s.classList.remove('fas'); // 모든 별을 비움
+	                    s.classList.add('far');
+	                });
+	            } else {
+	                // 일반적인 별점 선택 동작
+	                ratingInput.value = value;
+	                stars.forEach(s => {
+	                    const starValue = parseInt(s.getAttribute('data-value'), 10);
+	                    if (starValue <= value) {
+	                        s.classList.remove('far'); // 비워진 별 제거
+	                        s.classList.add('fas');   // 채워진 별 추가
+	                    } else {
+	                        s.classList.remove('fas'); // 채워진 별 제거
+	                        s.classList.add('far');    // 비워진 별 추가
+	                    }
+	                });
+	            }
+	        });
+	    });
 });
 </script>
 

@@ -1,11 +1,15 @@
 @charset "UTF-8";
+.main-box{
+	height: 800px;
+}
 
 .item-container{
 	width:100%;
 	display: flex;
 	flex-direction: column;
-	justify-content: center;
+	justify-content: flex-start;
 	align-items: center;
+	padding: 20px;
 }
 
 .item-container h2{
@@ -85,5 +89,27 @@
     background-color: #6b4b3d; /* 호버 시 색상 */
 }
 
+.button-group{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.button-group .btn {
+    height: 30px;
+    border-radius: 5px;
+    font-size: 12px;
+    background-color: #A95151;
+    border-radius: 10px;
+    color: white;
+    font-weight: bold;
+}
 
+.button-group .btn:hover {
+    background-color: #7A3838; /* 어두운 톤 */
+}
 
+i {
+    font-size: 24px;
+    color: #ffd700; /* 별점 색상: 금색 */
+    cursor: pointer; /* 마우스를 올리면 클릭 가능하도록 */
+}
