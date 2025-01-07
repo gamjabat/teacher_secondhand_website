@@ -1,9 +1,12 @@
 package com.secondhand.model.dao.member;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
-public class WishListhDao {
+import com.secondhand.model.dto.product.Product;
+
+public class WishListDao {
 	// 좋아요 상태 확인
     public boolean isWishListed(SqlSession session, Map<String, String> params) {
         return session.selectOne("wishlist.isWishListed", params) != null;
@@ -17,7 +20,11 @@ public class WishListhDao {
     // 좋아요 상태 업데이트 (Y -> N 또는 N -> Y)
     public int updateWishStatus(SqlSession session, Map<String, String> params, String status) {
         params.put("isDeleted", status);
-        return session.update("wishlist.updateWishStatus", params);
+        return session.delete("wishlist.updateWishStatus", params);
+    }
+    
+    public List<Map<String, Object>> getLikedProducts(SqlSession session, String memberNo) {
+        return session.selectList("wishlist.getLikedProducts", memberNo);
     }
 }
 

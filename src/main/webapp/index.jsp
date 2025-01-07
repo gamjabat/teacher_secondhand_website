@@ -69,14 +69,14 @@
 			    <label><input type="radio" name="trade"/> 거래중</label>
 			    <label><input type="radio" name="trade"/> 거래완료</label> 
 			</div>
-		  <div class="checkbox-container">
+		<!--   <div class="checkbox-container">
 		 	<div class="title">상품상태</div>
 			    <label><input type="radio" name="status" /> A급</label>
 			    <label><input type="radio" name="status"/> B급</label>
 			    <label><input type="radio" name="status"/> C급</label>
 			    <label><input type="radio" name="status"/> D급</label>
 			    <label><input type="radio" name="status"/> F급</label>  
-			</div>	
+			</div>	 -->
 		   <div class="reset-btn-container">
 		 	<button class="reset-btn"><p>RESET</p></button>	
 		 	<button class="push-btn"><p>PUSH</p></button>				
