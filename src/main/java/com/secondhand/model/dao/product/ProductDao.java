@@ -47,4 +47,18 @@ public class ProductDao {
 	public int selectProductAllCount(SqlSession session) {
     	return session.selectOne("product.selectProductAllCount");
     }
+	
+	public List<Product> searchProducts(SqlSession session, Map<String, Object> filter, Map<String, Object> param){	
+    	int cPage = (int)param.get("cPage");
+		int numPerPage = (int)param.get("numPerPage");
+		
+		filter.put("start", (cPage-1)*numPerPage+1);
+		filter.put("end", cPage*numPerPage);
+    	
+    	return session.selectList("product.searchProducts", filter);
+    }
+	
+	public int searchProductsCount(SqlSession session, Map<String, Object> filter) {
+    	return session.selectOne("product.searchProductsCount");
+    }
 }

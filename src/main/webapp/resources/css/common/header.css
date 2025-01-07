@@ -14,7 +14,6 @@
 		
 	}
 	.header-box {
-		width : 80%;
 		display : flex;
 	}
 	.search-container {
@@ -118,3 +117,5 @@
 		 margin-bottom : 15px;
 		 font-weight : 700;
 	}
+	
+	form{width: 80%;}

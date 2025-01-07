@@ -127,9 +127,9 @@ public class ProductService {
 	
 	public List<Product> selectProductAll(Map<String, Object> param){
 	 	SqlSession session = getSession();
-		List<Product> reports = dao.selectProductAll(session, param);
+		List<Product> products = dao.selectProductAll(session, param);
 		session.close();
-		return reports;
+		return products;
 	}
 	
 	public int selectProductAllCount() {
@@ -138,4 +138,18 @@ public class ProductService {
 		 session.close();
 		 return count;
 	 }
+	
+	public List<Product> searchProducts(Map<String, Object> filters, Map<String, Object> param) {
+		SqlSession session = getSession();
+		List<Product> products = dao.searchProducts(session, filters, param);
+		session.close();
+		return products;
+    }
+	
+	public int searchProductsCount(Map<String, Object> filters) {
+		SqlSession session = getSession();
+		int count = dao.searchProductsCount(session, filters);
+		session.close();
+		return count;
+    }
 }
