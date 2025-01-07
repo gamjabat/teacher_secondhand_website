@@ -353,6 +353,8 @@
     }
 
 	 document.addEventListener('DOMContentLoaded', () => {
+			 document.querySelector(".ct-box").style.display = "none";
+			 document.querySelector(".search-input").style.display = "none";
 		    const checkboxes = document.querySelectorAll('.product-checkbox');
 		    const agreementCheckboxes = document.querySelectorAll('.agreement-section .form-check-input');
 		    const paymentButton = document.querySelector('.payment-btn');
@@ -510,6 +512,7 @@ const processPayment = () => {
             }
         }
     );
+    
 };
 </script>
 

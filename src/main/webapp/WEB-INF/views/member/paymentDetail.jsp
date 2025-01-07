@@ -143,6 +143,10 @@
 	const mainPage = () =>{
 		location.assign("${path}");
 	}
+	document.addEventListener('DOMContentLoaded', () => {
+		 document.querySelector(".ct-box").style.display = "none";
+		 document.querySelector(".search-input").style.display = "none";
+	});
 	
 </script>
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
