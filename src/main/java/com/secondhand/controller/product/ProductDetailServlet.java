@@ -44,11 +44,14 @@ public class ProductDetailServlet extends HttpServlet {
 			ProductDetail product = productService.selectProductDetailByProductNo(productNo);
 			List<Attachment> attachments = new AttachmentService().selectAttachmentsByProductNo(productNo);
 			Map<String, Object> sellerInfo = productService.getSellerInfoByProductNo(productNo);
+			
+			//좋아요 체크 구문.
 			Member loginMember=(Member)request.getSession().getAttribute("loginMember");
 			if(loginMember!=null) {
 				request.setAttribute("isWishListed", new WishListService().isWishListed(
 						Map.of("memberNo", loginMember.getMemberNo(), "productNo", productNo)));
 			}
+			
 			request.setAttribute("product", product);
 			request.setAttribute("attachments", attachments);
 			request.setAttribute("sellerInfo", sellerInfo);

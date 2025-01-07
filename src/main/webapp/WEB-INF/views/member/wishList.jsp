@@ -19,6 +19,7 @@
 				</svg>
 		    </div>
 		    <div>관심 상품 리스트</div>
+		  
         </div>
         <table class="product-list">
             <tbody>
@@ -108,7 +109,7 @@
             });
 
             // 빈 열 추가 (5개 미만일 경우)
-            const remainingCells = 5 - (data.products.length % 5);
+            const remainingCells = 5 - (data.length % 5);
             if (remainingCells < 5) {
                 for (let i = 0; i < remainingCells; i++) {
                     const emptyCell = document.createElement('td');
@@ -117,7 +118,7 @@
             }
 
          // 페이지바 렌더링
-         pagination.innerHTML = data.pageBar;
+         pagination.innerHTML = data.	pageBar;
         })
         .catch(error => console.error('Error loading product list:', error));
 };

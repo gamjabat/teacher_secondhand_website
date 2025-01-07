@@ -1,7 +1,6 @@
 package com.secondhand.controller.member;
 
 import java.io.IOException;
-import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,16 +11,16 @@ import javax.servlet.http.HttpServletResponse;
 import com.secondhand.model.service.member.CartListService;
 
 /**
- * Servlet implementation class WishListServlet
+ * Servlet implementation class CartDeleteServlet
  */
-@WebServlet(name= "cartlistservlet" ,urlPatterns ="/member/cartlist.do")
-public class CartListServlet extends HttpServlet {
+@WebServlet("/member/cartdelete.do")
+public class CartDeleteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public CartListServlet() {
+    public CartDeleteServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,15 +29,23 @@ public class CartListServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-      String memberNo = request.getParameter("memberNo");
-      String productNo = request.getParameter("productNo");
-      System.out.println("memberNo:"+memberNo);
-      System.out.println("productNo:"+productNo);
-      // 서비스 호출하여 카트리스트 처리
-      int result = new CartListService().toggleCartList(Map.of("memberNo", memberNo, "productNo", productNo));
-      System.out.println("result:"+result);
-      response.getWriter().print(result);
-	}
+		// 1. 파라미터 가져오기
+        String memberNo = request.getParameter("memberNo");
+        String productNo = request.getParameter("productNo");
+        
+        // 2. 서비스 호출
+        CartListService service = new CartListService();
+        int result = service.deleteCartItem(memberNo, productNo);
+        
+        // 3. 결과 반환
+        response.setContentType("text/plain; charset=UTF-8");
+        if (result > 0) {
+            response.getWriter().write("success"); // 성공 시 "success" 반환
+        } else {
+            response.getWriter().write("failure"); // 실패 시 "failure" 반환
+        }
+    }
+
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

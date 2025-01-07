@@ -23,7 +23,7 @@ public class WishListService {
             int result;
             if (isLiked) {
                 // 이미 좋아요한 경우 => 좋아요 취소
-                result = dao.updateWishStatus(session, new HashMap<>(params), "Y");
+                result = dao.deleteWishStatus(session, new HashMap<>(params), "Y");
                 if(result>0) result=0;
             } else {
                 // 좋아요가 없는 경우 => 좋아요 추가

@@ -198,7 +198,7 @@
 		    <div class="button-group">
 		    	<div class="sub-button-group">
 			        <button class="btn chatting-btn" onclick="startChatting();">대화신청</button>
-			        <button class="btn cart-btn">장바구니</button>
+			        <button class="cart-btn">장바구니</button>
 		    	</div>
 		        <button type="button" class="btn pay-btn" onclick="paymentPage();">결제하기</button>
 		    </div>
@@ -229,10 +229,10 @@
 		location.assign("${path}/member/paymentpage.do");
 	}
 	
-	const wishlistPage =() => {
-		location.assign("${path}/member/wishlist2.do")
-	}
+
 	
+	
+	/* 좋아요 로직. */
 	document.querySelectorAll(".like-btn").forEach(div => div.addEventListener("click", (e) => {
 	    const memberNo = '${loginMember.memberNo}'; 
 	    const productNo ='${product.productNo}'; 
@@ -261,6 +261,29 @@
 	    
 	    
 	}));
+	
+	/* 장바구니 */
+	document.querySelectorAll(".cart-btn").forEach(div => div.addEventListener("click", (e) => {
+	    const memberNo = '${loginMember.memberNo}'; 
+	    const productNo ='${product.productNo}'; 
+	
+	    cartElement = e.currentTarget;
+		
+	  
+	    fetch("${path}/member/cartlist.do?memberNo=" + memberNo + "&productNo=" + productNo)
+        .then(response => response.text())
+        .then(data => {
+            if (data === "1") { 
+                alert("장바구니 담기 완료");
+            } else if (data === "0") {
+                alert("장바구니에 이미 담겨있습니다.");
+            } else {
+                alert("알 수 없는 오류가 발생했습니다.");
+            }
+        })
+        .catch(error => console.error("장바구니 처리 오류:", error));
+	})
+);
 	
 </script>
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
