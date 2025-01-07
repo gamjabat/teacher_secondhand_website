@@ -1,7 +1,6 @@
 package com.secondhand.controller.member;
 
 import java.io.IOException;
-import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,21 +8,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.secondhand.model.service.member.WishListService;
-
-
+import com.secondhand.model.service.member.CartListService;
 
 /**
- * Servlet implementation class WishListServlet
+ * Servlet implementation class CartDeleteServlet
  */
-@WebServlet(name= "wishlistservlet" ,urlPatterns = "/member/wishlist.do")
-public class WishListServlet extends HttpServlet {
+@WebServlet("/member/cartdelete.do")
+public class CartDeleteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public WishListServlet() {
+    public CartDeleteServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,25 +29,24 @@ public class WishListServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		 // 요청에서 파라미터 가져오기
-//        String memberNo = request.getParameter("memberNo");
-//        String productNo = request.getParameter("productNo"); // producttNo로 되어 있어 수정 가능
-        
+		// 1. 파라미터 가져오기
         String memberNo = request.getParameter("memberNo");
         String productNo = request.getParameter("productNo");
-
         
-        // 서비스 호출하여 위시리스트 처리
-        int result = new WishListService().toggleWishList(Map.of("memberNo", memberNo, "productNo", productNo));
-
-        // 처리 결과를 JSP에 전달
-//        request.setAttribute("result", result);
-//
-//        // 결과 페이지로 포워딩
-//        request.getRequestDispatcher("/WEB-INF/views/member/wishList.jsp").forward(request, response);
-        response.getWriter().print(result);
+        // 2. 서비스 호출
+        CartListService service = new CartListService();
+        int result = service.deleteCartItem(memberNo, productNo);
         
-	}
+        // 3. 결과 반환
+        response.setContentType("text/plain; charset=UTF-8");
+        if (result > 0) {
+            response.getWriter().write("success"); // 성공 시 "success" 반환
+        } else {
+            response.getWriter().write("failure"); // 실패 시 "failure" 반환
+        }
+    }
+
+
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */

@@ -11,8 +11,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.secondhand.model.dto.attachment.Attachment;
+import com.secondhand.model.dto.member.Member;
 import com.secondhand.model.dto.product.ProductDetail;
 import com.secondhand.model.service.attachment.AttachmentService;
+import com.secondhand.model.service.member.WishListService;
 import com.secondhand.model.service.product.ProductService;
 
 /**
@@ -42,6 +44,13 @@ public class ProductDetailServlet extends HttpServlet {
 			ProductDetail product = productService.selectProductDetailByProductNo(productNo);
 			List<Attachment> attachments = new AttachmentService().selectAttachmentsByProductNo(productNo);
 			Map<String, Object> sellerInfo = productService.getSellerInfoByProductNo(productNo);
+			
+			//좋아요 체크 구문.
+			Member loginMember=(Member)request.getSession().getAttribute("loginMember");
+			if(loginMember!=null) {
+				request.setAttribute("isWishListed", new WishListService().isWishListed(
+						Map.of("memberNo", loginMember.getMemberNo(), "productNo", productNo)));
+			}
 			
 			request.setAttribute("product", product);
 			request.setAttribute("attachments", attachments);

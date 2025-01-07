@@ -85,7 +85,7 @@
 		           </div>
 		           <span>후기 (${sellerInfo.REVIEWCOUNT}개)</span>
 		        </div>			        
-		    </div>
+		    </div>					                                                                                                                                                              
 		</div>
 	</div>
 	
@@ -129,21 +129,25 @@
 		    <div class="button-group">
 		    	<div class="sub-button-group">
 			        <button class="btn chatting-btn" onclick="startChatting();">대화신청</button>
-			        <button class="btn cart-btn">장바구니</button>
+			        <button class="cart-btn">장바구니</button>
 		    	</div>
 		        <button type="button" class="btn pay-btn" onclick="paymentPage();">결제하기</button>
 		    </div>
 		    <div class="like-btn d-flex justify-content-center align-items-center">
+		    <c:if test="${isWishListed==null || !isWishListed }">
 		    	<!-- 빈하트 -->
 	   			<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#BBA990" class="bi bi-heart mx-1" viewBox="0 0 16 16">
 					<path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143q.09.083.176.171a3 3 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15"/>
 				</svg>
+			</c:if>
+			<c:if test="${isWishListed }">
+				<svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="#dc3545" class="bi bi-heart-fill mx-1" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314"/>
+                </svg>
+			</c:if>
 		    </div>
 	    </div>
     </div>
-	
-
-
 </div>
 </section>
 	 
@@ -157,13 +161,17 @@
 		location.assign("${path}/member/paymentpage.do?productNo=" + productNo);
 	}
 	
+
+	
+	
+	/* 좋아요 로직. */
 	document.querySelectorAll(".like-btn").forEach(div => div.addEventListener("click", (e) => {
 	    const memberNo = '${loginMember.memberNo}'; 
 	    const productNo ='${product.productNo}'; 
-	    console.log("member:" + memberNo);
-	    console.log("productNo:" + productNo);
+	
 	    likeElement = e.currentTarget;
 		
+	  
 	    fetch("${path}/member/wishlist.do?memberNo=" + memberNo + "&productNo=" + productNo)
 	        .then(response => response.text())
 	        .then(data => {
@@ -172,11 +180,11 @@
 	                    <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="#dc3545" class="bi bi-heart-fill mx-1" viewBox="0 0 16 16">
 	                        <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314"/>
 	                    </svg>`;
-	            } else if (data === "0") { 
-	                likeElement.innerHTML = `
-	                    <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="currentColor" class="bi bi-heart mx-1" viewBox="0 0 16 16">
-	                        <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143q.09.083.176.171a3 3 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15"/>
-	                    </svg>`;
+	            } else if (data === "0" ) { 
+	            	 likeElement.innerHTML = `
+	                        <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="currentColor" class="bi bi-heart mx-1" viewBox="0 0 16 16">
+	                            <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143q.09.083.176.171a3 3 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15"/>
+	                        </svg>`;
 	            } else {
 	                alert("좋아요 처리 중 오류가 발생했습니다. 다시 시도해주세요.");
 	            }
@@ -185,6 +193,29 @@
 	    
 	    
 	}));
+	
+	/* 장바구니 */
+	document.querySelectorAll(".cart-btn").forEach(div => div.addEventListener("click", (e) => {
+	    const memberNo = '${loginMember.memberNo}'; 
+	    const productNo ='${product.productNo}'; 
+	
+	    cartElement = e.currentTarget;
+		
+	  
+	    fetch("${path}/member/cartlist.do?memberNo=" + memberNo + "&productNo=" + productNo)
+        .then(response => response.text())
+        .then(data => {
+            if (data === "1") { 
+                alert("장바구니 담기 완료");
+            } else if (data === "0") {
+                alert("장바구니에 이미 담겨있습니다.");
+            } else {
+                alert("알 수 없는 오류가 발생했습니다.");
+            }
+        })
+        .catch(error => console.error("장바구니 처리 오류:", error));
+	})
+);
 	
 </script>
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>

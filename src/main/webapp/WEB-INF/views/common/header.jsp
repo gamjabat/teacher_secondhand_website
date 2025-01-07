@@ -84,8 +84,8 @@
 						        <a href="${path}/member/purchasehistory.do">마이페이지</a>
 						        <a href="${path}/product/productinsert.do">상품등록</a>
 						        <a href="${path}/board/boardquestionandanswer.do">문의 게시판</a>
-						        <a href="${path}/member/wishlist.do">관심상품 리스트</a>
-						        <a href="${path}/member/cartlist.do">장바구니 리스트</a>
+						        <a href="${path}/member/wishlist2.do">관심상품 리스트</a>
+						        <a href="${path}/member/cartlist2.do">장바구니 리스트</a>
 						        <a href="${path}/login/logout.do">로그아웃</a>
 						        <a href="${path}/product/productchatting.do">작업을 위해 임시로 만듬</a>
 						        <!-- 관리자 로그인시에만 보임 관리자 아이디 추가 가능.-->

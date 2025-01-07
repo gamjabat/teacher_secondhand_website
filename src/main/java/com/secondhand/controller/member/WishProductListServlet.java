@@ -1,6 +1,7 @@
 package com.secondhand.controller.member;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletException;
@@ -9,21 +10,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.Gson;
 import com.secondhand.model.service.member.WishListService;
 
-
-
 /**
- * Servlet implementation class WishListServlet
+ * Servlet implementation class WishProductListServlet
  */
-@WebServlet(name= "wishlistservlet" ,urlPatterns = "/member/wishlist.do")
-public class WishListServlet extends HttpServlet {
+@WebServlet("/member/wishproductlist.do")
+public class WishProductListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public WishListServlet() {
+    public WishProductListServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,25 +32,26 @@ public class WishListServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		 // 요청에서 파라미터 가져오기
-//        String memberNo = request.getParameter("memberNo");
-//        String productNo = request.getParameter("productNo"); // producttNo로 되어 있어 수정 가능
-        
+		// 1. request에서 memberNo를 String으로 가져옴
         String memberNo = request.getParameter("memberNo");
-        String productNo = request.getParameter("productNo");
+        System.out.println("memberNo: " + memberNo); // 콘솔에 memberNo 출력
 
+        // 2. WishListService에서 memberNo를 사용하여 상품 정보 가져오기
+        WishListService service = new WishListService();
+        List<Map<String, Object>> likedProducts = service.getLikedProducts(memberNo);
         
-        // 서비스 호출하여 위시리스트 처리
-        int result = new WishListService().toggleWishList(Map.of("memberNo", memberNo, "productNo", productNo));
+        
+        System.out.println("Liked Products: " + likedProducts); 
+        // 3. JSON 응답으로 반환
+        response.setContentType("application/json; charset=utf-8");
+        Gson gson = new Gson();
+        gson.toJson(likedProducts, response.getWriter()); // likedProducts를 JSON 형식으로 응답
+    }
 
-        // 처리 결과를 JSP에 전달
-//        request.setAttribute("result", result);
-//
-//        // 결과 페이지로 포워딩
-//        request.getRequestDispatcher("/WEB-INF/views/member/wishList.jsp").forward(request, response);
-        response.getWriter().print(result);
-        
-	}
+    
+    
+	
+
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */

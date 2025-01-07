@@ -1,27 +1,23 @@
 package com.secondhand.controller.member;
 
 import java.io.IOException;
-import java.util.Map;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.secondhand.model.service.member.CartListService;
-
 /**
- * Servlet implementation class WishListServlet
+ * Servlet implementation class WishListServlet2
  */
-@WebServlet(name= "cartlistservlet" ,urlPatterns ="/member/cartlist.do")
-public class CartListServlet extends HttpServlet {
+@WebServlet("/member/wishlist2.do")
+public class WishListServlet2 extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public CartListServlet() {
+    public WishListServlet2() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,14 +26,7 @@ public class CartListServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-      String memberNo = request.getParameter("memberNo");
-      String productNo = request.getParameter("productNo");
-      System.out.println("memberNo:"+memberNo);
-      System.out.println("productNo:"+productNo);
-      // 서비스 호출하여 카트리스트 처리
-      int result = new CartListService().toggleCartList(Map.of("memberNo", memberNo, "productNo", productNo));
-      System.out.println("result:"+result);
-      response.getWriter().print(result);
+		request.getRequestDispatcher("/WEB-INF/views/member/wishList.jsp").forward(request, response);
 	}
 
 	/**
