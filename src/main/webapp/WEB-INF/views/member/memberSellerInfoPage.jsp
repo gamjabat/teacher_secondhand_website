@@ -12,50 +12,118 @@
 	 <!-- 메인박스  -->
 	 <div class="main-box">
 	 
-	 
 		<!-- 상단 셀러 인포 & 후기 -->
-		 	<div class="seller-info-list">
-			 	
-			 	<!-- 판매자 인포 평점 박스 -->
-			 	<div class="seller-info">
-			 		
-			 		<!-- 구분 -->
-				 	<p>판매자</p>
-				 	
-				 	<!-- 프로필사진 - 아이디 - 주소 -->
-				 	<div class="profile-box">
-				 		<div class="circle"></div>
-				 		<div class="id-address">
-					 		<h4>아이디</h4>
-					 		<h5>지역</h5>
-				 		</div>
-				 	</div>
-				 	
-				 	<!-- 별 평점이 들어갈 자리. -->
-				 	<div class="star-lv">⭐⭐⭐⭐⭐</div>
-			 		
-			 	</div>
-			 	
-			 	
-			 	<!-- 판매자의 후기가 담기는 박스 -->
-			 	<div class="comment-list">
-			 	
+	 	<div class="seller-info-list">
+		 	<!-- 판매자 정보 -->
+			<div class="seller-info-box">
+			   <div class="d-flex align-items-center mb-3">
+			       <span class="seller">판매자</span>
+			   </div>
+			   <div class="d-flex justify-content-between align-items-center">
+			       <div class="d-flex">
+			           <div class="seller-img d-flex justify-content-center align-items-center">
+			           		<c:if test="${sellerInfo.FILERENAME == null }">
+				               	<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="#ECEBDE" class="bi bi-person-fill" viewBox="0 0 16 16">
+				                   <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
+				               </svg>
+				            </c:if>
+				            <c:if test="${sellerInfo.FILERENAME != null }">
+				            	<img src="${path}/resources/upload/member/${sellerInfo.FILERENAME}" class="seller-img" alt="${sellerInfo.FILEORIGINALNAME}">
+				            </c:if>
+			           </div>
+			           <div class="d-flex flex-column justify-content-center">
+			               <span class="seller-name">${sellerInfo.NICKNAMEORID}</span>
+			               <span class="seller-address">${sellerInfo.ADDRESS}</span>
+			           </div>
+			       </div>
+			       <div class="rating d-flex flex-column">
+			           <div>
+			               <c:forEach var="star" begin="1" end="5">
+			                   <i class="${star <= sellerInfo.AVERAGERATING ? 'fas fa-star' : 'far fa-star'}"></i>
+			               </c:forEach>
+			           </div>
+			           <span>후기 (${sellerInfo.REVIEWCOUNT}개)</span>
+			        </div>			        
+			    </div>					                                                                                                                                                              
+			</div>
+
+		 	<!-- 판매자의 후기가 담기는 박스 -->
+		 	<%-- <div class="comment-list">
 			 	<!-- 구분 -->
-			 	<p>후기</p>
-			 	
+			 	${reviews }
+			 	<div class="d-flex align-items-center mb-3">
+					<span class="review">후기</span>
+				</div>
 			 	<!-- 사진에 해당하는 후기내용 을 슬라이드로 넘겨 랜덤 후기 -->
 			 	<div class="comment-photo">
 				 	<!-- 뒤로 가기 -->
 				 	<button class="comment-prev">&lt;</button>
-						<!-- 사진 박스 -->
-						<div class="photo-box">사진</div> 
 						<!-- 후기 박스 -->
-						<div class="comment-box">후기</div>
+						<div class="comment-box d-flex flex-column">
+							<div class="d-flex flex-row justify-content-between">
+								<div>닉네임</div>
+								<div class="rating">
+									<i class="fas fa-star"></i>
+									<i class="fas fa-star"></i>
+									<i class="fas fa-star"></i>
+									<i class="fas fa-star"></i>
+									<i class="fas fa-star"></i>
+								</div>
+							</div>
+							<div class="d-flex">
+								후기 내용
+							</div>
+						</div>
 					<!-- 앞으로 가기 -->
 				 	<button class="comment-next">&gt;</button>
 			 	</div>
-			 </div>
-		 	</div>
+		 	</div> --%>
+		 	<div class="comment-list">
+		 		<div class="d-flex align-items-center">
+					<span class="review">후기</span>
+				</div>
+		 	<div id="reviewCarousel" class="carousel slide" data-bs-ride="carousel">
+		
+			   <!-- 슬라이드 아이템 -->
+			   <div class="carousel-inner">
+			       <c:forEach var="review" items="${reviews}" varStatus="status">
+			           <div class="carousel-item ${status.first ? 'active' : ''}">
+			               <div class="comment-box d-flex flex-column">
+			                   <!-- 닉네임과 별점 -->
+			                   <div class="d-flex flex-row justify-content-between">
+			                       <div class="reviewNickname">${review.REVIEWERNICKNAMEORID}</div>
+			                       <div class="rating">
+			                           <c:forEach begin="1" end="5" var="star">
+			                               <i class="${star <= review.RATING ? 'fas fa-star' : 'far fa-star'}"></i>
+			                           </c:forEach>
+			                       </div>
+			                   </div>
+			                   <!-- 후기 내용 -->
+			                   <div class="d-flex">
+			                       ${review.REVIEWCONTENT }
+			                   </div>
+			               </div>
+			           </div>
+			       </c:forEach>
+			   </div>
+
+			  	<!-- 슬라이드 컨트롤 -->
+			    <button class="carousel-control-prev" type="button" data-bs-target="#reviewCarousel" data-bs-slide="prev">
+			        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#A59D84" class="bi bi-chevron-left" viewBox="0 0 16 16">
+					  <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0"/>
+					</svg>
+			        <span class="visually-hidden">Previous</span>
+			    </button>
+			    <button class="carousel-control-next" type="button" data-bs-target="#reviewCarousel" data-bs-slide="next">
+			        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#A59D84" class="bi bi-chevron-right" viewBox="0 0 16 16">
+					  <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708"/>
+					</svg>
+			        <span class="visually-hidden">Next</span>
+			    </button>
+			</div>
+		 	
+	 	</div>
+	 	</div>
 		 	
 		 <!-- 중간 문구 -->
         <h2>판매중인 상품</h2>

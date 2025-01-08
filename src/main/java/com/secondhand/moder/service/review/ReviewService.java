@@ -2,6 +2,8 @@ package com.secondhand.moder.service.review;
 
 import static com.secondhand.common.SqlSessionTemplate.getSession;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 
 import com.secondhand.model.dao.review.ReviewDao;
@@ -19,5 +21,12 @@ public class ReviewService {
 			session.rollback();
 		session.close();
 		return result;
+	}
+	
+	public List<Review> getReviewsBySellerNo(String memberNo){
+		SqlSession session = getSession();
+		List<Review> reviews = dao.getReviewsBySellerNo(session, memberNo);
+		session.close();
+		return reviews;
 	}
 }

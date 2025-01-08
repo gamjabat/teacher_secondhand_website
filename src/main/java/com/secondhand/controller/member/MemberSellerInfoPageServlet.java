@@ -1,13 +1,18 @@
 package com.secondhand.controller.member;
 
 import java.io.IOException;
+import java.util.List;
+import java.util.Map;
 
-import javax.servlet.DispatcherType;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.secondhand.model.dto.review.Review;
+import com.secondhand.model.service.member.MemberService;
+import com.secondhand.moder.service.review.ReviewService;
 
 /**
  * Servlet implementation class MemberUserSelectInfoPage
@@ -28,6 +33,13 @@ public class MemberSellerInfoPageServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String sellerNo = request.getParameter("sellerId");
+		
+		Map<String, Object> sellerInfo = new MemberService().getSellerInfoByMemberNo(sellerNo);
+		List<Review> reviews  = new ReviewService().getReviewsBySellerNo(sellerNo);
+		
+		request.setAttribute("sellerInfo", sellerInfo);
+		request.setAttribute("reviews", reviews);
 		request.getRequestDispatcher("/WEB-INF/views/member/memberSellerInfoPage.jsp").forward(request, response);
 	}
 
