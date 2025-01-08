@@ -23,28 +23,28 @@
 		<h3>마이페이지</h3>
 		<ul>
 			<li><a href="">나의 정보수정</a></li>
-			<li class="active-sidebar"><a href="${path }/member/myproducts.do">내가 등록한 상품</a></li>
-			<li><a href="${path }/member/myreviews.do">나의 후기</a></li>
+			<li><a href="${path }/member/myproducts.do">내가 등록한 상품</a></li>
+			<li class="active-sidebar"><a href="${path }/member/myreviews.do">나의 후기</a></li>
 			<li><a href="${path }/member/purchasehistory.do">나의 구매내역</a></li>
 			<li><a href="">나의 신고내역</a></li>
 		</ul>
 	</div>
 	
-	<!-- 등록리스트 -->
+	<!-- 후기리스트 -->
 	<div class="item-container">
-		<h2>내가 등록한 상품</h2>
-			<c:if test="${not empty products}">
-		        <c:forEach var="p" items="${products}">
+		<h2>나의 후기</h2>
+			<c:if test="${not empty reviews}">
+		        <c:forEach var="r" items="${reviews}">
 		            <div class="purchase-item">
-		                <img src="${path}/resources/upload/product/${p.FILE_ORIGINAL_NAME}" class="d-block" alt="${p.PRODUCT_NAME}">
+		                <img src="${path}/resources/upload/product/${r.PRODUCTIMAGE}" class="d-block">
 		                <div class="product-info">
-		                    <div class="title"><a href="${path}/product/productdetail.do?productNo=${p.PRODUCT_NO}">${p.PRODUCT_NAME}</a></div>
-		                    <div class="price"><fmt:formatNumber value="${p.PRICE}"/>원</div>
+		                    <div class="title"><a href="${path}/product/productdetail.do?productNo=${r.PRODUCTNO}">${r.PRODUCTNAME}</a></div>
 		                </div>
-		                <div class="transaction-status">${p.TRANS_STATUS_NAME}</div>
+		                <div>판매자 : ${r.SELLERNICKNAMEORID}</div>
 		                <div class="transaction-date">
-		                    <fmt:formatDate value="${p.CREATED_AT}" pattern="yyyy-MM-dd hh:mm:ss" />
+		                    <fmt:formatDate value="${r.UPDATED_AT}" pattern="yyyy-MM-dd hh:mm:ss" />
 		                </div>
+		                <button>후기 보기</button>
 		                <!-- 드롭다운 -->
 				        <div class="dropdown d-flex align-items-center">
 				            <!-- 아이콘 버튼 -->
@@ -55,16 +55,16 @@
 				            </a>
 				            <!-- 드롭다운 메뉴 -->
 				            <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-				                <li><a class="dropdown-item" href="${path }/product/editproductpage.do?productNo=${p.PRODUCT_NO }">상품 수정</a></li>
-				                <li><a class="dropdown-item" href="${path }/product/delete.do?productNo=${p.PRODUCT_NO }" onclick="return confirm('이 상품을 삭제하시겠습니까?');">상품 삭제</a></li>
+				                <li><a class="dropdown-item" href="${path }/product/editproductpage.do?productNo=${r.REVIEWNO }">후기 수정</a></li>
+				                <li><a class="dropdown-item" href="${path }/product/delete.do?reviewNo=${r.REVIEWNO }" onclick="return confirm('이 후기을 삭제하시겠습니까?');">후기 삭제</a></li>
 				            </ul>
 				        </div>
 		            </div>
 		        </c:forEach>
 		    </c:if>
-		    <c:if test="${empty products}">
+		    <c:if test="${empty reviews}">
 		        <div class="no-data">
-		            <p>등록한 상품이 없습니다.</p>
+		            <p>작성한 후기가 없습니다.</p>
 		        </div>
 		    </c:if>
 		

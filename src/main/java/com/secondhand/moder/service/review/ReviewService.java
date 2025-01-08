@@ -3,6 +3,7 @@ package com.secondhand.moder.service.review;
 import static com.secondhand.common.SqlSessionTemplate.getSession;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
@@ -29,4 +30,18 @@ public class ReviewService {
 		session.close();
 		return reviews;
 	}
+	
+	public List<Review> getReviewsByMemberNoPaging(Map<String, Object> param){
+		SqlSession session = getSession();
+		List<Review> reviews = dao.getReviewsByMemberNoPaging(session, param);
+		session.close();
+		return reviews;
+	}
+	
+	public int getReviewsByMemberNoPagingCount(String memberNo) {
+		 SqlSession session = getSession();
+		 int count = dao.getReviewsByMemberNoPagingCount(session, memberNo);
+		 session.close();
+		 return count;
+	 }
 }

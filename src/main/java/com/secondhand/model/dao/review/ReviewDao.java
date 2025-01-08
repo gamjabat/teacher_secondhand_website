@@ -15,4 +15,19 @@ public class ReviewDao {
 	public List<Review> getReviewsBySellerNo(SqlSession session, String memberNo){
     	return session.selectList("review.getReviewsBySellerNo", memberNo);
     }
+	
+	public List<Review> getReviewsByMemberNoPaging(SqlSession session, Map<String, Object> param){
+		int cPage = (int)param.get("cPage");
+		int numPerPage = (int)param.get("numPerPage");
+		
+		param.put("start", (cPage-1)*numPerPage+1);
+		param.put("end", cPage*numPerPage);
+		
+    	return session.selectList("review.getReviewsByMemberNoPaging", param);
+    }
+	
+	public int getReviewsByMemberNoPagingCount(SqlSession session, String memberNo) {
+    	return session.selectOne("review.getReviewsByMemberNoPagingCount", memberNo);
+    }
+	
 }

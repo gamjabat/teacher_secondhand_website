@@ -33,6 +33,7 @@ import com.secondhand.model.service.member.MemberService;
 				,"paymentdetailservlet"
 				,"insertReviewServlet"
 				,"MypageMyproductsServlet"
+				,"MypageMyReviewsServlet"
 		} )
 public class LoginCheckFilter extends HttpFilter implements Filter {
        
