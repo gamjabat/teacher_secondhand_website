@@ -28,9 +28,23 @@
 	       			<span>신고내용 : ${report.reportContent} </span>
 	       		</div>
        		<hr>
-	</div>
-</section> 
-   
+       		<input type="hidden" name="reportNo" value="${reportBoard.reportNo}">
+				<label for="reportReason" class="form-label">신고 처리유형</label><br> 
+						<select class="form-select" id="reportReason" name="reason" required>
+							<option value="" selected disabled>신고조치 상태를 선택하세요</option>
+							<option value="RHS-3">신고반려</option>
+							<option value="RHS-4">신고승인처리</option>
+						</select>
+						<br>
+						<div class="mb-3">
+						<label for="reportDetails" class="form-label">처리 내용</label><br>
+							<textarea class="form-control" id="reportDetails"
+							name="details" rows="3" placeholder="처리 내용을 입력하세요"></textarea>
+							</div>
+						</div>	
+					</div>
+				</section> 
+				   
 <script>
 document.addEventListener('DOMContentLoaded', () => {
 	 /* 헤더 없애기 */
