@@ -38,6 +38,7 @@
 		            <div class="purchase-item">
 		                <img src="${path}/resources/upload/product/${history['IMAGE_FILE']}" class="d-block" alt="${history.PRODUCT_NAME}">
 		                <div class="product-info">
+		                	<input type="hidden" id="transNo" value="${history.TRANS_NO }">
 		                    <div class="title">${history.PRODUCT_NAME}</div>
 		                    <div class="price"><fmt:formatNumber value="${history.PRICE}"/>원</div>
 		                </div>
@@ -46,7 +47,7 @@
 		                    <fmt:formatDate value="${history.TRANSACTION_DATE}" pattern="yyyy-MM-dd hh:mm:ss" />
 		                </div>
 		                <div class="button-group">
-		                	<button class="btn" data-bs-toggle="modal" data-bs-target="#reviewModal" data-board-no="${board.boardNo}">후기 작성</button>
+		                	<button class="btn" data-bs-toggle="modal" data-bs-target="#reviewModal" data-trans-no="${history.TRANS_NO}">후기 작성</button>
 		                </div>
 		            </div>
 		        </c:forEach>
@@ -82,8 +83,7 @@
 		      <div class="modal-body d-flex justify-content-center">
 		        <form id="reviewForm" action="${path }/review/insertreview.do" method="post" onsubmit="return fn_invalidate();">
 		        	<input type="hidden" name="memberNo" value="${loginMember.memberNo}" />
-		        	<input type="hidden" name="boardNo" value="${boardNo || ''}">
-		        	<input type="hidden" name="commentNo" value="${commentNo || ''}">
+		        	<input type="hidden" id="transNo" name="transNo" value="">
 		          <div class="mb-3">
 		            <label for="reviewRating" class="form-label">별점</label>
 		            <div class="star-rating">
@@ -111,41 +111,98 @@
 
 <script>
 document.addEventListener('DOMContentLoaded', () => {
+	 /* 헤더 없애기 */
 	 document.querySelector(".ct-box").style.display = "none";
 	 document.querySelector(".search-input").style.display = "none";
 	 
-	 const stars = document.querySelectorAll('.star-rating .fa-star, .star-rating .fa-star.empty');
-	    const ratingInput = document.getElementById('reviewRating');
+	 /* 별점 처리 */
+	 const stars = document.querySelectorAll('.star-rating .fa-star');
+    const ratingInput = document.getElementById('reviewRating');
 
-	    stars.forEach(star => {
-	        star.addEventListener('click', () => {
-	            const value = parseInt(star.getAttribute('data-value'), 10);
-	            const currentRating = parseInt(ratingInput.value, 10);
+    stars.forEach(star => {
+        star.addEventListener('click', () => {
+            const value = parseInt(star.getAttribute('data-value'), 10); // 클릭한 별의 점수
 
-	            if (value === 1 && currentRating === 1) {
-	                // 1번째 별이 클릭된 상태에서 다시 클릭하면 0점으로 설정
-	                ratingInput.value = 0;
-	                stars.forEach(s => {
-	                    s.classList.remove('fas'); // 모든 별을 비움
-	                    s.classList.add('far');
-	                });
-	            } else {
-	                // 일반적인 별점 선택 동작
-	                ratingInput.value = value;
-	                stars.forEach(s => {
-	                    const starValue = parseInt(s.getAttribute('data-value'), 10);
-	                    if (starValue <= value) {
-	                        s.classList.remove('far'); // 비워진 별 제거
-	                        s.classList.add('fas');   // 채워진 별 추가
-	                    } else {
-	                        s.classList.remove('fas'); // 채워진 별 제거
-	                        s.classList.add('far');    // 비워진 별 추가
-	                    }
-	                });
-	            }
+            // 별점 설정
+            ratingInput.value = value;
+            stars.forEach(s => {
+                const starValue = parseInt(s.getAttribute('data-value'), 10);
+                if (starValue <= value) {
+                    s.classList.remove('far'); // 비워진 별 제거
+                    s.classList.add('fas');   // 채워진 별 추가
+                } else {
+                    s.classList.remove('fas'); // 채워진 별 제거
+                    s.classList.add('far');    // 비워진 별 추가
+                }
+            });
+        });
+    });
+	    
+	    
+	    
+	 // 모든 후기 작성 버튼에 이벤트 추가
+	    const reviewButtons = document.querySelectorAll('button[data-trans-no]');
+	    const transNoInput = document.querySelector('#reviewForm input[name="transNo"]'); // 숨겨진 필드
+
+	    reviewButtons.forEach(button => {
+	        button.addEventListener('click', () => {
+	            const transNo = button.getAttribute('data-trans-no'); // 버튼의 transNo 값 가져오기
+	            transNoInput.value = transNo; // 숨겨진 필드에 값 설정
 	        });
 	    });
+	    
+	    /* 모달 초기화 */
+	    const reviewModalElement = document.getElementById('reviewModal');
+	    reviewModalElement.addEventListener('hidden.bs.modal', () => {
+	        // 숨겨진 input 초기화
+	        transNoInput.value = '';
+	        ratingInput.value = '0';
+
+	        // 별점 초기화
+	        stars.forEach(star => {
+	            star.classList.remove('fas'); // 채워진 별 제거
+	            star.classList.add('far');    // 비워진 별 추가
+	        });
+
+	        // 텍스트 영역 초기화
+	        document.getElementById('reviewContent').value = '';
+	    });
 });
+
+document.getElementById('reviewForm').addEventListener('submit', function(event) {
+    event.preventDefault(); // 기본 제출 방지
+
+    // 로그인 여부 확인
+    const loginMember = ${loginMember != null ? 'true' : 'false'};
+    if (!loginMember) {
+        alert("로그인 후 후기 작성이 가능합니다.");
+        location.assign("${path}/login/loginpage.do");
+        return;
+    }
+
+    // 별점 및 후기 내용 검증
+    const ratingInput = document.getElementById('reviewRating');
+    const contentInput = document.getElementById('reviewContent');
+
+    if (!ratingInput.value || parseInt(ratingInput.value, 10) === 0) {
+        alert("별점을 선택해주세요.");
+        return;
+    }
+
+    if (!contentInput.value.trim()) {
+        alert("후기 내용을 입력해주세요.");
+        contentInput.focus();
+        return;
+    }
+
+    // 조건 충족 시 폼 제출
+    this.submit();
+
+    // 모달 닫기
+    const reviewModal = bootstrap.Modal.getInstance(document.getElementById('reviewModal'));
+    reviewModal.hide();
+});
+
 </script>
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
