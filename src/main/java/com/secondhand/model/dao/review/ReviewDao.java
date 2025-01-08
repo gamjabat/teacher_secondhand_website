@@ -30,4 +30,12 @@ public class ReviewDao {
     	return session.selectOne("review.getReviewsByMemberNoPagingCount", memberNo);
     }
 	
+	public int updateReview(SqlSession session, Review r) throws RuntimeException {
+		return session.update("review.updateReview" , r);
+	}
+	
+	public int deleteReview(SqlSession session, String reviewNo) throws RuntimeException {
+		return session.update("review.deleteReview" , reviewNo);
+	}
+	
 }

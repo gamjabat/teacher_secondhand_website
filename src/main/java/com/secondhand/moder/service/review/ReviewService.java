@@ -44,4 +44,26 @@ public class ReviewService {
 		 session.close();
 		 return count;
 	 }
+	
+	public int updateReview(Review r) {
+		SqlSession session = getSession();
+		int result = dao.updateReview(session, r);
+		if (result > 0)
+			session.commit();
+		else
+			session.rollback();
+		session.close();
+		return result;
+	}
+	
+	public int deleteReview(String reviewNo) {
+		SqlSession session = getSession();
+		int result = dao.deleteReview(session, reviewNo);
+		if (result > 0)
+			session.commit();
+		else
+			session.rollback();
+		session.close();
+		return result;
+	}
 }
