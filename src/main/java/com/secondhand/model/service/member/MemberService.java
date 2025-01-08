@@ -111,4 +111,11 @@ public class MemberService {
 	    session.close();  // 세션 닫기
 	    return m;  // 조회된 Member 반환
 	}
+	
+	public Map<String, Object> getSellerInfoByMemberNo(String memberNo) {
+      SqlSession session = getSession();
+      Map<String, Object> sellerInfo = dao.getSellerInfoByMemberNo(session, memberNo);
+      session.close();
+		return sellerInfo;   
+  }
 }
