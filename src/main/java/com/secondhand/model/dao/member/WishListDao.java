@@ -20,7 +20,7 @@ public class WishListDao {
     // 좋아요 상태 업데이트 (Y -> N 또는 N -> Y)
     public int deleteWishStatus(SqlSession session, Map<String, String> params, String status) {
         params.put("isDeleted", status);
-        return session.delete("wishlist.DeleteCartStatus", params);
+        return session.delete("wishlist.deleteWishStatus", params);
     }
     
     public List<Map<String, Object>> getLikedProducts(SqlSession session, String memberNo) {

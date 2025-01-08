@@ -65,11 +65,22 @@ public class ReportService {
 		 session.close();
 		 return report;
 	 }
+
 	// 총 개수 
 		 public int selectReportCount() {
 			 SqlSession session = getSession();
 			 int count = dao.selectReportCount(session);
 			 session.close();
 			 return count;
+		 }
+		 
+		 public int updateReport(Report report) {
+		       SqlSession session = getSession();
+		            ReportDao dao = new ReportDao();
+		            int result= dao.updateReport(session, report);
+		        	if (result > 0) session.commit();
+		    		else session.rollback();
+		    		session.close();
+		    		return result;
 		 }
 }

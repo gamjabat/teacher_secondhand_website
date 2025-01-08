@@ -34,4 +34,8 @@ public class ReportDao {
     public int selectReportCount(SqlSession session) {
     	return session.selectOne("report.selectReportCount");
     }
+    
+    public int updateReport(SqlSession session, Report report) {
+        return session.update("report.updateReport", report);
+    }
 }
