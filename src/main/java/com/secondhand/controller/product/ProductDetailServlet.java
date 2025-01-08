@@ -14,6 +14,7 @@ import com.secondhand.model.dto.attachment.Attachment;
 import com.secondhand.model.dto.member.Member;
 import com.secondhand.model.dto.product.ProductDetail;
 import com.secondhand.model.service.attachment.AttachmentService;
+import com.secondhand.model.service.member.MemberService;
 import com.secondhand.model.service.member.WishListService;
 import com.secondhand.model.service.product.ProductService;
 
@@ -43,7 +44,7 @@ public class ProductDetailServlet extends HttpServlet {
 			
 			ProductDetail product = productService.selectProductDetailByProductNo(productNo);
 			List<Attachment> attachments = new AttachmentService().selectAttachmentsByProductNo(productNo);
-			Map<String, Object> sellerInfo = productService.getSellerInfoByProductNo(productNo);
+			Map<String, Object> sellerInfo = new MemberService().getSellerInfoByMemberNo(product.getProductMemberNo());
 			
 			//좋아요 체크 구문.
 			Member loginMember=(Member)request.getSession().getAttribute("loginMember");

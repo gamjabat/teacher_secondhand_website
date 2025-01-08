@@ -105,13 +105,6 @@ public class ProductService {
 		 return p;   
 	}
 	
-	public Map<String, Object> getSellerInfoByProductNo(String productNo) {
-        SqlSession session = getSession();
-        Map<String, Object> sellerInfo = dao.selectSellerInfoByProductNo(session, productNo);
-        session.close();
-		return sellerInfo;   
-    }
-	
 	public void deleteProduct(String productNo) {
         SqlSession session = getSession();
         try {

@@ -25,10 +25,6 @@ public class ProductDao {
         return session.selectOne("product.selectProductByProductNo", productNo);   	
 	}
 	
-	public Map<String, Object> selectSellerInfoByProductNo(SqlSession session, String productNo) {
-        return session.selectOne("product.selectSellerInfoByProductNo", productNo);
-    }
-	
 	public int updateProduct(SqlSession session, Product p) throws RuntimeException {
 		return session.update("product.updateProduct", p);
 	}

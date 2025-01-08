@@ -14,6 +14,7 @@ import com.secondhand.model.dto.attachment.Attachment;
 import com.secondhand.model.dto.payment.Payment;
 import com.secondhand.model.dto.product.ProductDetail;
 import com.secondhand.model.service.attachment.AttachmentService;
+import com.secondhand.model.service.member.MemberService;
 import com.secondhand.model.service.payment.PaymentService;
 import com.secondhand.model.service.product.ProductService;
 
@@ -52,7 +53,7 @@ public class PaymentDetailServlet extends HttpServlet {
 				
 				ProductDetail product = productService.selectProductDetailByProductNo(productNo);
 				List<Attachment> attachments = new AttachmentService().selectAttachmentsByProductNo(productNo);
-				Map<String, Object> sellerInfo = productService.getSellerInfoByProductNo(productNo);
+				Map<String, Object> sellerInfo = new MemberService().getSellerInfoByMemberNo(product.getProductMemberNo());
 				
 				request.setAttribute("product", product);
 				request.setAttribute("attachments", attachments);

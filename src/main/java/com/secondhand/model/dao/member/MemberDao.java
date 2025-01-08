@@ -50,4 +50,8 @@ public class MemberDao {
         return session.selectOne("member.selectMemberByQnaNo", qnaNo);  // Mapper XML에서 SQL 실행
     }
     
+    public Map<String, Object> getSellerInfoByMemberNo(SqlSession session, String memberNo) {
+      return session.selectOne("member.getSellerInfoByMemberNo", memberNo);
+  }
+    
 }
