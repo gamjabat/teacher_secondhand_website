@@ -113,3 +113,8 @@ i {
     color: #ffd700; /* 별점 색상: 금색 */
     cursor: pointer; /* 마우스를 올리면 클릭 가능하도록 */
 }
+
+img{
+	object-fit: contain;
+}
+
