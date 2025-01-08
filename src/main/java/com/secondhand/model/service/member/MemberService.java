@@ -111,4 +111,11 @@ public class MemberService {
 	    session.close();  // 세션 닫기
 	    return m;  // 조회된 Member 반환
 	}
+	
+	public Member getMemberByreportNo(String reportNo) {
+	    SqlSession session = getSession();  // 세션 열기
+	    Member m = dao.selectMemberByQnaNo(session, reportNo);  // qnaNo를 기반으로 Member 조회
+	    session.close();  // 세션 닫기
+	    return m;  // 조회된 Member 반환
+	}
 }

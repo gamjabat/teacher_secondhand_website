@@ -60,59 +60,7 @@ public class BoardQuestionAndAnswerServlet extends HttpServlet {
 		int pageNo = ((cPage-1)/pageBarSize)*pageBarSize+1;
 		int pageEnd = pageNo + pageBarSize-1;
 		
-		//기본 디자인
-//		String pageBar="<ul class='pagination justify-content-center'>";
-//		
-//		// 이전 페이지 버튼
-//		if (cPage == 1) {
-//		    pageBar += "<li class='page-item disabled'>";
-//		    pageBar += "<a class='page-link' href='#'>이전</a>";
-//		    pageBar += "</li>";
-//		} else {
-//		    pageBar += "<li class='page-item'>";
-//		    pageBar += "<a class='page-link' href='" +
-//		              request.getRequestURI() +
-//		              "?cPage=" + (cPage - 1) +
-//		              "&numPerPage=" + numPerPage +
-//		              "'>이전</a>";
-//		    pageBar += "</li>";
-//		}
-//		
-//		// 페이지 번호 출력
-//		while (pageNo <= totalPage && pageNo <= pageEnd) {
-//		    if (pageNo == cPage) {
-//		        pageBar += "<li class='page-item disabled'>";
-//		        pageBar += "<a class='page-link' href='#'>" + pageNo + "</a>";
-//		        pageBar += "</li>";
-//		    } else {
-//		        pageBar += "<li class='page-item'>";
-//		        pageBar += "<a class='page-link' href='" +
-//		                  request.getRequestURI() +
-//		                  "?cPage=" + pageNo +
-//		                  "&numPerPage=" + numPerPage +
-//		                  "'>" + pageNo + "</a>";
-//		        pageBar += "</li>";
-//		    }
-//		    pageNo++;
-//		}
-//		
-//		// 다음 페이지 버튼
-//		if (cPage == totalPage) {
-//		    pageBar += "<li class='page-item disabled'>";
-//		    pageBar += "<a class='page-link' href='#'>다음</a>";
-//		    pageBar += "</li>";
-//		} else {
-//		    pageBar += "<li class='page-item'>";
-//		    pageBar += "<a class='page-link' href='" +
-//		              request.getRequestURI() +
-//		              "?cPage=" + (cPage + 1) +
-//		              "&numPerPage=" + numPerPage +
-//		              "'>다음</a>";
-//		    pageBar += "</li>";
-//		}
-//		pageBar += "</ul>";
-		
-		
+	
 		//새로운 디자인.
 		StringBuilder pageBar = new StringBuilder();
 		pageBar.append("<div class='pagination'>");

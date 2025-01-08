@@ -35,8 +35,7 @@ public class BoardQuestionAndAnswerDetailServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-			String qnaNo = request.getParameter("qnaNo"); // 요청 파라미터에서 QnA 번호를 가져옵니다.
-		    
+			String qnaNo = request.getParameter("qnaNo"); // 요청 파라미터에서 QnA 번호를 가져옵니다. 
 			QnaBoardService service = new QnaBoardService();
 		    QnaBoard qna = service.selectByBoardNo(qnaNo); // QnA 데이터를 가져옵니다.
 		    

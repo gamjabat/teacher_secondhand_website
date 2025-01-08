@@ -17,8 +17,7 @@
 	 	<div class="top-title-list-box">
 		 	<div class="top-title-list">
 	       		<!-- 상단 타이틀 -->
-		        <a href="">사용자</a>
-		        <a href="">게시글</a>
+	
 		        <a href="">신고</a>
 	      	</div>
       	</div>	
@@ -28,128 +27,47 @@
 		      <thead>
 		        <tr>
 		          <th>NO</th>
-		          <th>제목</th>
-		          <th>작성자</th>
+		          <th>사유</th>
+		          <th>신고자</th>
 		          <th>작성일</th>
-		          <th>조회수</th>
-		          <th>처리상태</th>
+		          <th>신고상태</th>
+		          <th>상품번호</th>
 		        </tr>
 		      </thead>
 		      <tbody>
-		        <!-- 빈 행 반복 -->
-		        <tr>
-		          <td>1</td>
-		          <td>제목이다냥2asdasdasdasdasdasdasdasdasd</td>
-		          <td>감자다냥</td>
-		          <td>3024.10.23</td>
-		          <td>100204292849</td>
-		          <td>미응답 답변</td>
-		        </tr>
-		        <tr>
-		          <td></td>
-		          <td></td>
-		          <td></td>
-		          <td></td>
-		          <td></td>
-		          <td></td>
-		        </tr>
-		        <tr>
-		          <td></td>
-		          <td></td>
-		          <td></td>
-		          <td></td>
-		          <td></td>
-		          <td></td>
-		        </tr>
-		        <tr>
-		          <td></td>
-		          <td></td>
-		          <td></td>
-		          <td></td>
-		          <td></td>
-		          <td></td>
-		        </tr>
-		        <tr>
-		          <td></td>
-		          <td></td>
-		          <td></td>
-		          <td></td>
-		          <td></td>
-		          <td></td>
-		        </tr>
-		        <tr>
-		          <td></td>
-		          <td></td>
-		          <td></td>
-		          <td></td>
-		          <td></td>
-		          <td></td>
-		        </tr>
-		        <tr>
-		          <td></td>
-		          <td></td>
-		          <td></td>
-		          <td></td>
-		          <td></td>
-		          <td></td>
-		        </tr>
-		        <tr>
-		          <td></td>
-		          <td></td>
-		          <td></td>
-		          <td></td>
-		          <td></td>
-		          <td></td>
-		        </tr>
-		        <tr>
-		          <td></td>
-		          <td></td>
-		          <td></td>
-		          <td></td>
-		          <td></td>
-		          <td></td>
-		        </tr>
-		        <tr>
-		          <td></td>
-		          <td></td>
-		          <td></td>
-		          <td></td>
-		          <td></td>
-		          <td></td>
-		        </tr>
-		        <tr>
-		          <td></td>
-		          <td></td>
-		          <td></td>
-		          <td></td>
-		          <td></td>
-		          <td></td>
-		        </tr>
-		        <tr>
-		          <td></td>
-		          <td></td>
-		          <td></td>
-		          <td></td>
-		          <td></td>
-		          <td></td>
-		        </tr>
-		        <!-- 필요한 만큼 행 추가 -->
+		     		<c:if test="${empty reportList}">
+				    <tr>
+				        <td colspan="6">신고 데이터가 없습니다.</td>
+				    </tr>
+				    </c:if>
+			      <c:forEach var="report" items="${reportList}">
+			        <tr>
+			          <td>${report.reportNo}</td>	          
+			          <td onclick="window.location.href='${path}/adminreportdetail.do?reportNo=${report.reportNo}'">
+			          ${report.reportReasonCode}
+			          </td>
+			          <td>${report.reportMemberNo}</td>
+			          <td>${report.createdAt}</td>
+			          <td>${report.reportStatusNo}</td>
+			          <td>${report.reportProductNo}</td>
+			        </tr>
+			       </c:forEach>
 		      </tbody>
 		    </table>
 		  </div>
         
         <!-- 페이지 바 디자인. -->
 	     <div class="pagination">
-			 <button class="prev">&lt;</button>
-					    <span class="page active"></span>
-					    <span class="page"></span>
-					    <span class="page"></span>
-					    <span class="page"></span>
-					    <span class="page"></span>
-			 <button class="next">&gt;</button>
-		</div>
+			    ${pageBar}
      </div>	
     
     
 </section>   
 
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+	 /* 헤더 없애기 */
+	 document.querySelector(".ct-box").style.display = "none";
+	 document.querySelector(".search-input").style.display = "none";
+});
+</script>
