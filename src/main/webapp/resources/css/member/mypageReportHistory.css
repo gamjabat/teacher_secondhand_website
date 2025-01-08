@@ -1,0 +1,115 @@
+@charset "UTF-8";
+.main-box{
+	/* height: 800px; */
+}
+
+.item-container{
+	width:100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: center;
+	padding: 20px;
+}
+
+.item-container h2{
+	color:  #A59D84;
+	font-weight: bold;
+	text-align: center;
+	padding: 30px;
+}
+
+.purchase-item {
+	border: 2px solid #ECEBDE;
+	border-radius: 10px;
+	width: 95%;
+	margin: 10px;
+	padding: 10px;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
+
+.purchase-item img{
+	width: 60px;
+	height: 60px;
+	border-radius: 10px;
+}
+.product-info{
+	font-weight: bold;
+}
+
+.product-info,
+.transaction-status,
+.transaction-date{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+/* 페이징바 디자인 */
+
+.pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px; /* 아이템 간 간격 */
+    margin: 20px 0; /* 상하 여백 */
+}
+
+.pagination .prev,
+.pagination .next {
+    border: none;
+    background: none;
+    font-size: 1.2rem; /* 화살표 크기 */
+    color: #b3a898; /* 화살표 색상 */
+    cursor: pointer;
+}
+
+.pagination .prev:hover,
+.pagination .next:hover {
+    color: #6b4b3d; /* 호버 시 색상 */
+}
+
+.pagination .page {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #b3a898; /* 기본 색상 */
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.pagination .page.active {
+    background-color: #964b4b; /* 활성화된 페이지 색상 */
+}
+
+.pagination .page:hover {
+    background-color: #6b4b3d; /* 호버 시 색상 */
+}
+
+.button-group{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.button-group .btn {
+    height: 30px;
+    border-radius: 5px;
+    font-size: 12px;
+    background-color: #A95151;
+    border-radius: 10px;
+    color: white;
+    font-weight: bold;
+}
+
+.button-group .btn:hover {
+    background-color: #7A3838; /* 어두운 톤 */
+}
+
+i {
+    font-size: 24px;
+    color: #ffd700; /* 별점 색상: 금색 */
+    cursor: pointer; /* 마우스를 올리면 클릭 가능하도록 */
+}

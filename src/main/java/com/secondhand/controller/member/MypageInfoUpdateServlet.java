@@ -1,4 +1,4 @@
-package com.secondhand.admin.controller;
+package com.secondhand.controller.member;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -8,16 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class ReportListServlet
+ * Servlet implementation class MypageInfoUpdateServlet
  */
-@WebServlet("/reportlist.do")
-public class ReportListServlet extends HttpServlet {
+@WebServlet("/member/mypageinfoupdate.do")
+public class MypageInfoUpdateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ReportListServlet() {
+    public MypageInfoUpdateServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -26,7 +26,7 @@ public class ReportListServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("/WEB-INF/views/member/mypageReportHistory.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/views/member/mypageInfoUpdatePwCheck.jsp").forward(request, response);
 	}
 
 	/**

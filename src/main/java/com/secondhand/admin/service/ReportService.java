@@ -83,4 +83,20 @@ public class ReportService {
 		    		session.close();
 		    		return result;
 		 }
+		 
+		 // 마이페이지 신고내역.
+		 public List<Map<String, Object>> getReportPurchaseHistory(Map<String, Object> param) {
+			 SqlSession session = getSession();
+			 List<Map<String, Object>> report = dao.getReportPurchaseHistory(session, param);
+			 session.close();
+			 return report;
+		 }
+
+		// 총 개수 
+			 public int getReportPurchaseHistoryCount(String memberNo) {
+				 SqlSession session = getSession();
+				 int count = dao.getPurchaseHistoryCount(session,memberNo);
+				 session.close();
+				 return count;
+			 }
 }

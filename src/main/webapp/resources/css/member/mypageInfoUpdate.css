@@ -1,0 +1,228 @@
+@charset "UTF-8";
+
+
+/* 바디 레이아웃 */
+.mypage-container {
+    display: flex;
+   	width : 100%;
+    max-width: 100%;
+    background-color: #F6F2ED;
+}
+
+
+
+.purchase-item {
+	border: 2px solid #ECEBDE;
+	border-radius: 10px;
+	width: 95%;
+	margin: 10px;
+	padding: 10px;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
+
+.purchase-item img{
+	width: 60px;
+	height: 60px;
+	border-radius: 10px;
+}
+.product-info{
+	font-weight: bold;
+}
+
+.product-info,
+.transaction-status,
+.transaction-date{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+
+
+.button-group{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.button-group .btn {
+    height: 30px;
+    border-radius: 5px;
+    font-size: 12px;
+    background-color: #A95151;
+    border-radius: 10px;
+    color: white;
+    font-weight: bold;
+}
+
+.button-group .btn:hover {
+    background-color: #7A3838; /* 어두운 톤 */
+}
+
+i {
+    font-size: 24px;
+    color: #ffd700; /* 별점 색상: 금색 */
+    cursor: pointer; /* 마우스를 올리면 클릭 가능하도록 */
+}
+
+
+.mypageinfo-content {
+	width: 100%;
+	display: flex;
+  	flex-direction: column;
+  	justify-content: center;
+  	align-items: center;
+}
+
+
+.mypageinfo-content{
+	width:100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: center;
+	padding: 20px;
+}
+
+.mypageinfo-content h2{
+	color:  #A59D84;
+	font-weight: bold;
+	text-align: center;
+	padding: 30px;
+}
+
+.memberinfo-container {
+	width: 80%;
+	font-size :20px;
+	display: flex;
+    flex-direction: column;
+    align-items: center; /* 모든 자식을 가로로 가운데 정렬 */
+
+}
+
+.memberinfo-container>div{
+	display: flex;
+	align-items: center;
+}
+.memberinfo-container label{
+	font-weight: bold;
+}
+
+.change-pwbox label, .change-pwbox input {
+    display: block; /* 라벨과 인풋을 각각 한 줄씩 배치 */
+    margin-bottom: 10px; /* 간격 추가 */
+}
+
+form:last-child{
+	justify-content: center;
+}
+
+/* 버튼 크기, 스타일 적용 */
+.member-end-btn {
+	font-size : 15px;
+	background-color: #A95151;
+    border-radius: 15px;
+    border-right: 1px solid #ddd;
+    padding: 10px 20px;
+    color: #fff;
+    cursor: pointer;
+    margin-top: 20px; /* 버튼과 위 요소 간격 */
+    align-self: center; /* 버튼을 가운데 정렬 */
+}
+
+.member-info-btn {
+	color: #fff;
+	font-size :12px;
+	display: flex;
+	align-items: center;
+	white-space: nowrap;
+	justify-content: center ;
+	background-color: #A95151;
+    border-radius: 15px;
+
+}
+
+
+/* 라벨관리 */
+.member-id {
+	margin-right : 35px;
+}
+
+.member-name {
+	margin-right : 46px;
+}
+
+.member-pw {
+	margin-right : 35px;
+}
+
+.member-phone {
+	margin-right : 25px;
+}
+
+.member-email {
+	margin-right : 35px;
+}
+
+.member-address {
+	margin-right : 46px;
+}
+
+.member-btday {
+	margin-right : 46px;
+}
+
+.complete-btn {
+	font-size :20px;
+	display: flex;
+	align-items: center;
+	white-space: nowrap;
+	justify-content: center;
+    border-radius: 15px;
+    width: 20%;
+}
+
+.change-box{
+	gap: 5px;
+	display: flex;
+	
+}
+
+.change-input{
+	width: 180px !important;
+	font-size : 13px !important;
+}
+
+
+.change-pwbox{
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start !important;
+}
+
+.pw-input-container{
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	padding-bottom: 0px;
+}
+
+.error-msg{
+	font-size: 12px;
+	padding: 0px 10px;
+}
+
+.memberinfo-container > div {
+    display: flex; /* 플렉스 박스를 유지 */
+    justify-content: flex-start; /* 자식 요소들을 오른쪽 정렬 */
+    width: 100%; /* 오른쪽 정렬 적용을 위한 가로 크기 */
+    padding-left: 100px;
+    border-bottom: 1px solid #ddd;
+}
+
+.change-addressbox {
+    display: flex; /* Flexbox 레이아웃 활성화 */
+    gap: 15px; /* 요소 간 간격 설정 */
+}

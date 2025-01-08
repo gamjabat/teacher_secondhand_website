@@ -38,4 +38,18 @@ public class ReportDao {
     public int updateReport(SqlSession session, Report report) {
         return session.update("report.updateReport", report);
     }
+    
+    //마이페이지 신고내역.
+    public List<Map<String, Object>> getReportPurchaseHistory(SqlSession session, Map<String, Object> param) {
+		int cPage = (int)param.get("cPage");
+		int numPerPage = (int)param.get("numPerPage");
+		
+		param.put("start", (cPage-1)*numPerPage+1);
+		param.put("end", cPage*numPerPage);
+		return session.selectList("report.getReportPurchaseHistory", param);
+	}
+    //마이페이지 신고내역.
+	public int getPurchaseHistoryCount(SqlSession session, String memberNo) {
+    	return session.selectOne("report.getPurchaseHistoryCount", memberNo);
+    }
 }
