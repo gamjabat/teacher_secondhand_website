@@ -279,6 +279,11 @@
     color: #ffd700; /* 별점 색상: 금색 */
 }
 
+#reviewCarousel{
+	height: 100%;
+}
+
+
 .carousel-inner i {
     font-size: 20px;
     color: #ffd700; /* 별점 색상: 금색 */
@@ -298,5 +303,35 @@
 }
 .carousel-control-next, .carousel-control-prev{
 	width: 8% !important;
+}
+td{
+	width:20%;
+}
+
+.product-img-container {
+    width: 100%; /* 부모 크기 맞춤 */
+    height: 100%; /* 부모 크기 맞춤 */
+    display: flex; /* 자식 요소 중앙 정렬 */
+    justify-content: center;
+    align-items: center;
+}
+
+.product-img {
+	 width: 100%; /* 부모 크기 맞춤 */
+    height: 100%;
+    object-fit: contain; /* 이미지가 잘리지 않고 비율을 유지하면서 부모에 맞춤 */
+}
+
+.sub-title{
+	font-size: 25px;
+	padding: 10px 20px;
+	font-weight: bold;
+}
+
+.none{
+	font-size: 15px;
+	font-weight: bold;
+	text-align: center;
+	margin-top: 30px;
 }
 

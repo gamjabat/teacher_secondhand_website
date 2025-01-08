@@ -70,4 +70,18 @@ public class ProductDao {
 	public int getPurchaseHistoryCount(SqlSession session, String memberNo) {
     	return session.selectOne("product.getPurchaseHistoryCount", memberNo);
     }
+	
+	public List<Product> selectProductsByMemberNo(SqlSession session, Map<String, Object> param){	
+    	int cPage = (int)param.get("cPage");
+		int numPerPage = (int)param.get("numPerPage");
+		
+		param.put("start",(cPage-1)*numPerPage+1);
+		param.put("end", cPage*numPerPage);
+    	
+    	return session.selectList("product.selectProductsByMemberNo", param);
+    }
+	
+	public int selectProductsByMemberNoCount(SqlSession session, String memberNo) {
+    	return session.selectOne("product.selectProductsByMemberNoCount", memberNo);
+    }
 }

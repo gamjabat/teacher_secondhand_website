@@ -86,6 +86,10 @@
 		
 			   <!-- 슬라이드 아이템 -->
 			   <div class="carousel-inner">
+			   	<c:if test="${empty reviews }">
+			   		<div class="none">후기가 존재하지 않습니다.</div>
+			   	</c:if>
+			   	<c:if test="${not empty reviews }">
 			       <c:forEach var="review" items="${reviews}" varStatus="status">
 			           <div class="carousel-item ${status.first ? 'active' : ''}">
 			               <div class="comment-box d-flex flex-column">
@@ -105,8 +109,9 @@
 			               </div>
 			           </div>
 			       </c:forEach>
+			    </c:if>
 			   </div>
-
+				<c:if test="${not empty reviews }">
 			  	<!-- 슬라이드 컨트롤 -->
 			    <button class="carousel-control-prev" type="button" data-bs-target="#reviewCarousel" data-bs-slide="prev">
 			        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#A59D84" class="bi bi-chevron-left" viewBox="0 0 16 16">
@@ -120,95 +125,57 @@
 					</svg>
 			        <span class="visually-hidden">Next</span>
 			    </button>
+			    </c:if>
 			</div>
 		 	
 	 	</div>
 	 	</div>
 		 	
 		 <!-- 중간 문구 -->
-        <h2>판매중인 상품</h2>
+        <div class="sub-title">판매중인 상품</div>
         
         
         <!-- 판매중인 리스트 -->
         <table class="product-list">
-            <tbody>
-                <tr>
-                    <td>
-                    <div>1</div>
-                    <h5>교육용 사랑의매1</h5>
-                    <h4>30,000원</h4>
-                    </td>
-                    
-                    <td>
-                    <div>1</div>
-                    <h5>교육용 사랑의매1</h5>
-                    <h4>30,000원</h4>
-                    </td>
-                    
-                    <td>
-                    <div>1</div>
-                    <h5>교육용 사랑의매1</h5>
-                    <h4>30,000원</h4>
-                    </td>
-                    
-                    <td>
-                    <div>1</div>
-                    <h5>교육용 사랑의매1</h5>
-                    <h4>30,000원</h4>
-                    </td>
-                    
-                    <td>
-                    <div>1</div>
-                    <h5>교육용 사랑의매1</h5>
-                    <h4>30,000원</h4>
-                    </td>
-                </tr>
-                
-                 <tr>
-                    <td>
-                    <div>1</div>
-                    <h5>교육용 사랑의매1</h5>
-                    <h4>30,000원</h4>
-                    </td>
-                    
-                    <td>
-                    <div>1</div>
-                    <h5>교육용 사랑의매1</h5>
-                    <h4>30,000원</h4>
-                    </td>
-                    
-                    <td>
-                    <div>1</div>
-                    <h5>교육용 사랑의매1</h5>
-                    <h4>30,000원</h4>
-                    </td>
-                    
-                    <td>
-                    <div>1</div>
-                    <h5>교육용 사랑의매1</h5>
-                    <h4>30,000원</h4>
-                    </td>
-                    
-                    <td>
-                    <div>1</div>
-                    <h5>교육용 사랑의매1</h5>
-                    <h4>30,000원</h4>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        
-        
+		    <tbody>
+		        <c:forEach var="product" items="${products}" varStatus="status">
+		            <!-- 행의 시작 -->
+		            <c:if test="${status.index % 5 == 0}">
+		                <tr>
+		            </c:if>
+		
+		            <!-- 상품 열 -->
+		            <td>
+		                <div class="product-img-container">
+		                    <img src="${path}/resources/upload/product/${product.FILE_RENAME}" class="product-img" alt="${product.PRODUCT_NAME}">
+		                </div>
+		                <h5>
+		                    <a href="${path}/product/productdetail.do?productNo=${product.PRODUCT_NO}">
+		                        ${product.PRODUCT_NAME}
+		                    </a>
+		                </h5>
+		                <h4>${product.PRICE}원</h4>
+		            </td>
+		
+		            <!-- 행의 종료 -->
+		            <c:if test="${status.index % 5 == 4 || status.last}">
+		                <!-- 빈칸 채우기: 마지막 행에서 열이 부족할 경우 -->
+		                <c:if test="${status.last && (status.index % 5 != 4)}">
+		                    <c:forEach var="emptyTd" begin="1" end="${5 - (status.index % 5) - 1}">
+		                        <td></td>
+		                    </c:forEach>
+		                </c:if>
+		                </tr>
+		            </c:if>
+		        </c:forEach>
+		        <c:if test="${empty products }">
+		        	<div class="none">검색한 상품이 존재하지 않습니다.</div>
+		        </c:if>
+		    </tbody>
+		</table>
+
         <!-- 페이지 바 디자인. -->
-	        <div class="pagination">
-			    <button class="prev">&lt;</button>
-						    <span class="page active"></span>
-						    <span class="page"></span>
-						    <span class="page"></span>
-						    <span class="page"></span>
-						    <span class="page"></span>
-			    <button class="next">&gt;</button>
-			</div>
+	    ${pageBar }
     </div>	
     
  

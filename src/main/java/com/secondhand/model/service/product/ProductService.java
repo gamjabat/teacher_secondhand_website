@@ -159,4 +159,18 @@ public class ProductService {
 		session.close();
 		return count;
 	}
+	
+	public List<Product> selectProductsByMemberNo(Map<String, Object> param){
+	 	SqlSession session = getSession();
+		List<Product> products = dao.selectProductsByMemberNo(session, param);
+		session.close();
+		return products;
+	}
+	
+	public int selectProductsByMemberNoCount(String memberNo) {
+		 SqlSession session = getSession();
+		 int count = dao.selectProductsByMemberNoCount(session, memberNo);
+		 session.close();
+		 return count;
+	 }
 }
