@@ -8,9 +8,6 @@
 <link rel="stylesheet" href="${path}/resources/css/admin/adminMain.css">
 <section class="main-container">
 
-
-
-
 	 <!-- 메인박스  -->
 	 <div class="main-box">
 	 	
@@ -44,11 +41,11 @@
 			        <tr>
 			          <td>${report.reportNo}</td>	          
 			          <td onclick="window.location.href='${path}/adminreportdetail.do?reportNo=${report.reportNo}'">
-			          ${report.reportReasonCode}
+			          ${report.reportReasonName}
 			          </td>
 			          <td>${report.reportMemberNo}</td>
 			          <td>${report.createdAt}</td>
-			          <td>${report.reportStatusNo}</td>
+			          <td>${report.reportStatusName}</td>
 			          <td>${report.reportProductNo}</td>
 			        </tr>
 			       </c:forEach>
