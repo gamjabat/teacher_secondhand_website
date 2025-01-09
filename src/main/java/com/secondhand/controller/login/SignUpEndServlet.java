@@ -94,7 +94,6 @@ public class SignUpEndServlet extends HttpServlet {
 								.build();
 		
 		String originalFileName = mr.getOriginalFileName("member-img");
-		System.out.println("파일이름: "+originalFileName);
 		String savedFileName = mr.getFilesystemName("member-img");
 		
 		Attachment attachment = null;

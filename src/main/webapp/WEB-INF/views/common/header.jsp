@@ -24,7 +24,6 @@
     	<!-- 로고 -->
       	<div class="logo-container">
 	 			<a href="${path }/">
-	      		<%-- <img src="${path}/resources/images/SSEULMANHAE_LOGO.png" class="logo" alt="Logo" onclick="mainPage();"> --%>
 	      		<img src="${path}/resources/images/SSEULMANHAE_LOGO.png" class="logo" alt="Logo">
       		</a> 
       	</div>
@@ -48,59 +47,65 @@
 	 	    	<div class="content"> 
 		 	    	<!-- 프로필 영역 -->
 		 	    	<c:if test="${sessionScope.loginMember != null}">
-		 	        <div class="s-profile-box">
-					 		<div class="s-circle"></div>
-					 		<div class="s-id-address">
-						 		<!-- 이름 표시 -->
-           						 <h4>${sessionScope.loginMember.nickname} 님 환영합니다!</h4>
-            					<!-- 지역 표시 -->
-            					<h5>${sessionScope.loginMember.address}</h5>	
-					 		</div>
-					 </div>
+			 	        <div class="s-profile-box">
+			 	        	<c:if test="${sessionScope.loginMember.profileImageName == null }">
+			 	   				<div class="profile-img d-flex justify-content-center align-items-center">
+				               	<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="#ECEBDE" class="bi bi-person-fill" viewBox="0 0 16 16">
+				                   <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
+				               </svg>
+				               </div>
+				            </c:if>
+				            <c:if test="${sessionScope.loginMember.profileImageName != null }">
+				            	<img src="${path}/resources/upload/member/${sessionScope.loginMember.profileImageName}" class="profile-img">
+				            </c:if>
+						 		<div class="s-id-address mt-2">
+							 		<!-- 이름 표시 -->
+	           						 <h5><strong>${sessionScope.loginMember.nickname}</strong>님</h5>
+	           						 <h5>환영합니다!</h5>
+	            					<!-- 지역 표시 -->
+	            					<h6>${sessionScope.loginMember.address}</h6>	
+						 		</div>
+						 </div>
 					 </c:if>
-						 <c:if test="${sessionScope.loginMember == null}">
-							    <div class="s-profile-box">
-							        <div class="s-circle"></div>
-							        <div class="s-id-address">
-							            <h4>로그인 하세요.</h4>
-							            <h5>지역</h5>
-							        </div>
-							    </div>
-							</c:if>
+					 <c:if test="${sessionScope.loginMember == null}">
+					    <div class="s-profile-box mt-5">
+					        <div class="s-id-address">
+					            <h4>로그인 하세요.</h4>
+					        </div>
+					    </div>
+					</c:if>
 							
-		 	    		<!-- 목록 리스트  -->
-						<div class="m-list">
-						    <!-- 로그인 상태가 아닐 때만 보이는 메뉴 -->
-						    <c:if test="${sessionScope.loginMember == null}">
-						        <a href="${path}/login/loginpage.do">로그인</a>
-						        <a href="${path}/login/findid.do">아이디 찾기</a>
-						        <a href="${path}/login/findpassword.do">비밀번호 찾기</a>
-						        <a href="${path}/login/signupagreement.do">회원가입</a>
-						        
-						    </c:if>
-		    
-						    <!-- 로그인 상태일 때만 보이는 메뉴 -->
-						    <c:if test="${sessionScope.loginMember != null}">
-						        <a href="${path}/member/purchasehistory.do">마이페이지</a>
-						        <a href="${path}/product/productinsert.do">상품등록</a>
-						        <a href="${path}/board/boardquestionandanswer.do">문의 게시판</a>
-						        <a href="${path}/member/wishlist2.do">관심상품 리스트</a>
-						        <a href="${path}/member/cartlist2.do">장바구니 리스트</a>
-						        <a href="${path}/login/logout.do">로그아웃</a>
-						        <a href="${path}/product/productchatting.do">작업을 위해 임시로 만듬</a>
-						        <!-- 관리자 로그인시에만 보임 관리자 아이디 추가 가능.-->
-					 	    	<c:if test="${sessionScope.loginMember.memberId == 'admin1' || 
-					 	    				  sessionScope.loginMember.memberId == 'admin2' || 
-					 	    				  sessionScope.loginMember.memberId == 'admin3'}">
-		        					<a href="${path}/admin/adminmain.do">관리자 페이지</a>
-		    					</c:if>
-						    </c:if>
-						</div>
-		 	        </div>
-	 	        </div>
-	 	    </div>
-	 	    
-	 	    
+	 	    		<!-- 목록 리스트  -->
+					<div class="m-list">
+					    <!-- 로그인 상태가 아닐 때만 보이는 메뉴 -->
+					    <c:if test="${sessionScope.loginMember == null}">
+					        <a href="${path}/login/loginpage.do">로그인</a>
+					        <a href="${path}/login/findid.do">아이디 찾기</a>
+					        <a href="${path}/login/findpassword.do">비밀번호 찾기</a>
+					        <a href="${path}/login/signupagreement.do">회원가입</a>
+					        
+					    </c:if>
+	    
+					    <!-- 로그인 상태일 때만 보이는 메뉴 -->
+					    <c:if test="${sessionScope.loginMember != null}">
+					        <a href="${path}/member/purchasehistory.do">마이페이지</a>
+					        <a href="${path}/product/productinsert.do">상품등록</a>
+					        <a href="${path}/board/boardquestionandanswer.do">문의 게시판</a>
+					        <a href="${path}/member/wishlist2.do">관심상품 리스트</a>
+					        <a href="${path}/member/cartlist2.do">장바구니 리스트</a>
+					        <a href="${path}/login/logout.do">로그아웃</a>
+					        <!-- 관리자 로그인시에만 보임 관리자 아이디 추가 가능.-->
+				 	    	<c:if test="${sessionScope.loginMember.memberId == 'admin1' || 
+				 	    				  sessionScope.loginMember.memberId == 'admin2' || 
+				 	    				  sessionScope.loginMember.memberId == 'admin3'}">
+	        					<a href="${path}/admin/adminmain.do">관리자 페이지</a>
+	    					</c:if>
+					    </c:if>
+					</div>
+		 	 	</div>
+	 	 	</div>
+	 	</div>
+	 	
       	</div>
  	    <div class="ct-box" id="ct-box">
 			 <div class="checkbox-container">
@@ -187,43 +192,40 @@
 				        <input type="radio" id="trade-complete" name="trade" value="TST-3" /> 거래완료
 				    </label>
 				</div>
-			   <div class="reset-btn-container">
-			 	<button class="reset-btn" type="button"><p>RESET</p></button>	
-			 	<button id="push-btn" class="push-btn" type="submit"><p>PUSH</p></button>				
-		       </div>
+			   <div class="reset-btn-container d-flex flex-column">
+			 	<button id="push-btn" class="push-btn" type="submit"><p>검색</p></button>				
+			 	<button class="reset-btn" type="button"><p>리셋</p></button>
 		 </div>
 	</form>
     </div>
   
   
 <script>
-//슬라이드 여는 스크립트
-document.querySelector('.info-btn').addEventListener('click', (event) => {
-    event.stopPropagation();
-    const slidebar = document.querySelector('.slide-bar');
-    slidebar.classList.add('open'); // 슬라이드 패널 열기
-});
-
-// 슬라이드 닫는 스크립트
-document.addEventListener('click', (event) => {
-    const slidebar = document.querySelector('.slide-bar');
-    const isClickInsideSlidebar = slidebar.contains(event.target); // 슬라이드 내부 클릭 감지
-    const isClickOnButton = event.target.closest('.info-btn'); // 버튼 클릭 감지
-
-    if (!isClickInsideSlidebar && !isClickOnButton) {
-        slidebar.classList.remove('open'); // 슬라이드 패널 닫기
-    }
-});
-
-//RESET 버튼을 누르면 라디오 체크가 다 해제 되는 스크립트
-document.querySelector('.reset-btn').addEventListener('click', function () {
-    const radioButtons = document.querySelectorAll('.ct-box input[type="radio"]');
-    const keywordInput = document.querySelector('.search-input');
-    keywordInput.value = '';
-    radioButtons.forEach(radio => {
-        radio.checked = false;
-    }); 
-});
-
-
+	//슬라이드 여는 스크립트
+	document.querySelector('.info-btn').addEventListener('click', (event) => {
+	    event.stopPropagation();
+	    const slidebar = document.querySelector('.slide-bar');
+	    slidebar.classList.add('open'); // 슬라이드 패널 열기
+	});
+	
+	// 슬라이드 닫는 스크립트
+	document.addEventListener('click', (event) => {
+	    const slidebar = document.querySelector('.slide-bar');
+	    const isClickInsideSlidebar = slidebar.contains(event.target); // 슬라이드 내부 클릭 감지
+	    const isClickOnButton = event.target.closest('.info-btn'); // 버튼 클릭 감지
+	
+	    if (!isClickInsideSlidebar && !isClickOnButton) {
+	        slidebar.classList.remove('open'); // 슬라이드 패널 닫기
+	    }
+	});
+	
+	//RESET 버튼을 누르면 라디오 체크가 다 해제 되는 스크립트
+	document.querySelector('.reset-btn').addEventListener('click', function () {
+	    const radioButtons = document.querySelectorAll('.ct-box input[type="radio"]');
+	    const keywordInput = document.querySelector('.search-input');
+	    keywordInput.value = '';
+	    radioButtons.forEach(radio => {
+	        radio.checked = false;
+	    }); 
+	});
 </script>

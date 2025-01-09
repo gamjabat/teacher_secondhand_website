@@ -161,9 +161,6 @@
 		location.assign("${path}/member/paymentpage.do?productNo=" + productNo);
 	}
 	
-
-	
-	
 	/* 좋아요 로직. */
 	document.querySelectorAll(".like-btn").forEach(div => div.addEventListener("click", (e) => {
 	    const memberNo = '${loginMember.memberNo}'; 
