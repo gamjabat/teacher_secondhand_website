@@ -38,22 +38,22 @@
 	</div>
 	<div class="mypage-content">
 				<h2>나의 정보 수정</h2>
-			<div class="mypage-form">
+			<div class="mypage-form p-5 mb-5">
 				<h3>비밀번호 재확인</h3>
 				<p>회원 정보를 안전하게 보호하기 위해 회원 비밀번호를 다시 확인합니다.</p>
-					<form action="${path}/member/mypageinfoupdate2.do" method="post">
-				         <div class="id_box">
+					<form action="${path}/member/mypageinfoupdate2.do" method="post" class="mt-5">
+				         <div class="id_box mb-3">
 				           <label class="idlabel">아이디
-				           <input type="text" class="myId" name="id" value="${loginMember.memberId }" readonly/>
+				           <input type="text" class="myId form-control" name="id" value="${loginMember.memberId }" readonly/>
 				           </label>
 				         </div>
 				         <div class="pw_box">
 				           <label class="pwlabel">비밀번호
-				           <input type="password" class="myPw" name="password" placeholder="비밀번호 입력" required />
+				           <input type="password" class="myPw form-control" name="password" placeholder="비밀번호 입력" required />
 				           </label>
 				         </div>   
-				         <div class="bt">
-				       	   <button type="submit" class="btn">확인</button>
+				         <div class="button-group">
+				       	   <button type="submit" class="btn m-3">확인</button>
 				        </div>
 				   </form>
 		    </div>
@@ -62,15 +62,12 @@
 </section>
 
 <script>
-
-// 헤더 없애기
-document.addEventListener('DOMContentLoaded', () => {
-	
-	 document.querySelector(".ct-box").style.display = "none";
-	 document.querySelector(".search-input").style.display = "none";
-});
+	// 헤더 없애기
+	document.addEventListener('DOMContentLoaded', () => {
+		
+		 document.querySelector(".ct-box").style.display = "none";
+		 document.querySelector(".search-input").style.display = "none";
+	});
 </script>
-
- 
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
