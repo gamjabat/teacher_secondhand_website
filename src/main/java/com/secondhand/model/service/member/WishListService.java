@@ -40,9 +40,9 @@ public class WishListService {
         }
     }
     
-    public List<Map<String, Object>> getLikedProducts(String memberNo) {
+    public List<Map<String, Object>> getLikedProducts(String memberNo,Map<String,Integer> param) {
         try (SqlSession session = getSession()) { // getSession()으로 SqlSession 가져오기
-            return dao.getLikedProducts(session, memberNo);
+            return dao.getLikedProducts(session, memberNo,param);
         } catch (Exception e) {
             e.printStackTrace();
             throw new RuntimeException("좋아요한 상품 목록 조회 중 오류 발생", e);
@@ -57,6 +57,16 @@ public class WishListService {
     	
     	return result;
     }
-}
+    
+ // 위시리스트. 페이징바(관련) 행의 총 개수 
+ 	 public int selectWishListCount(String memberNo) {
+ 		 SqlSession session = getSession();
+ 		 int count = dao.selectWishListCount(session, memberNo);
+ 		 session.close();
+ 		 return count;
+ 	 }
+ 
+ }
+
     
    

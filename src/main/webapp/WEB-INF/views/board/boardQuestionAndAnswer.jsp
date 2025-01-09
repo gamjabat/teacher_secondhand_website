@@ -31,8 +31,6 @@
 		          <th>제목</th>
 		          <th>작성자</th>
 		          <th>작성일</th>
-		          <th>조회수</th>
-		          <th>처리상태</th>
 		        </tr>
 		      </thead>
 			     <tbody>
@@ -44,8 +42,6 @@
 		                    </td>
 		                    <td>${qna.qnaMemberNo}</td>
 		                    <td>${qna.createdAt}</td>
-		                    <td>미구현</td> <!-- 조회수가 있다면 -->
-		                    <td>미구현</td> <!-- 처리 상태 -->
 		                </tr>
 		            </c:forEach>
 	       		</tbody>
@@ -57,4 +53,13 @@
     
     
 </section>
+
+<script>
+//헤더 없애기
+document.addEventListener('DOMContentLoaded', () => {
+	
+	 document.querySelector(".ct-box").style.display = "none";
+	 document.querySelector(".search-input").style.display = "none";
+});
+</script>
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
