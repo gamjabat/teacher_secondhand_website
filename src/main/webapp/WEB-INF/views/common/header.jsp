@@ -88,7 +88,7 @@
 	    
 					    <!-- 로그인 상태일 때만 보이는 메뉴 -->
 					    <c:if test="${sessionScope.loginMember != null}">
-					        <a href="${path}/member/purchasehistory.do">마이페이지</a>
+					        <a href="${path}/member/mypageinfoupdate.do">마이페이지</a>
 					        <a href="${path}/product/productinsert.do">상품등록</a>
 					        <a href="${path}/board/boardquestionandanswer.do">문의 게시판</a>
 					        <a href="${path}/member/wishlist2.do">관심상품 리스트</a>
