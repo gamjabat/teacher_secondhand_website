@@ -38,7 +38,7 @@
 	</div>
 	<div class="mypageinfo-content">
 	   <h2>나의 정보 수정</h2>
-		<form class="memberinfo-container" method="post" action="${path }/member/mypageinfoupdateend.do">
+		<form class="memberinfo-container" method="post" action="${path }/member/mypageinfoupdateend.do" enctype="multipart/form-data">
 			<div class="member-idbox">
 				<label class="member-id">아이디</label>
 				<div class="member-id" id="id">${memberInfo.memberId }</div>

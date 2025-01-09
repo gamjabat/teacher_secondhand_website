@@ -3,6 +3,7 @@ package com.secondhand.model.service.member;
 
 import static com.secondhand.common.SqlSessionTemplate.getSession;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -97,11 +98,34 @@ public class MemberService {
 	//뉴 비밀번호
 	public int updateMemberInfo(Map<String, Object> param) {
 		SqlSession session = getSession();
-		int result = dao.updateMemberInfo(session, param);
-		if (result > 0) session.commit();
-		else session.rollback();
-		session.close();
-		return result;
+		
+		try {
+	        int result = dao.updateMemberInfo(session, param);
+	        if (result <= 0) {
+	            session.rollback();
+	            throw new RuntimeException("회원 정보 수정 실패");
+	        }
+	        
+	        Attachment a = (Attachment) param.get("attachment");
+	        if (a != null) {
+	        	int attachResult = attachmentDao.uploadMemberImg(session, a);
+	        	if (attachResult <= 0) {
+	        		session.rollback();
+	        		throw new RuntimeException("이미지 등록 실패");
+	        	} else {
+	        		
+	        	}
+	        }
+
+	        session.commit();
+	        return result;
+
+	    } catch (Exception e) {
+	        session.rollback();
+	        throw new RuntimeException("수정 중 오류 발생: " + e.getMessage());
+	    } finally {
+	        session.close();
+	    }
 	}
 	
 	//qnano으로 member 정보 가져오기.
@@ -126,4 +150,13 @@ public class MemberService {
       session.close();
 		return sellerInfo;   
   }
+	
+	public void deleteExistingProfileImage(String uploadPath, String existingImageName) {
+	    if (existingImageName != null) {
+	        File existingFile = new File(uploadPath, existingImageName);
+	        if (existingFile.exists()) {
+	            existingFile.delete();
+	        }
+	    }
+	}
 }
