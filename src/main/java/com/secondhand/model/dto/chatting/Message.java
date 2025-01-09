@@ -15,7 +15,7 @@ public class Message {
 	private String messageNo;
     private String messageContent;
     private LocalDateTime createdAt;
-    private String chatRoomNo;
+    private String messageProductNo;
     private String senderMemberNo;
     private String receiverMemberNo;
 }

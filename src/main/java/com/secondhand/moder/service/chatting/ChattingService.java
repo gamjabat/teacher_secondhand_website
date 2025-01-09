@@ -4,6 +4,7 @@ import java.util.List;
 import static com.secondhand.common.SqlSessionTemplate.getSession;
 import org.apache.ibatis.session.SqlSession;
 
+import com.secondhand.controller.product.ProductChattingMessage;
 import com.secondhand.model.dao.chatting.ChattingRoomDAO;
 import com.secondhand.model.dto.chatting.ChattingRoom;
 import com.secondhand.model.dto.chatting.Message;
@@ -50,29 +51,29 @@ public class ChattingService {
     }
 
     // 메시지 저장
-    public void saveMessage(String chatRoomNo, String content, String senderNo, String receiverNo) throws RuntimeException {
-        SqlSession session = getSession();
-        try {
-            Message message = new Message();
-            message.setMessageNo("MG_" + System.currentTimeMillis());
-            message.setMessageContent(content);
-            message.setChatRoomNo(chatRoomNo);
-            message.setSenderMemberNo(senderNo);
-            message.setReceiverMemberNo(receiverNo);
-
-            int result = dao.saveMessage(session, message);
-            if (result <= 0) {
-                session.rollback();
-                throw new RuntimeException("메시지 저장 실패");
-            }
-            session.commit();
-        } catch (Exception e) {
-            session.rollback();
-            throw new RuntimeException("메시지 저장 중 오류 발생: " + e.getMessage());
-        } finally {
-            session.close();
-        }
-    }
+//    public void saveMessage(String chatRoomNo, String content, String senderNo, String receiverNo) throws RuntimeException {
+//        SqlSession session = getSession();
+//        try {
+//            Message message = new Message();
+//            message.setMessageNo("MG_" + System.currentTimeMillis());
+//            message.setMessageContent(content);
+//            message.setChatRoomNo(chatRoomNo);
+//            message.setSenderMemberNo(senderNo);
+//            message.setReceiverMemberNo(receiverNo);
+//
+//            int result = dao.saveMessage(session, message);
+//            if (result <= 0) {
+//                session.rollback();
+//                throw new RuntimeException("메시지 저장 실패");
+//            }
+//            session.commit();
+//        } catch (Exception e) {
+//            session.rollback();
+//            throw new RuntimeException("메시지 저장 중 오류 발생: " + e.getMessage());
+//        } finally {
+//            session.close();
+//        }
+//    }
 
     // 특정 채팅방의 메시지 조회
     public List<Message> getMessagesByChatRoom(String chatRoomNo) {
@@ -92,5 +93,14 @@ public class ChattingService {
         } finally {
             session.close();
         }
+    }
+    
+    public int insertMessage(Message m) {
+        SqlSession session = getSession();
+        int result = dao.insertMessage(session, m);
+        if (result>0) session.commit();
+        else session.rollback();
+        session.close();
+        return result;
     }
 }

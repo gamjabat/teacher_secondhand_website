@@ -14,6 +14,7 @@ import lombok.NoArgsConstructor;
 public class ProductChattingMessage {
 	private String type;
 	private String sender;
+	private String senderNo;
 	private String receiver;
 	private String data;
 	private String room;

@@ -124,12 +124,13 @@
 <script>
 
 const sender='${sessionScope.loginMember.memberId}';
+const senderNo='${sessionScope.loginMember.memberNo}';
 const productNo= $('#productNo').val();
 
 let socket=new WebSocket("ws://localhost:9090/SSEULMANHAE/chatting?productNo="+productNo); 
 
 socket.onopen=(response)=>{
-	const msg=new Message("open",sender,"","",productNo);
+	const msg=new Message("open",sender,senderNo,"","",productNo);
 	socket.send(msg.toJson()); 	
 }
 
@@ -227,9 +228,10 @@ const msgprint = (msg) => {
 $("#send-btn").click(e=>{
 	 const message=$("#msg").val();
 	 const productNo= $('#productNo').val();
+	 const senderNo='${sessionScope.loginMember.memberNo}';
 	 if(message.trim().length>0){	 
 		 //object 로 넘어 가기 때문에 toJson() 메소드사용
-		socket.send(new Message("msg",sender,'',message, productNo).toJson()); // type , sender , receiver , data , room 
+		socket.send(new Message("msg",sender,senderNo,'',message, productNo).toJson()); // type , sender , receiver , data , room 
  } else {
 	alert("메세지를 입력하세요 !");
 	$("#msg").focus();
@@ -239,9 +241,10 @@ $("#send-btn").click(e=>{
 
 
 class Message{
-	constructor(type,sender,receiver,data,room) {
+	constructor(type,sender,senderNo,receiver,data,room) {
 		this.type=type;
 		this.sender=sender;
+		this.senderNo=senderNo;
 		this.receiver=receiver;
 		this.data=data;
 		this.room=room;
