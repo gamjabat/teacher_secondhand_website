@@ -173,6 +173,11 @@
     text-align: center;
     vertical-align: middle;
 }
+
+td{
+	width:20%;
+}
+
 .product-img-container {
     width: 100%; /* 부모 크기 맞춤 */
     height: 100%; /* 부모 크기 맞춤 */

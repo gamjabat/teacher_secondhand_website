@@ -1,6 +1,7 @@
 package com.secondhand.controller.member;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -10,24 +11,24 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import com.secondhand.model.dto.member.Member;
 import com.secondhand.model.dto.product.Product;
-import com.secondhand.model.dto.review.Review;
 import com.secondhand.model.service.member.MemberService;
 import com.secondhand.model.service.product.ProductService;
-import com.secondhand.moder.service.review.ReviewService;
 
 /**
- * Servlet implementation class MemberUserSelectInfoPage
+ * Servlet implementation class MypagePurchaseHistory
  */
-@WebServlet("/member/membersellerinfopage.do")
-public class MemberSellerInfoPageServlet extends HttpServlet {
+@WebServlet(name="MypageMyproductsServlet",urlPatterns = "/member/myproducts.do")
+public class MypageMyproductsServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MemberSellerInfoPageServlet() {
+    public MypageMyproductsServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -50,20 +51,19 @@ public class MemberSellerInfoPageServlet extends HttpServlet {
 			numPerPage = 10;
 		}
 		
-		String sellerNo = request.getParameter("sellerId");
-		
-		Map<String, Object> param = new HashMap<>();
-		param.put("cPage", cPage);
-		param.put("numPerPage", numPerPage);
-		param.put("memberNo",sellerNo);
-		
-		
-		Map<String, Object> sellerInfo = new MemberService().getSellerInfoByMemberNo(sellerNo);
-		List<Review> reviews  = new ReviewService().getReviewsBySellerNo(sellerNo);
-		List<Product> products  = new ProductService().selectProductsByMemberNo(param);
-		
-		
-		int totalData = new ProductService().selectProductsByMemberNoCount(sellerNo);
+		HttpSession session = request.getSession();
+        Member loginMember = (Member) session.getAttribute("loginMember");
+        
+        Map<String, Object> param = new HashMap<>();
+        param.put("cPage", cPage);
+        param.put("numPerPage", numPerPage);
+        param.put("memberNo",loginMember.getMemberNo());
+        	
+        List<Product> products  = new ProductService().selectProductsByMemberNo(param);
+        	
+        
+        
+        int totalData = new ProductService().selectProductsByMemberNoCount(loginMember.getMemberNo());
 		int totalPage=(int)Math.ceil((double)totalData/numPerPage);
 		int pageBarSize=5; // 페이지바에 출력될 숫자의 개수
 		int pageNo = ((cPage-1)/pageBarSize)*pageBarSize+1;
@@ -71,7 +71,7 @@ public class MemberSellerInfoPageServlet extends HttpServlet {
 		
 		//새로운 디자인.
 		StringBuilder pageBar = new StringBuilder();
-		pageBar.append("<div class='pagination'>");
+		//pageBar.append("<div class='pagination'>");
 
 		// 이전 페이지 버튼
 		if (cPage == 1) {
@@ -114,15 +114,13 @@ public class MemberSellerInfoPageServlet extends HttpServlet {
 		           .append(numPerPage)
 		           .append("\"'>&gt;</button>");
 		}
+
+        // Set products to the request attribute
+        request.setAttribute("products", products);
+        request.setAttribute("pageBar", pageBar);
 		
-		pageBar.append("</div>");
-		
-		request.setAttribute("sellerInfo", sellerInfo);
-		request.setAttribute("reviews", reviews);
-		request.setAttribute("products", products);
-		request.setAttribute("pageBar", pageBar);
-		
-		request.getRequestDispatcher("/WEB-INF/views/member/memberSellerInfoPage.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/views/member/mypageMyProducts.jsp")
+		.forward(request, response);
 	}
 
 	/**

@@ -23,8 +23,8 @@
 		<h3>마이페이지</h3>
 		<ul>
 			<li><a href="${path}/member/mypageinfoupdate.do">나의 정보수정</a></li>
-			<li><a href="">내가 판매한 상품</a></li>
-			<li><a href="">나의 후기</a></li>
+			<li><a href="${path }/member/myproducts.do">내가 등록한 상품</a></li>
+			<li><a href="${path }/member/myreviews.do">나의 후기</a></li>
 			<li class="active-sidebar"><a href="${path }/member/purchasehistory.do">나의 구매내역</a></li>
 			<li><a href="${path }/member/mypagereporthistory.do">나의 신고내역</a></li>
 		</ul>
@@ -72,7 +72,7 @@
 </section>
 
 
-	<!-- 신고 모달 -->
+		<!-- 후기 모달 -->
 		<div class="modal fade" id="reviewModal" tabindex="-1" aria-labelledby="reviewModalLabel" aria-hidden="true">
 		  <div class="modal-dialog modal-dialog-centered">
 		    <div class="modal-content">
