@@ -197,13 +197,13 @@
 }
 
 .trans-status-done {
-	font-size: 30px;
+	font-size: 20px;
 	color: #FD0000;
 	font-weight: bold;
 }
 
 .trans-status{
-	font-size: 30px;
+	font-size: 20px;
 	color: #0000FD;
 	font-weight: bold;
 }

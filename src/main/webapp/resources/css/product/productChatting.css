@@ -65,6 +65,7 @@
 }
 
 .chatting-input-box{
+	width:100%;
 	padding: 10px 20px;
 	border-top: 2px solid #ECEBDE;
     border-radius: 10px;
@@ -93,4 +94,10 @@
     border-radius: 10px;
     color: white;
     font-weight: bold;
+}
+
+#msg-container{
+	height: 400px;
+	max-height: 400px;
+	overflow-y: auto;
 }
