@@ -22,4 +22,12 @@ public class AttachmentDao {
 	public int deleteProductImg(SqlSession session, String productNo) throws RuntimeException {
 		return session.delete("attachment.deleteProductImg" , productNo);
 	}
+	
+	public Attachment selectAttachmentByMemberNo(SqlSession session, String memberNo) {
+	    return session.selectOne("attachment.selectAttachmentByMemberNo", memberNo);
+	}
+	
+	public int updateAttachment(SqlSession session, Attachment attachment) {
+	    return session.update("attachment.updateAttachment", attachment);
+	}
 }
