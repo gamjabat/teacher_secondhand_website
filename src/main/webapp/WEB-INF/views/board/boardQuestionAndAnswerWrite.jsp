@@ -46,5 +46,13 @@
     </div>	
     
 </section>    
+<script>
+//헤더 없애기
+document.addEventListener('DOMContentLoaded', () => {
+	
+	 document.querySelector(".ct-box").style.display = "none";
+	 document.querySelector(".search-input").style.display = "none";
+});
+</script>
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>

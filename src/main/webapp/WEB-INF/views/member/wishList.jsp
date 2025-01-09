@@ -42,28 +42,16 @@
         
         <!-- 페이지 바 디자인. -->
         <div class="pagination">
-		    <button class="prev">&lt;</button>
-					    <span class="page active"></span>
-					    <span class="page"></span>
-					    <span class="page"></span>
-					    <span class="page"></span>
-					    <span class="page"></span>
-		    <button class="next">&gt;</button>
+		   ${pageBar}
 		</div>
     </div>	
 </section>
 
 <script>
-
-
-
-
-
-
- /* const loadProductList = (cPage, numPerPage) => { */
 	 const memberNo = '${loginMember.memberNo}';
+	 const pagebar = {cPage : 1, numPerPage : 5};
 	 console.log("memberNo:", memberNo);
-	 const loadLikedProductList = (memberNo) => {
+	 const loadLikedProductList = (memberNo,cPage=1,numPerPage=5) => {
 		
 
 		    if (!memberNo) {
@@ -71,7 +59,7 @@
 		        return; 
 		    }
 		    
-		 fetch("${path}/member/wishproductlist.do?memberNo=" + memberNo)
+		 fetch("${path}/member/wishproductlist.do?memberNo=" + memberNo+"&cPage="+cPage+"&numPerPage="+numPerPage)
         .then(response => response.json())
         .then(data => {
             const tbody = document.querySelector('.product-list tbody');
@@ -84,7 +72,7 @@
        
              // 상품 리스트를 5개씩 한 줄에 렌더링
             let row;
-            data.forEach((product, index) => {
+            data.likedProducts.forEach((product, index) => {
                 // 5개씩 한 줄에 렌더링하기 위해 row 생성
                 if (index % 5 === 0) {
                     row = document.createElement('tr'); // 새 행 생성
@@ -118,7 +106,8 @@
             }
 
          // 페이지바 렌더링
-         pagination.innerHTML = data.	pageBar;
+         pagination.innerHTML = data.pageBar;
+         console.log(pageBar);
         })
         .catch(error => console.error('Error loading product list:', error));
 };

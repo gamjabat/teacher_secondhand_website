@@ -2,6 +2,7 @@ package com.secondhand.model.dao.member;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 
 import com.secondhand.model.dto.product.Product;
@@ -23,8 +24,15 @@ public class WishListDao {
         return session.delete("wishlist.deleteWishStatus", params);
     }
     
-    public List<Map<String, Object>> getLikedProducts(SqlSession session, String memberNo) {
-        return session.selectList("wishlist.getLikedProducts", memberNo);
+    public List<Map<String, Object>> getLikedProducts(SqlSession session, String memberNo, Map<String,Integer> param) {
+    	
+    	return session.selectList("wishlist.getLikedProducts", memberNo ,new RowBounds(
+				(param.get("cPage")-1)*param.get("numPerPage"),param.get("numPerPage")));
+    }
+    
+    // 게시물 총합 개수
+    public int selectWishListCount(SqlSession session, String memberNo) {
+    	return session.selectOne("wishlist.selectWishListCount", memberNo);
     }
 }
 

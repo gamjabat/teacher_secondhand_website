@@ -57,6 +57,9 @@
 	justify-content: center;
 }
 
+.QnA-input-box form{
+	width : 100%;
+}
 
 .QnA-save {
 	all: unset; /* 기본 스타일 초기화 */
