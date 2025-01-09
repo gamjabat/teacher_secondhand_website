@@ -70,10 +70,13 @@ public class WishProductListServlet extends HttpServlet {
 		if (cPage == 1) {
 		    pageBar.append("<button class='prev' disabled>&lt;</button>");
 		} else {
-		    pageBar.append("<button class='prev' onclick=\"loadLikedProductList('"+memberNo+"',"+pageNo+","+numPerPage+")\">")
-		    	   
-		           .append(cPage - 1)
-		           .append(")\"'>&lt;</button>");
+			 pageBar.append("<button class='prev' onclick=\"loadLikedProductList('")
+	           .append(memberNo)
+	           .append("',")
+	           .append(cPage - 1)
+	           .append(",")
+	           .append(numPerPage)
+	           .append(")\">&lt;</button>");
 		}
 
 		// 페이지 번호 출력
@@ -91,11 +94,14 @@ public class WishProductListServlet extends HttpServlet {
 		if (cPage == totalPage) {
 		    pageBar.append("<button class='next' disabled>&gt;</button>");
 		} else {
-		    pageBar.append("<button class='next' onclick=\"loadLikedProductList('"+memberNo+"',"+pageNo+","+numPerPage+")\">")
-		    
-		           .append(cPage + 1)
-		           .append(numPerPage)
-		           .append(")\"'>&gt;</button>");
+			 pageBar.append("<button class='next' onclick=\"loadLikedProductList('")
+	           .append(memberNo)
+	           .append("',")
+	           .append(cPage + 1)
+	           .append(",")
+	           .append(numPerPage)
+	           .append(")\">&gt;</button>");
+	
 		}
 
 		pageBar.append("</div>");
