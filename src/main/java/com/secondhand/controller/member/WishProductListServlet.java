@@ -111,15 +111,14 @@ public class WishProductListServlet extends HttpServlet {
 		// 2. WishListService에서 memberNo를 사용하여 상품 정보 가져오기
         WishListService service = new WishListService();
         List<Map<String, Object>> likedProducts = service.getLikedProducts(memberNo, param);
-        System.out.println("Liked Products: " + likedProducts); 
+    
         
         // gson에 넣기 데이터
         Map<String, Object> responseData = new HashMap<>();
         responseData.put("likedProducts", likedProducts);
         responseData.put("pageBar", pageBar.toString());
         
-        System.out.println("Liked Products: " + likedProducts); 
-        System.out.println("pageBar: " + pageBar);
+
         // 3. JSON 응답으로 반환
         response.setContentType("application/json; charset=utf-8");
         Gson gson = new Gson();

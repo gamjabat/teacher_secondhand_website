@@ -50,8 +50,9 @@
 
 <script>
 const memberNo = '${loginMember.memberNo}';
-console.log("memberNo:", memberNo);
-const loadCartListProductList = (memberNo) => {
+const pagebar = {cPage : 1, numPerPage : 5};
+
+const loadCartListProductList = (memberNo,cPage=1,numPerPage=5) => {
 	
 
 	    if (!memberNo) {
@@ -59,7 +60,7 @@ const loadCartListProductList = (memberNo) => {
 	        return; 
 	    }
 	    
-	 fetch("${path}/member/cartproductlist.do?memberNo=" + memberNo)
+	 fetch("${path}/member/cartproductlist.do?memberNo=" + memberNo+"&cPage="+cPage+"&numPerPage="+numPerPage)
 	   .then(response => response.json())
 	   .then(data => {
 	       const tbody = document.querySelector('.product-list tbody');
@@ -72,7 +73,7 @@ const loadCartListProductList = (memberNo) => {
   
         // 상품 리스트를 5개씩 한 줄에 렌더링
        let row;
-       data.forEach((product, index) => {
+       data.cartProducts.forEach((product, index) => {
            // 5개씩 한 줄에 렌더링하기 위해 row 생성
            if (index % 5 === 0) {
                row = document.createElement('tr'); // 새 행 생성
