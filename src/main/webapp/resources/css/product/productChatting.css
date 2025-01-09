@@ -43,8 +43,9 @@
 
 
 .member-name{
-	font-size: 15px;
+	font-size: 12px;
 	font-weight: bold;
+	color: #888;
 }
 
 .chat-content{

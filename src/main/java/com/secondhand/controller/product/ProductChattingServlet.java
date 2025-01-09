@@ -11,12 +11,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.secondhand.model.dto.attachment.Attachment;
+import com.secondhand.model.dto.chatting.Message;
 import com.secondhand.model.dto.member.Member;
 import com.secondhand.model.dto.product.ProductDetail;
 import com.secondhand.model.service.attachment.AttachmentService;
 import com.secondhand.model.service.member.MemberService;
 import com.secondhand.model.service.member.WishListService;
 import com.secondhand.model.service.product.ProductService;
+import com.secondhand.moder.service.chatting.ChattingService;
 
 /**
  * Servlet implementation class ProductChatting
@@ -45,6 +47,7 @@ public class ProductChattingServlet extends HttpServlet {
 			ProductDetail product = productService.selectProductDetailByProductNo(productNo);
 			List<Attachment> attachments = new AttachmentService().selectAttachmentsByProductNo(productNo);
 			Map<String, Object> sellerInfo = new MemberService().getSellerInfoByMemberNo(product.getProductMemberNo());
+			List<Message> messages = new ChattingService().getMeessagesByProductNo(productNo);
 			
 			//좋아요 체크 구문.
 			Member loginMember=(Member)request.getSession().getAttribute("loginMember");
@@ -56,6 +59,7 @@ public class ProductChattingServlet extends HttpServlet {
 			request.setAttribute("product", product);
 			request.setAttribute("attachments", attachments);
 			request.setAttribute("sellerInfo", sellerInfo);
+			request.setAttribute("messages", messages);
 		}
 		
 		request.getRequestDispatcher("/WEB-INF/views/product/productChatting.jsp")

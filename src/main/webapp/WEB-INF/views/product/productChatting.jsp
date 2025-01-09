@@ -101,8 +101,54 @@
     	</div>
     	
     	 <div id="chatting-box">
-    		<div id="msg-container"></div>
-    	
+    		<div id="msg-container">
+			    <c:forEach var="message" items="${messages}">
+			        <c:set var="isSender" value="${message.SENDER_MEMBER_NO == sessionScope.loginMember.memberNo}" />
+			        
+			        <!-- 메시지 컨테이너 -->
+			        <div class="${isSender ? 'sender-chat' : 'receiver-chat'}" style="display: flex; justify-content: ${isSender ? 'flex-end' : 'flex-start'};">
+			            
+			            <!-- '나'가 아닌 경우: 이름 태그 -> 채팅 말풍선 -->
+			            <c:if test="${!isSender}">
+			                <!-- 프로필 아이콘 -->
+			                <c:if test="${message.PROFILE_IMAGE_NAME == null}">
+			                    <div class="member-img" style="width: 30px; height: 30px; border-radius: 50%; background-color: #ECEBDE; display: flex; align-items: center; justify-content: center; margin: 5px;">
+			                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
+			                            <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6" />
+			                        </svg>
+			                    </div>
+			                </c:if>
+			                <c:if test="${message.PROFILE_IMAGE_NAME != null}">
+			                    <img src="${path}/resources/upload/member/${message.PROFILE_IMAGE_NAME}" style="width: 30px; height: 30px; border-radius: 50%; margin: 5px;">
+			                </c:if>
+			                
+			                <!-- 이름 태그 -->
+			                <span class="member-name" style="font-size: 12px; color: #888;">
+			                    <c:out value="${message.MEMBER_ID}" />
+			                </span>
+			                
+			                <!-- 채팅 말풍선 -->
+			                <div class="chat-content" style="max-width: 60%; padding: 10px; border-radius: 10px; background-color: #FFFFFF; box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1); margin: 5px; word-wrap: break-word;">
+			                    <c:out value="${message.MESSAGE_CONTENT}" />
+			                </div>
+			            </c:if>
+			            
+			            <!-- '나'인 경우: 채팅 말풍선 -> 이름 태그 -->
+			            <c:if test="${isSender}">
+			                <!-- 채팅 말풍선 -->
+			                <div class="chat-content" style="max-width: 60%; padding: 10px; border-radius: 10px; background-color: #FFFFFF; box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1); margin: 5px; word-wrap: break-word;">
+			                    <c:out value="${message.MESSAGE_CONTENT}" />
+			                </div>
+			                
+			                <!-- 이름 태그 -->
+			                <span class="member-name" style="font-size: 12px; color: #888; margin: 0 10px 0 0;">
+			                    나
+			                </span>
+			            </c:if>
+			        </div>
+			    </c:forEach>
+			</div>
+    		
 				<div id="msgwrite-container">
 						<form class="chatting-input-box">
 			    		<textarea type="text" id="msg" class="chatting-input" placeholder="메세지를 입력하세요"></textarea>
@@ -122,15 +168,19 @@
   
 </section>    
 <script>
+$(document).ready(() => {
+    $('#msg-container').scrollTop($('#msg-container')[0].scrollHeight);
+});
 
 const sender='${sessionScope.loginMember.memberId}';
 const senderNo='${sessionScope.loginMember.memberNo}';
 const productNo= $('#productNo').val();
+const senderImg='${sessionScope.loginMember.profileImageName}';
 
 let socket=new WebSocket("ws://localhost:9090/SSEULMANHAE/chatting?productNo="+productNo); 
 
 socket.onopen=(response)=>{
-	const msg=new Message("open",sender,senderNo,"","",productNo);
+	const msg=new Message("open",sender,senderNo,senderImg,"","",productNo);
 	socket.send(msg.toJson()); 	
 }
 
@@ -174,6 +224,42 @@ const msgprint = (msg) => {
     } else {
         $container.css('justify-content', 'flex-start');
     }
+    
+ 	// 프로필 이미지 또는 기본 아이콘
+    const $profileIcon = $('<div>').addClass('member-img').css({
+        'width': '30px',
+        'height': '30px',
+        'border-radius': '50%',
+        'background-color': '#ECEBDE',
+        'display': 'flex',
+        'align-items': 'center',
+        'justify-content': 'center',
+        'margin': '5px'
+    });
+
+    if (!isSender && msg.senderImg) {
+        $profileIcon.append(
+            $('<img>').attr('src', `${path}/resources/upload/member/\${msg.senderImg}`).css({
+                'width': '30px',
+                'height': '30px',
+                'border-radius': '50%',
+                'margin': '5px'
+            })
+        );
+    } else if (!isSender) {
+        $profileIcon.append(
+            $('<svg>').attr({
+                xmlns: 'http://www.w3.org/2000/svg',
+                width: '20',
+                height: '20',
+                fill: 'currentColor',
+                class: 'bi bi-person-fill',
+                viewBox: '0 0 16 16'
+            }).append(
+                $('<path>').attr('d', 'M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6')
+            )
+        );
+    }
 
     const $chatBubble = $('<div>').addClass('chat-content').css({
         'max-width': '60%',
@@ -188,30 +274,8 @@ const msgprint = (msg) => {
     const $nameTag = $('<span>').addClass('member-name').css({
         'font-size': '12px',
         'color': '#888',
-        'margin': isSender ? '0 10px 0 0' : '0 0 0 10px'
+        'margin': isSender ? '0 10px 0 0' : '0 0 0 0'
     }).text(isSender ? '나' : msg.sender);
-
-    const $profileIcon = $('<div>').addClass('member-img').css({
-        'width': '30px',
-        'height': '30px',
-        'border-radius': '50%',
-        'background-color': '#ECEBDE',
-        'display': 'flex',
-        'align-items': 'center',
-        'justify-content': 'center',
-        'margin': '5px'
-    }).append(
-        $('<svg>').attr({
-            xmlns: 'http://www.w3.org/2000/svg',
-            width: '20',
-            height: '20',
-            fill: 'currentColor',
-            class: 'bi bi-person-fill',
-            viewBox: '0 0 16 16'
-        }).append(
-            $('<path>').attr('d', 'M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6')
-        )
-    );
 
     if (isSender) {
         $container.append($chatBubble).append($nameTag);
@@ -220,31 +284,31 @@ const msgprint = (msg) => {
     }
 
     $('#msg-container').append($container);
-    $('#msg-container').scrollTop($('#msg-container')[0].scrollHeight); // Auto-scroll to the bottom
+    $('#msg-container').scrollTop($('#msg-container')[0].scrollHeight);
 };
-
 
  //소켓서버에 메세지 보내기
 $("#send-btn").click(e=>{
 	 const message=$("#msg").val();
 	 const productNo= $('#productNo').val();
 	 const senderNo='${sessionScope.loginMember.memberNo}';
+	 const senderImg='${sessionScope.loginMember.profileImageName}';
 	 if(message.trim().length>0){	 
 		 //object 로 넘어 가기 때문에 toJson() 메소드사용
-		socket.send(new Message("msg",sender,senderNo,'',message, productNo).toJson()); // type , sender , receiver , data , room 
- } else {
+		socket.send(new Message("msg",sender,senderNo,senderImg,'',message, productNo).toJson());
+		$("#msg").val('');
+	} else {
 	alert("메세지를 입력하세요 !");
 	$("#msg").focus();
  }
 }); // 올바르게 닫기
 
-
-
 class Message{
-	constructor(type,sender,senderNo,receiver,data,room) {
+	constructor(type,sender,senderNo,senderImg,receiver,data,room) {
 		this.type=type;
 		this.sender=sender;
 		this.senderNo=senderNo;
+		this.senderImg=senderImg;
 		this.receiver=receiver;
 		this.data=data;
 		this.room=room;

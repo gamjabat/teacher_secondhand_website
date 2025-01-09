@@ -5,12 +5,12 @@ import static com.secondhand.common.SqlSessionTemplate.getSession;
 import org.apache.ibatis.session.SqlSession;
 
 import com.secondhand.controller.product.ProductChattingMessage;
-import com.secondhand.model.dao.chatting.ChattingRoomDAO;
+import com.secondhand.model.dao.chatting.ChattingRoomDao;
 import com.secondhand.model.dto.chatting.ChattingRoom;
 import com.secondhand.model.dto.chatting.Message;
 
 public class ChattingService {
-    private ChattingRoomDAO dao = new ChattingRoomDAO();
+    private ChattingRoomDao dao = new ChattingRoomDao();
 
     // 채팅방 번호 생성
     public String generateChatRoomNo() throws RuntimeException {
@@ -102,5 +102,12 @@ public class ChattingService {
         else session.rollback();
         session.close();
         return result;
+    }
+    
+    public List<Message> getMeessagesByProductNo(String productNo) {
+        SqlSession session = getSession();
+        List<Message> messages = dao.getMeessagesByProductNo(session, productNo);
+        session.close();
+        return messages;
     }
 }
