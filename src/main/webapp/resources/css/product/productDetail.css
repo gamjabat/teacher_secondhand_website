@@ -196,5 +196,19 @@
 	margin-left: 10px;
 }
 
+.trans-status-done {
+	font-size: 30px;
+	color: #FD0000;
+	font-weight: bold;
+}
 
+.trans-status{
+	font-size: 30px;
+	color: #0000FD;
+	font-weight: bold;
+}
+
+.sold{
+	text-decoration: line-through;
+}
 

@@ -116,7 +116,16 @@
 		            <p class="category">${product.productCategoryName }</p>
 	        	</div>
 	        	<div class="product-info">
-		            <p class="price"><fmt:formatNumber value="${product.price}" type="number" groupingUsed="true"/>원</p>
+	        		<div class="d-flex justify-content-between align-items-center">
+	        			<c:if test="${product.transStatusName eq '거래완료' }">
+				            <p class="price sold"><fmt:formatNumber value="${product.price}" type="number" groupingUsed="true"/>원</p>
+				            <p class="trans-status-done">${product.transStatusName }</p>
+			            </c:if>
+	        			<c:if test="${product.transStatusName eq '거래가능' }">
+				            <p class="price"><fmt:formatNumber value="${product.price}" type="number" groupingUsed="true"/>원</p>
+				            <p class="trans-status">${product.transStatusName }</p>
+			            </c:if>
+	        		</div>
 		            <p class="description">
 		                ${product.productDescription}
 		            </p>

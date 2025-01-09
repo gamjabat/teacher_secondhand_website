@@ -47,7 +47,6 @@ public class MypageInfoUpdateEndServlet extends HttpServlet {
 	    // 업로드된 파일 이름 가져오기
 	    String originalFileName = mr.getOriginalFileName("member-img");
 	    String savedFileName = mr.getFilesystemName("member-img");
-	    System.out.println(originalFileName + " " + savedFileName );
 
 	    // 기존 로직
 	    String passwordInput = mr.getParameter("password");
