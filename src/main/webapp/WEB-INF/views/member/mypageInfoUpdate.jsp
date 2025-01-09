@@ -49,6 +49,27 @@
 				<div class="member-name">${memberInfo.memberName}</div>
 			</div>
 			
+			<div class="form-group">
+		      	<div class="input-label">
+		        	<label for="member-img">프로필 사진</label>
+		        </div>
+		        <div class=" input-group d-flex align-items-center">
+		        	<div id="preview" class="d-flex">
+		        		<c:if test="${sessionScope.loginMember.profileImageName == null }">
+			        	<div class="default-img d-flex justify-content-center align-items-center">
+			               <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="#ECEBDE" class="bi bi-person-fill" viewBox="0 0 16 16">
+			                   <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
+			               </svg>
+			            </div>
+			            </c:if>
+			            <c:if test="${sessionScope.loginMember.profileImageName != null }">
+			            	<img src="${path}/resources/upload/member/${sessionScope.loginMember.profileImageName}" class="default-img" width="40px" height="40px">
+			            </c:if>
+		        	</div>
+			        <input type="file" id="member-img" name="member-img" accept="image/*">
+		        </div>
+		     </div>
+			
 			<div class="member-pwbox">
 				<label class="member-pw">비밀번호</label>
 				<input type="hidden" name="password">
@@ -101,6 +122,31 @@
 
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
+	// 유효성 검사
+	const form = document.querySelector(".memberinfo-container");
+	const passwordInput = form.querySelector("input[name='password']");
+	const phoneInput = form.querySelector("input[name='phone']");
+	const addressInput = form.querySelector("input[name='address']");
+	const fileInput = document.querySelector("#member-img");
+
+	//초기값 저장
+	const initialPassword = ""; // 비밀번호는 초기값이 숨겨져 있어 비교하지 않음
+	const initialPhone = "${memberInfo.phone}";
+	const initialAddress = "${memberInfo.address}";
+	
+	form.addEventListener("submit", (e) => {
+		// 변경 확인 로직
+		const isPasswordChanged = passwordInput.value !== initialPassword && passwordInput.value !== "";
+		const isPhoneChanged = phoneInput.value !== initialPhone && phoneInput.value !== "";
+		const isAddressChanged = addressInput.value !== initialAddress && addressInput.value !== "";
+		const isFileChanged = fileInput.value !== "";
+		if (!isPasswordChanged && !isPhoneChanged && !isAddressChanged && !isFileChanged) {
+			e.preventDefault();
+			// 폼 제출 방지
+			alert("변경된 정보가 없습니다. 변경 후 다시 시도하세요."); 
+		} 
+	});
+	
 	//phone 변경 버튼 로직
 	const phoneChangeButton = document.querySelector('.member-phone-btn');
 	const memberPhoneBox = document.querySelector('.member-phonebox'); // member-idbox 선택
@@ -458,6 +504,32 @@
 		 document.querySelector(".ct-box").style.display = "none";
 		 document.querySelector(".search-input").style.display = "none";
 	});
+	
+	$("#member-img").change(e => {
+        $("#preview").html(""); // 기존 미리보기 초기화
+        const file = e.target.files[0];
+        if (file) {
+            const fileReader = new FileReader();
+            fileReader.readAsDataURL(file);
+            fileReader.onload = e => {
+                const path = e.target.result;
+                const $img = $("<img>").attr({
+                    src: path,
+                    class: "default-img", // class 추가
+                });
+                $("#preview").append($img);
+            };
+        } else {
+            // 파일이 선택되지 않은 경우 기본 상태 유지
+            $("#preview").html(`
+                <div class="default-img d-flex justify-content-center align-items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="#ECEBDE" class="bi bi-person-fill" viewBox="0 0 16 16">
+                        <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
+                    </svg>
+                </div>
+            `);
+        }
+    });
 </script>
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
