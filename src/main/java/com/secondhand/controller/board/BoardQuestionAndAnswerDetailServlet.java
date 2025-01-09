@@ -11,9 +11,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.secondhand.model.dto.board.Comments;
 import com.secondhand.model.dto.board.QnaBoard;
+import com.secondhand.model.dto.code.Code;
 import com.secondhand.model.dto.member.Member;
 import com.secondhand.model.service.board.CommentsService;
 import com.secondhand.model.service.board.QnaBoardService;
+import com.secondhand.model.service.code.CodeService;
 import com.secondhand.model.service.member.MemberService;
 
 /**
@@ -42,6 +44,9 @@ public class BoardQuestionAndAnswerDetailServlet extends HttpServlet {
 		    MemberService m = new MemberService();
 		    Member member = m.getMemberByQnaNo(qnaNo); // QnaNo로 Member를 조회하는 로직 추가
 		    qna.setMember(member); // QnaBoard 객체에 member를 설정
+		    
+		 
+		    
 		    
 		    List<Comments> comments=new CommentsService().selectBoardComment(qnaNo);
 		    

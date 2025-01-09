@@ -32,17 +32,20 @@
 	
 	<!-- 신고리스트 -->
 	<div class="item-container">
+
 		<h2>나의 신고내역</h2>
+		
 			<c:if test="${not empty reportpurchaseHistory}">
 		        <c:forEach var="report" items="${reportpurchaseHistory}">
 		            <div class="purchase-item">
 		                <div class="product-info">
 		                	<input type="hidden" id="reportNo" value="${report['REPORTNO']}">
 		                    <div class="title" onclick="window.location.href='${path}/adminreportdetail.do?reportNo=${report['REPORTNO']}'">
-		                    ${report['REPORTREASONNAME']}</div>
-		                    <div class="reportProductNo">상품번호 : ${report['REPORTPRODUCTNO']}</div>
+		                     신고유형 : ${report['REPORTREASONNAME']}</div>
+		                    <div class="reportProductNo">상품명 : ${report['PRODUCTNAME']}</div>
+		                    
 		                </div>
-		                <div class="report-status">${report['REPORTSTATUSNAME']}</div>
+		                <div class="report-status">처리상황 : ${report['REPORTSTATUSNAME']}</div>
 		                <div class="report-member-id">${report['REPORTMEMBERID']}</div>
 		                <div class="date">
 		                    <fmt:formatDate value="${report['CREATEDAT']}" pattern="yyyy-MM-dd hh:mm:ss" />

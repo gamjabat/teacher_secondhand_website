@@ -5,7 +5,8 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 <link rel="stylesheet" href="${path}/resources/style.css">
-<link rel="stylesheet" href="${path}/resources/css/common/checkbox.css">
+<%-- <link rel="stylesheet" href="${path}/resources/css/common/checkbox.css"> --%>
+<link rel="stylesheet" href="${path}/resources/css/member/cartList.css">
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
 
 <section class="main-container">
@@ -18,7 +19,7 @@
 				</svg>
 		    </div>
 		    <div>장바구니 리스트</div>
-		    <button id="deleteSelectedProducts">선택 삭제</button>
+		    <button id="deleteSelectedProducts" class="d-btn">선택 삭제</button>
         </div>
         <table class="product-list">
             <tbody>

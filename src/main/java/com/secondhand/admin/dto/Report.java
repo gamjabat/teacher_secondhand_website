@@ -32,7 +32,7 @@ public class Report {
 	    private String reportProductNo; // 신고된 상품 NO
 	    
 	    private Member member;
-	    
+	    private String productName;
 	    
 	    private String reportStatusName; // 신고 상태 이름
 	    private String reportReasonName; // 신고 유형 이름

@@ -10,7 +10,7 @@
 
 	 <!-- 메인박스  -->
 	 <div class="main-box">
-	 
+
 	 	<div class="top-title-btn">
        		
        		<!-- 상단 타이틀 -->
@@ -40,7 +40,7 @@
 		                    <td onclick="window.location.href='${path}/board/boardquestionandanswerdetail.do?qnaNo=${qna.qnaNo}'">
 		                        ${qna.qnaTitle}
 		                    </td>
-		                    <td>${qna.qnaMemberNo}</td>
+		                    <td>${qna.memberId}</td>
 		                    <td>${qna.createdAt}</td>
 		                </tr>
 		            </c:forEach>

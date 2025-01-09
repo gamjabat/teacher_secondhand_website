@@ -1,6 +1,6 @@
 package com.secondhand.controller.product;
 
-import com.secondhand.model.dto.board.Comments;
+
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
