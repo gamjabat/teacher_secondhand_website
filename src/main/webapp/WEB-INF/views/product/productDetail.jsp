@@ -116,53 +116,61 @@
 		            <p class="category">${product.productCategoryName }</p>
 	        	</div>
 	        	<div class="product-info">
-		            <p class="price"><fmt:formatNumber value="${product.price}" type="number" groupingUsed="true"/>원</p>
+	        		<div class="d-flex justify-content-between align-items-center">
+	        			<c:if test="${product.transStatusName eq '거래완료' }">
+				            <p class="price sold"><fmt:formatNumber value="${product.price}" type="number" groupingUsed="true"/>원</p>
+				            <p class="trans-status-done">${product.transStatusName }</p>
+			            </c:if>
+	        			<c:if test="${product.transStatusName eq '거래가능' }">
+				            <p class="price"><fmt:formatNumber value="${product.price}" type="number" groupingUsed="true"/>원</p>
+				            <p class="trans-status">${product.transStatusName }</p>
+			            </c:if>
+	        		</div>
 		            <p class="description">
 		                ${product.productDescription}
 		            </p>
 	        	</div>
 		    </div>
 	    	
-    
-	    <!-- 버튼 영역 -->
-	    <div class="d-flex flex-row">
-		    <div class="button-group">
-		    	<div class="sub-button-group">
-			        <button class="btn chatting-btn" onclick="startChatting();">대화신청</button>
-			        <button class="cart-btn">장바구니</button>
-		    	</div>
-		        <button type="button" class="btn pay-btn" onclick="paymentPage();">결제하기</button>
+    	<c:if test="${product.transStatusName ne '거래완료' }">
+		    <!-- 버튼 영역 -->
+		    <div class="d-flex flex-row">
+			    <div class="button-group">
+			    	<div class="sub-button-group">
+				        <button class="btn chatting-btn" onclick="startChatting();">대화신청</button>
+				        <button class="cart-btn">장바구니</button>
+			    	</div>
+			        <button type="button" class="btn pay-btn" onclick="paymentPage();">결제하기</button>
+			    </div>
+			    <div class="like-btn d-flex justify-content-center align-items-center">
+			    <c:if test="${isWishListed==null || !isWishListed }">
+			    	<!-- 빈하트 -->
+		   			<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#BBA990" class="bi bi-heart mx-1" viewBox="0 0 16 16">
+						<path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143q.09.083.176.171a3 3 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15"/>
+					</svg>
+				</c:if>
+				<c:if test="${isWishListed }">
+					<svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="#dc3545" class="bi bi-heart-fill mx-1" viewBox="0 0 16 16">
+	                    <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314"/>
+	                </svg>
+				</c:if>
+			    </div>
 		    </div>
-		    <div class="like-btn d-flex justify-content-center align-items-center">
-		    <c:if test="${isWishListed==null || !isWishListed }">
-		    	<!-- 빈하트 -->
-	   			<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#BBA990" class="bi bi-heart mx-1" viewBox="0 0 16 16">
-					<path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143q.09.083.176.171a3 3 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15"/>
-				</svg>
-			</c:if>
-			<c:if test="${isWishListed }">
-				<svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="#dc3545" class="bi bi-heart-fill mx-1" viewBox="0 0 16 16">
-                    <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314"/>
-                </svg>
-			</c:if>
-		    </div>
-	    </div>
+	    </c:if>
     </div>
 </div>
 </section>
 	 
 <script>
 	const startChatting = () =>{
-		location.assign("${path}/product/productchatting.do");
+		const productNo = document.getElementById('productNo').value;
+		location.assign("${path}/product/productchatting.do?productNo="+productNo);
 	}
 	
 	const paymentPage = () =>{
-		const productNo = document.getElementById('productNo').value
+		const productNo = document.getElementById('productNo').value;
 		location.assign("${path}/member/paymentpage.do?productNo=" + productNo);
 	}
-	
-
-	
 	
 	/* 좋아요 로직. */
 	document.querySelectorAll(".like-btn").forEach(div => div.addEventListener("click", (e) => {

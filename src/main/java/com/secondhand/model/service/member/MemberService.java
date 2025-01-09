@@ -3,6 +3,7 @@ package com.secondhand.model.service.member;
 
 import static com.secondhand.common.SqlSessionTemplate.getSession;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -94,14 +95,58 @@ public class MemberService {
 		return m;
 	}
 	
-	//뉴 비밀번호
 	public int updateMemberInfo(Map<String, Object> param) {
-		SqlSession session = getSession();
-		int result = dao.updateMemberInfo(session, param);
-		if (result > 0) session.commit();
-		else session.rollback();
-		session.close();
-		return result;
+	    SqlSession session = getSession();
+
+	    try {
+	        // 회원 정보 수정
+	        int result = updateMemberData(session, param);
+
+	        // 첨부 파일 처리
+	        Attachment attachment = (Attachment) param.get("attachment");
+	        if (attachment != null) {
+	            upsertAttachment(session, attachment);
+	        }
+
+	        // 성공 시 커밋
+	        session.commit();
+	        return result;
+
+	    } catch (Exception e) {
+	        session.rollback();
+	        throw new RuntimeException("수정 중 오류 발생: " + e.getMessage());
+	    } finally {
+	        session.close();
+	    }
+	}
+
+	// 회원 정보 수정 메서드
+	private int updateMemberData(SqlSession session, Map<String, Object> param) {
+	    int result = dao.updateMemberInfo(session, param);
+	    if (result <= 0) {
+	        throw new RuntimeException("회원 정보 수정 실패");
+	    }
+	    return result;
+	}
+
+	// 첨부 파일 UPSERT 메서드
+	private void upsertAttachment(SqlSession session, Attachment attachment) {
+	    // 기존 첨부 파일 존재 여부 확인
+	    Attachment existingAttachment = attachmentDao.selectAttachmentByMemberNo(session, attachment.getAttachmentMemberNo());
+
+	    if (existingAttachment != null) {
+	        // 기존 데이터가 있으면 업데이트
+	        int updateResult = attachmentDao.updateAttachment(session, attachment);
+	        if (updateResult <= 0) {
+	            throw new RuntimeException("이미지 업데이트 실패");
+	        }
+	    } else {
+	        // 기존 데이터가 없으면 삽입
+	        int insertResult = attachmentDao.uploadMemberImg(session, attachment);
+	        if (insertResult <= 0) {
+	            throw new RuntimeException("이미지 삽입 실패");
+	        }
+	    }
 	}
 	
 	//qnano으로 member 정보 가져오기.
@@ -126,4 +171,13 @@ public class MemberService {
       session.close();
 		return sellerInfo;   
   }
+	
+	public void deleteExistingProfileImage(String uploadPath, String existingImageName) {
+	    if (existingImageName != null) {
+	        File existingFile = new File(uploadPath, existingImageName);
+	        if (existingFile.exists()) {
+	            existingFile.delete();
+	        }
+	    }
+	}
 }

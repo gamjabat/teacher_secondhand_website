@@ -119,3 +119,15 @@
 	}
 	
 	form{width: 80%;}
+	
+	.profile-img{
+		width: 60px;
+		height: 60px;
+		background-color: #A59D84;
+		border-radius: 50%;
+		margin: 10px;
+	}
+	
+	.reset-btn-container{
+		white-space: nowrap;
+	}

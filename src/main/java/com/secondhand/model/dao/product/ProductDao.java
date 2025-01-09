@@ -55,7 +55,7 @@ public class ProductDao {
     }
 	
 	public int searchProductsCount(SqlSession session, Map<String, Object> filter) {
-    	return session.selectOne("product.searchProductsCount");
+    	return session.selectOne("product.searchProductsCount", filter);
     }
 	
 	public List<Map<String, Object>> getPurchaseHistory(SqlSession session, Map<String, Object> param) {

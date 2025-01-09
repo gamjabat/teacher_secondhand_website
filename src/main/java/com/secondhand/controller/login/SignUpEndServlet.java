@@ -77,11 +77,10 @@ public class SignUpEndServlet extends HttpServlet {
 	    if (fullAddress.isBlank()) {
 	        fullAddress = null; // 주소 정보가 없는 경우 null로 처리
 	    }
-		/*
-		 * String sido = request.getParameter("sido"); String gugun =
-		 * request.getParameter("gugun");
-		 */
 		
+	    String originalFileName = mr.getOriginalFileName("member-img");
+	    String savedFileName = mr.getFilesystemName("member-img");
+	    
 		Member insertMember = Member.builder()
 								.memberName(name)
 								.memberId(id)
@@ -91,11 +90,9 @@ public class SignUpEndServlet extends HttpServlet {
 								.birthday(birthDate)
 								.phone(phone)
 								.address(fullAddress)
+								.profileImageName(savedFileName)
 								.build();
 		
-		String originalFileName = mr.getOriginalFileName("member-img");
-		System.out.println("파일이름: "+originalFileName);
-		String savedFileName = mr.getFilesystemName("member-img");
 		
 		Attachment attachment = null;
         if (originalFileName != null && savedFileName != null) {

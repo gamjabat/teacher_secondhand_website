@@ -12,14 +12,21 @@
 <div class="main-box d-flex flex-row">
 	<!--  사이드바 -->
 	<div class="mypage-side-bar">
-		<div class="member-info">
-			<div class="member-img d-flex justify-content-center align-items-center">
-        		<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="#ECEBDE" class="bi bi-person-fill" viewBox="0 0 16 16">
-				  <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
-				</svg>
-        	</div>
-        	<div class="member-name">나BS아님</div>
-		</div>
+		<c:if test="${sessionScope.loginMember != null}">
+			<div class="member-info">
+				<c:if test="${sessionScope.loginMember.profileImageName == null }">
+					<div class="member-img d-flex justify-content-center align-items-center">
+		        		<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="#ECEBDE" class="bi bi-person-fill" viewBox="0 0 16 16">
+						  <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
+						</svg>
+		        	</div>
+	        	</c:if>
+	        	<c:if test="${sessionScope.loginMember.profileImageName != null }">
+	            	<img src="${path}/resources/upload/member/${sessionScope.loginMember.profileImageName}" class="member-img">
+	            </c:if>
+	        	<div class="member-name">${sessionScope.loginMember.nickname}</div>
+			</div>
+		 </c:if>
 		<h3>마이페이지</h3>
 		<ul>
 			<li><a href="${path}/member/mypageinfoupdate.do">나의 정보수정</a></li>

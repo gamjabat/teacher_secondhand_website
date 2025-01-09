@@ -29,4 +29,5 @@ public class ProductDetail {
 	
 	private String transMethodName;
 	private String productCategoryName;
+	private String transStatusName;
 }

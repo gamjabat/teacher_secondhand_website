@@ -22,9 +22,10 @@
 }
 
 .mypage-content h2 {
-	font-size: 25px;
+	color:  #A59D84;
 	font-weight: bold;
-    color: #A59D84;
+	text-align: center;
+	padding-top: 50px;
 }
 
 .mypage-form {
@@ -92,18 +93,22 @@
 
 }
 
-.btn {
-	background-color: #A95151;
-	color : white;
-	margin-top : 10px;
-	
+.button-group{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.button-group .btn {
+    height: 35px;
+    border-radius: 5px;
+    font-size: 15px;
+    background-color: #A95151;
+    border-radius: 10px;
+    color: white;
 }
 
-.btn:hover  {
-	background-color: #000000;
-	color : white;
-	
-	
+.button-group .btn:hover {
+    background-color: #7A3838; /* 어두운 톤 */
 }
 
 input.myId {
@@ -116,4 +121,8 @@ input.myPw {
 	font-size: 12px;
 	width : 40%;
 	margin-left :10px;
+}
+
+footer{
+	width:100%;
 }
