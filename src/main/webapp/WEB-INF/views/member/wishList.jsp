@@ -50,7 +50,7 @@
 <script>
 	 const memberNo = '${loginMember.memberNo}';
 	 const pagebar = {cPage : 1, numPerPage : 5};
-	 console.log("memberNo:", memberNo);
+
 	 const loadLikedProductList = (memberNo,cPage=1,numPerPage=5) => {
 		
 
@@ -64,7 +64,6 @@
         .then(data => {
             const tbody = document.querySelector('.product-list tbody');
             const pagination = document.querySelector('.pagination');
-			console.log(data);
             // 기존 내용 초기화
             tbody.innerHTML = '';
             pagination.innerHTML = '';
@@ -107,7 +106,7 @@
 
          // 페이지바 렌더링
          pagination.innerHTML = data.pageBar;
-         console.log(pageBar);
+  
         })
         .catch(error => console.error('Error loading product list:', error));
 };

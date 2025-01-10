@@ -50,30 +50,7 @@ public class ChattingService {
         }
     }
 
-    // 메시지 저장
-//    public void saveMessage(String chatRoomNo, String content, String senderNo, String receiverNo) throws RuntimeException {
-//        SqlSession session = getSession();
-//        try {
-//            Message message = new Message();
-//            message.setMessageNo("MG_" + System.currentTimeMillis());
-//            message.setMessageContent(content);
-//            message.setChatRoomNo(chatRoomNo);
-//            message.setSenderMemberNo(senderNo);
-//            message.setReceiverMemberNo(receiverNo);
-//
-//            int result = dao.saveMessage(session, message);
-//            if (result <= 0) {
-//                session.rollback();
-//                throw new RuntimeException("메시지 저장 실패");
-//            }
-//            session.commit();
-//        } catch (Exception e) {
-//            session.rollback();
-//            throw new RuntimeException("메시지 저장 중 오류 발생: " + e.getMessage());
-//        } finally {
-//            session.close();
-//        }
-//    }
+
 
     // 특정 채팅방의 메시지 조회
     public List<Message> getMessagesByChatRoom(String chatRoomNo) {

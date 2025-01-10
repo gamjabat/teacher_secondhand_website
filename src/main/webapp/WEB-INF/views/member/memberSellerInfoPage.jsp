@@ -47,37 +47,6 @@
 			    </div>					                                                                                                                                                              
 			</div>
 
-		 	<!-- 판매자의 후기가 담기는 박스 -->
-		 	<%-- <div class="comment-list">
-			 	<!-- 구분 -->
-			 	${reviews }
-			 	<div class="d-flex align-items-center mb-3">
-					<span class="review">후기</span>
-				</div>
-			 	<!-- 사진에 해당하는 후기내용 을 슬라이드로 넘겨 랜덤 후기 -->
-			 	<div class="comment-photo">
-				 	<!-- 뒤로 가기 -->
-				 	<button class="comment-prev">&lt;</button>
-						<!-- 후기 박스 -->
-						<div class="comment-box d-flex flex-column">
-							<div class="d-flex flex-row justify-content-between">
-								<div>닉네임</div>
-								<div class="rating">
-									<i class="fas fa-star"></i>
-									<i class="fas fa-star"></i>
-									<i class="fas fa-star"></i>
-									<i class="fas fa-star"></i>
-									<i class="fas fa-star"></i>
-								</div>
-							</div>
-							<div class="d-flex">
-								후기 내용
-							</div>
-						</div>
-					<!-- 앞으로 가기 -->
-				 	<button class="comment-next">&gt;</button>
-			 	</div>
-		 	</div> --%>
 		 	<div class="comment-list">
 		 		<div class="d-flex align-items-center">
 					<span class="review">후기</span>

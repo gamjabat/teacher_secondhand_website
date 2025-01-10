@@ -23,28 +23,12 @@
         </div>
         <table class="product-list">
             <tbody>
-                <%-- <tr>
-                    <td>
-	                    <div>
-	                    	<input type="checkbox" id="productCheckbox" class="checkbox" checked>
-				        </div>
-	                    <h5><a href="${path}/product/productdetail.do">교육용 사랑의매1</a></h5>
-	                    <h4>30,000원</h4>
-                    </td>
-                </tr> --%>
             </tbody>
         </table>
         
         
         <!-- 페이지 바 디자인. -->
         <div class="pagination">
-		    <button class="prev">&lt;</button>
-					    <span class="page active"></span>
-					    <span class="page"></span>
-					    <span class="page"></span>
-					    <span class="page"></span>
-					    <span class="page"></span>
-		    <button class="next">&gt;</button>
 		</div>
     </div>	
 </section>
@@ -66,7 +50,7 @@ const loadCartListProductList = (memberNo,cPage=1,numPerPage=5) => {
 	   .then(data => {
 	       const tbody = document.querySelector('.product-list tbody');
 	       const pagination = document.querySelector('.pagination');
-			console.log(data);
+		
 	       // 기존 내용 초기화
 	       tbody.innerHTML = '';
 	       pagination.innerHTML = '';
