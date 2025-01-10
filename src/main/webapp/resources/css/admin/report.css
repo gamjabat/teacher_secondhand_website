@@ -1,6 +1,33 @@
 @charset "UTF-8";
 
-.content {
-	
-	width : 100%;
+
+
+.content h2{
+	display : flex ;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	color: #A59D84;
+    font-weight: bold;
+    margin : 20px;
+  
 }
+
+.content form {
+	width : 100%;
+	margin-top: 40px;
+	display : flex ;
+	flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-group {
+	margin-bottom: 20px;
+}
+
+.btn-primary {
+    background-color: #A95151 !important;
+    border-color: #A95151 !important;
+}
+

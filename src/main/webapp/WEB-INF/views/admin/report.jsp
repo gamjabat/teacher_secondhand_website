@@ -5,6 +5,8 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 <link rel="stylesheet" href="${path}/resources/style.css">
+<link rel="stylesheet" href="${path}/resources/css/admin/report.css">
+
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
 
 <section class="main-container">
@@ -19,7 +21,7 @@
 		
         <!-- 신고 사유 -->
         <div class="form-group">
-            <label for="reportReason">신고 사유</label>
+            <label for="reportReason">신고 사유</label><br>
             <select id="reportReasonCode" name="reportReasonCode" required>
                 <option value="" disabled selected>신고 사유를 선택하세요</option>
                 <option value="RRN-2">스팸</option>
@@ -31,7 +33,8 @@
 
         <!-- 상세 설명 -->
         <div class="form-group">
-            <label for="reportDetails">상세 설명</label>
+        	
+            <label for="reportDetails">상세 설명</label><br>
             <textarea id="reportContent" name="reportContent" rows="5" placeholder="상세 내용을 입력하세요..." required></textarea>
         </div>
         <button type="submit" class="btn btn-primary">신고 제출</button>
