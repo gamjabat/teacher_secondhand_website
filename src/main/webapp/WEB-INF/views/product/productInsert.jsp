@@ -75,10 +75,6 @@
 			            </select>
 			        </div>
 	       		</div>
-	       		<div class="box8">
-	       			<label for="product-hashtag"><span>해시태그</span></label>
-	       			<input type="text" id="product-hashtag" name="product-hashtag" class="form-control product-hashtag" placeholder="해시태그을 입력해 주세요." name="" value="">
-	       		</div>
 	       		<div class="d-flex align-items-center">
 	       			<button type="button" id="upload-allbtn" class="upload-allbtn"><p>상품등록</p></button>
 	       		</div>
@@ -191,6 +187,13 @@ $(document).ready(function () {
 
             // 기존 프리뷰 초기화
             previewContainer.html("");
+            
+         	// 파일 개수 제한 체크
+            if (files.length > 3) {
+                alert("이미지는 최대 3개까지 업로드할 수 있습니다.");
+                this.value = ""; // 선택된 파일 초기화
+                return;
+            }
 
             // 선택된 파일을 각각 처리
             Array.from(files).forEach((file) => {
@@ -309,7 +312,6 @@ $(document).ready(function () {
 	        formdata.append("price", $("#product-price").val());
 	        formdata.append("description", $("#description").val());
 	        formdata.append("transMethod", $("#trans-method").val());
-	        formdata.append("product-hashtag", $("#product-hashtag").val());
 	        formdata.append("sido", $("#sido").val());
 	        formdata.append("gugun", $("#gugun").val());
 

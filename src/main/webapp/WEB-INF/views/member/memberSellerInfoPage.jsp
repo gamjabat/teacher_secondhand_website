@@ -123,7 +123,7 @@
 		                        ${product.PRODUCT_NAME}
 		                    </a>
 		                </h5>
-		                <h4>${product.PRICE}원</h4>
+		                <h4><fmt:formatNumber value="${product.PRICE}" type="number" groupingUsed="true"/>원</h4>
 		            </td>
 		
 		            <!-- 행의 종료 -->

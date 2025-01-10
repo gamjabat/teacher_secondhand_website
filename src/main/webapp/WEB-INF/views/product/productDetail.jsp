@@ -101,7 +101,7 @@
             </a>
             <!-- 드롭다운 메뉴 -->
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                <c:if test="${sessionScope.loginMember.memberNo eq sellerInfo.MEMBERNO }">
+                <c:if test="${(sessionScope.loginMember.memberNo eq sellerInfo.MEMBERNO) or (sessionScope.loginMember.memberId eq 'admin1') }">
 	                <li><a class="dropdown-item" href="${path }/product/editproductpage.do?productNo=${product.productNo }">상품 수정</a></li>
 	                <li><a class="dropdown-item" href="${path }/product/delete.do?productNo=${product.productNo }" onclick="return confirm('이 상품을 삭제하시겠습니까?');">상품 삭제</a></li>
  				</c:if>

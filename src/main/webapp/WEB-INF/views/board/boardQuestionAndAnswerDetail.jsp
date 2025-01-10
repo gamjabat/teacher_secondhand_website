@@ -20,7 +20,7 @@
 	       		<div class="title">
 	       			<span>제목 :${qna.qnaTitle} </span>
 	       		    <span>작성자: ${qna.memberId}</span>
-					<span>작성일: ${qna.createdAt}</span>
+					<span>작성일: <fmt:formatDate value="${qna.createdAt}" pattern="yyyy-MM-dd hh:mm:ss" /></span>
 					<span>카테고리 :${qna.typeName} </span> 
 	       		</div>
 			<hr>
@@ -60,7 +60,7 @@
 			 <form action="${path}/board/insertqnacomment.do" method="post">
 	               <input type="hidden" name="commentQnaNo" value="${qna.qnaNo}"/>	   
 	               <input type="hidden" name="commentMemberNo" value="${sessionScope.loginMember.memberNo}"/>      	   
-	               <textarea name="content" cols="50" rows="3"> 안녕하세요 ${qna.qnaMemberNo} 님 ! 쓸만해입니다. [답변내용] 추가로 궁금하신 부분이 있으시면 글쓰기를 통해서 재차 문의하시면 빠르게 답변 달아 드리겠습니다. 많은 이용 부탁드립니다. 감사합니다!</textarea>
+	               <textarea name="content" cols="50" rows="3"> 안녕하세요 ${qna.memberId} 님 ! 쓸만해입니다. [답변내용] 추가로 궁금하신 부분이 있으시면 글쓰기를 통해서 재차 문의하시면 빠르게 답변 달아 드리겠습니다. 많은 이용 부탁드립니다. 감사합니다!</textarea>
 		           <button type="submit" id="btn-insert" class="comment-btn" value="${comment.commentNo}">등록</button>
 		     </form>
 		</div>
