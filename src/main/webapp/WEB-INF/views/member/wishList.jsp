@@ -51,7 +51,6 @@
 	         // 기존 내용 초기화
 	         tbody.innerHTML = '';
 	         pagination.innerHTML = '';
-
     
 	         // 상품 리스트를 5개씩 한 줄에 렌더링
 	         let row;
@@ -86,11 +85,11 @@
 		        row.appendChild(emptyCell);
 		    }
 		}
-
-      // 페이지바 렌더링
-      pagination.innerHTML = data.pageBar;
-     })
-     .catch(error => console.error('Error loading product list:', error));
+         // 페이지바 렌더링
+         pagination.innerHTML = data.pageBar;
+  
+        })
+        .catch(error => console.error('Error loading product list:', error));
 };
 
 	// 페이지 로드 시 기본 데이터 호출

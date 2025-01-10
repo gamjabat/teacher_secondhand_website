@@ -111,8 +111,7 @@ public class AdminMainServlet extends HttpServlet {
 		
 		ReportService service = new ReportService();
 	    List<Report> reportList = service.selectAllreports(param); 
-	    System.out.println("reportList: "+ reportList);
-	 
+	
 	    
 	    request.setAttribute("reportList", reportList); 
 		

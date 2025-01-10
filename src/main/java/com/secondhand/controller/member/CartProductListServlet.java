@@ -115,9 +115,7 @@ public class CartProductListServlet extends HttpServlet {
 		cartresponseData.put("cartProducts", cartProducts);
 		cartresponseData.put("pageBar", pageBar.toString());
         
-        System.out.println("cart Products: " + cartProducts); 
-        System.out.println("pageBar: " + pageBar);
-		
+   
 		
         // 3. JSON 응답으로 반환
         response.setContentType("application/json; charset=utf-8");

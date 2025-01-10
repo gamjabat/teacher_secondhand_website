@@ -14,7 +14,7 @@
 <section class="main-container">
 	 
 	<div class="main-box d-flex flex-row">
-    <!-- 이미지 영역 -->
+
     <!-- 이미지 영역 -->
     <div class="left-box d-flex flex-column">
         <div class="img-box">

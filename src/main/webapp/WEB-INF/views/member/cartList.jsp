@@ -22,19 +22,11 @@
         </div>
         <table class="product-list">
             <tbody>
-            
             </tbody>
         </table>
         
         <!-- 페이지 바 디자인. -->
         <div class="pagination">
-		    <button class="prev">&lt;</button>
-					    <span class="page active"></span>
-					    <span class="page"></span>
-					    <span class="page"></span>
-					    <span class="page"></span>
-					    <span class="page"></span>
-		    <button class="next">&gt;</button>
 		</div>
     </div>	
 </section>
@@ -56,6 +48,7 @@ const loadCartListProductList = (memberNo,cPage=1,numPerPage=5) => {
 	   .then(data => {
 	       const tbody = document.querySelector('.product-list tbody');
 	       const pagination = document.querySelector('.pagination');
+
 	       // 기존 내용 초기화
 	       tbody.innerHTML = '';
 	       pagination.innerHTML = '';

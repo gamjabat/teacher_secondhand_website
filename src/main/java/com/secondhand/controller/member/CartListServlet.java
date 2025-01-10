@@ -32,11 +32,10 @@ public class CartListServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
       String memberNo = request.getParameter("memberNo");
       String productNo = request.getParameter("productNo");
-      System.out.println("memberNo:"+memberNo);
-      System.out.println("productNo:"+productNo);
+   
       // 서비스 호출하여 카트리스트 처리
       int result = new CartListService().toggleCartList(Map.of("memberNo", memberNo, "productNo", productNo));
-      System.out.println("result:"+result);
+     
       response.getWriter().print(result);
 	}
 

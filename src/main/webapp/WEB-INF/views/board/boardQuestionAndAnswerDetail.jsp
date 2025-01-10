@@ -19,11 +19,9 @@
      
 	       		<div class="title">
 	       			<span>제목 :${qna.qnaTitle} </span>
-	       			<%-- <span>작성자: ${qna.qnaMemberNo}</span> --%>
 	       		    <span>작성자: ${qna.memberId}</span>
 					<span>작성일: ${qna.createdAt}</span>
 					<span>카테고리 :${qna.typeName} </span> 
-					<%-- <span>카테고리 :${qna.code.typeName}</span> --%>
 	       		</div>
 			<hr>
 	       		<div class="content">

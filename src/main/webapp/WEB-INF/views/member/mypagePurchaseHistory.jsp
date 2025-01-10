@@ -71,12 +71,8 @@
 	    <div class="pagination">
 		   ${pageBar }
 		</div>
-	
 	</div>
-	
-	
-	
-	
+
 </div>
 </section>
 

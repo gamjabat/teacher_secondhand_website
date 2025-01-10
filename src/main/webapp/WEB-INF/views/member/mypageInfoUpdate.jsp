@@ -411,12 +411,7 @@
 	        const address = document.getElementById('sample6_address').value.trim();
 	        const detailAddress = document.getElementById('sample6_detailAddress').value.trim();
 	        const extraAddress = document.getElementById('sample6_extraAddress').value.trim();
-	
-	        // 입력된 값 디버깅 출력
-	        console.log("우편번호:", postcode);
-	        console.log("주소:", address);
-	        console.log("상세주소:", detailAddress);
-	        console.log("참고항목:", extraAddress);
+
 	
 	        // 주소를 조합
 	        let fullAddress = "";

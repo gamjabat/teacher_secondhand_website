@@ -49,9 +49,7 @@
 		        </c:if>
 		    </tbody>
 		</table>
-
-        
-        
+		
         <!-- 페이지 바 -->
         <c:if test="${not empty products }">
         	<div class="pagination">${pageBar }</div>
@@ -59,17 +57,5 @@
     </div>	
     
 </section>    
-
-
-
-
-
-<script>
-
-</script>
-
-
-
-
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
