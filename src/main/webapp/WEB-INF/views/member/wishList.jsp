@@ -64,10 +64,10 @@
              const cell = document.createElement('td'); // 열 생성
              cell.innerHTML = `
                  <div class="product-img-container">
-             		<button class="heart-btn">
-                 		<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#BBA990" class="bi bi-heart" viewBox="0 0 16 16">
-                     		<path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143q.09.083.176.171a3 3 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15"/>
-                 		</svg>
+             		<button class="heart-btn" data-product-no="\${product.PRODUCTNO}">
+	             		<svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="#dc3545" class="bi bi-heart-fill mx-1" viewBox="0 0 16 16">
+	                    <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314"/>
+	                </svg>
              		</button>
             		 <img src="${path}/resources/upload/product/\${product.FILERENAME}" class="product-img" alt="${product.FILEORIGINALNAME}">
             		</div>
@@ -96,5 +96,37 @@
 	document.addEventListener('DOMContentLoaded', () => {
 		loadLikedProductList(memberNo);  
 	}); 
+	
+	document.addEventListener("click", (e) => {
+	    if (e.target.closest(".heart-btn")) {
+	        const likeElement = e.target.closest(".heart-btn");
+	        const memberNo = '${loginMember != null ? loginMember.memberNo : ""}'; 
+	        const productNo = likeElement.getAttribute("data-product-no"); // 데이터 속성에서 productNo 가져오기
+
+	        if (!memberNo) {
+	            alert("로그인이 필요합니다. 로그인 후 이용해주세요.");
+	            return;
+	        }
+
+	        fetch("${path}/member/wishlist.do?memberNo=" + memberNo + "&productNo=" + productNo)
+	            .then(response => response.text())
+	            .then(data => {
+	                if (data === "1") {
+	                    likeElement.innerHTML = `
+	                        <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="#dc3545" class="bi bi-heart-fill mx-1" viewBox="0 0 16 16">
+	                            <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314"/>
+	                        </svg>`;
+	                } else if (data === "0") {
+	                    likeElement.innerHTML = `
+	                        <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="currentColor" class="bi bi-heart mx-1" viewBox="0 0 16 16">
+	                            <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143q.09.083.176.171a3 3 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15"/>
+	                        </svg>`;
+	                } else {
+	                    alert("좋아요 처리 중 오류가 발생했습니다. 다시 시도해주세요.");
+	                }
+	            })
+	            .catch(error => console.error("좋아요 처리 오류:", error));
+	    }
+	});
 </script>
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
