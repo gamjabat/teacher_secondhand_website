@@ -149,6 +149,13 @@
 </section>
 
 <script>
+
+document.addEventListener('DOMContentLoaded', () => {
+	 document.querySelector(".ct-box").style.display = "none";
+	 document.querySelector(".search-input").style.display = "none";
+});
+
+
 	$(document).ready(function () {
 	    // 생년월일 초기화
 	    const currentYear = new Date().getFullYear();

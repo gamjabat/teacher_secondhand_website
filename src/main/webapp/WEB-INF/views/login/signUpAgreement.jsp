@@ -145,6 +145,11 @@
 </div>
 </section>
 <script>
+document.addEventListener('DOMContentLoaded', () => {
+	 document.querySelector(".ct-box").style.display = "none";
+	 document.querySelector(".search-input").style.display = "none";
+});
+
     function validateAgreement() {
         const terms = document.querySelector('input[name="terms-agreement"]:checked');
         const privacy = document.querySelector('input[name="privacy-agreement"]:checked');
