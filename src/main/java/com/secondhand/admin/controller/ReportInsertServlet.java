@@ -16,7 +16,7 @@ import com.secondhand.admin.service.ReportService;
 /**
  * Servlet implementation class ReportInsertServlet
  */
-@WebServlet("/reportinsert.do")
+@WebServlet(name="ReportInsertServlet", urlPatterns="/reportinsert.do")
 public class ReportInsertServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

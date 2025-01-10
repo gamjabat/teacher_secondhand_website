@@ -176,6 +176,11 @@
 	document.querySelectorAll(".like-btn").forEach(div => div.addEventListener("click", (e) => {
 	    const memberNo = '${loginMember.memberNo}'; 
 	    const productNo ='${product.productNo}'; 
+	    
+	    if (!memberNo) {
+            alert("로그인이 필요합니다. 로그인 후 이용해주세요.");
+            return;
+        }
 	
 	    likeElement = e.currentTarget;
 		
@@ -206,6 +211,11 @@
 	document.querySelectorAll(".cart-btn").forEach(div => div.addEventListener("click", (e) => {
 	    const memberNo = '${loginMember.memberNo}'; 
 	    const productNo ='${product.productNo}'; 
+	    
+	    if (!memberNo) {
+            alert("로그인이 필요합니다. 로그인 후 이용해주세요.");
+            return;
+        }
 	
 	    cartElement = e.currentTarget;
 		
