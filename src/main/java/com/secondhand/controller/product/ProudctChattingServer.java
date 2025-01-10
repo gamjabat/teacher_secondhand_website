@@ -1,8 +1,6 @@
 package com.secondhand.controller.product;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Set;
 
 import javax.websocket.EndpointConfig;
@@ -12,6 +10,8 @@ import javax.websocket.Session;
 import javax.websocket.server.ServerEndpoint;
 
 import com.google.gson.Gson;
+import com.secondhand.model.dto.chatting.Message;
+import com.secondhand.moder.service.chatting.ChattingService;
 
 @ServerEndpoint("/chatting") //선언부에 어노테이션을 사용함. 스크립트에서 쓴 주소
 public class ProudctChattingServer {
@@ -25,21 +25,29 @@ public class ProudctChattingServer {
     public void message(Session session, String data) {
         System.out.println("수신 데이터: " + data);
 
-        ProductChattingMessage m = new Gson().fromJson(data, ProductChattingMessage.class);
+        ProductChattingMessage pcm = new Gson().fromJson(data, ProductChattingMessage.class);
+        
+        Message m = Message.builder()
+        			.messageContent(pcm.getData())
+        			.messageProductNo(pcm.getRoom())
+        			.senderMemberNo(pcm.getSenderNo())
+        			.build();
+        
 
-        switch (m.getType()) {
+        switch (pcm.getType()) {
             case "open":
-                session.getUserProperties().put("room", m.getRoom());
-                System.out.println("클라이언트가 룸에 접속: " + m.getRoom());
-                initAlarm(session.getOpenSessions(), m);
+                session.getUserProperties().put("room", pcm.getRoom());
+                System.out.println("클라이언트가 룸에 접속: " + pcm.getRoom());
+                initAlarm(session.getOpenSessions(), pcm);
                 break;
 
             case "msg":
-                sendToRoom(session.getOpenSessions(), m.getRoom(), m);
+            	saveMessageToDatabase(m);
+                sendToRoom(session.getOpenSessions(), pcm.getRoom(), pcm);
                 break;
 
             default:
-                System.out.println("알 수 없는 메시지 타입: " + m.getType());
+                System.out.println("알 수 없는 메시지 타입: " + pcm.getType());
         }
     }
 
@@ -69,6 +77,12 @@ public class ProudctChattingServer {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+    
+    private void saveMessageToDatabase(Message m) {
+        // 예시: Service 또는 DAO를 통해 데이터베이스에 저장
+        ChattingService chattingService = new ChattingService();
+        chattingService.insertMessage(m);
     }
 }
 

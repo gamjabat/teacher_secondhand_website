@@ -1,7 +1,5 @@
 package com.secondhand.controller.product;
 
-
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -14,6 +12,8 @@ import lombok.NoArgsConstructor;
 public class ProductChattingMessage {
 	private String type;
 	private String sender;
+	private String senderNo;
+	private String senderImg;
 	private String receiver;
 	private String data;
 	private String room;

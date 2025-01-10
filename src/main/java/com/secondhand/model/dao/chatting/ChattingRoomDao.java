@@ -5,10 +5,11 @@ import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
+import com.secondhand.controller.product.ProductChattingMessage;
 import com.secondhand.model.dto.chatting.ChattingRoom;
 import com.secondhand.model.dto.chatting.Message;
 
-public class ChattingRoomDAO {
+public class ChattingRoomDao {
 	
 	// 채팅방 조회
     public ChattingRoom findChatRoomByMemberAndProduct(SqlSession session, String memberNo, String productNo) {
@@ -29,5 +30,13 @@ public class ChattingRoomDAO {
     // 특정 채팅방의 메시지 조회
     public List<Message> getMessagesByChatRoom(SqlSession session, String chatRoomNo) {
         return session.selectList("chatting.getMessagesByChatRoom", chatRoomNo);
+    }
+    
+    public int insertMessage(SqlSession session, Message m) {
+    	return session.insert("chatting.insertMessage", m);
+    }
+    
+    public List<Message> getMeessagesByProductNo(SqlSession session, String productNo) {
+        return session.selectList("chatting.getMeessagesByProductNo", productNo);
     }
 }
