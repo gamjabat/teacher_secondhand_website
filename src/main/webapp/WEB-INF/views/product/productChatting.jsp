@@ -177,7 +177,7 @@ const senderNo='${sessionScope.loginMember.memberNo}';
 const productNo= $('#productNo').val();
 const senderImg='${sessionScope.loginMember.profileImageName}';
 
-let socket=new WebSocket("ws://localhost:9090/SSEULMANHAE/chatting?productNo="+productNo); 
+let socket=new WebSocket("ws://3.34.104.219:9090/SSEULMANHAE/chatting?productNo="+productNo);
 
 socket.onopen=(response)=>{
 	const msg=new Message("open",sender,senderNo,senderImg,"","",productNo);
