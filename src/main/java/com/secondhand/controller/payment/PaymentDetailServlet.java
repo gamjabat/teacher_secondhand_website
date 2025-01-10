@@ -43,7 +43,6 @@ public class PaymentDetailServlet extends HttpServlet {
 			PaymentService paymentService = new PaymentService();
 			
 			Map<String, Object> payment = paymentService.selectByPaymentNo(paymentNo);
-			System.out.println(payment);
 			String productNo = (String) payment.get("PRODUCTNUMBER");
 			
 			request.setAttribute("payment", payment);

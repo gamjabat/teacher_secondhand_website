@@ -218,17 +218,6 @@ $(document).ready(function () {
         });
     });
     
-    /* document.getElementById("product-form").addEventListener("submit", async function (event) {
-	    event.preventDefault(); // 기본 동작 방지
-	
-	    const isValid = fn_invalidate(); // 유효성 검사 결과
-	    if (isValid) {
-	        this.submit(); // 유효성 검사 통과 시 제출
-	    } else {
-	        console.log("유효성 검사 실패, 제출 중단");
-	    }
-	});
-    
     const fn_invalidate = () => {
 	    const nameInput = document.getElementById('product-name');
 	    const categorySelect = document.getElementById('product-category');
@@ -289,11 +278,16 @@ $(document).ready(function () {
 	    }
 	    
 	    return true;
-	}; */
+	};
     
 	
 	$(document).ready(function () {
 	    $("#upload-allbtn").click(function () {
+	    	const isValid = fn_invalidate(); // 유효성 검사 실행
+	        if (!isValid) {
+	            return; // 유효성 검사 실패 시, 함수 종료
+	        }
+	    	
 	        const formdata = new FormData();
 
 	        // 파일 추가

@@ -46,7 +46,8 @@
 		                <img src="${path}/resources/upload/product/${history['IMAGE_FILE']}" class="d-block" alt="${history.PRODUCT_NAME}">
 		                <div class="product-info">
 		                	<input type="hidden" id="transNo" value="${history.TRANS_NO }">
-		                    <div class="title">${history.PRODUCT_NAME}</div>
+		                	<input type="hidden" id="paymentNo" value="${history.PAYMENT_NO }">
+		                    <div class="title"><a href="${path}/product/productdetail.do?productNo=${history.PRODUCT_NO}">${history.PRODUCT_NAME}</a></div>
 		                    <div class="price"><fmt:formatNumber value="${history.PRICE}"/>원</div>
 		                </div>
 		                <div class="transaction-status">${history.TRANSACTION_STATUS}</div>
@@ -54,7 +55,8 @@
 		                    <fmt:formatDate value="${history.TRANSACTION_DATE}" pattern="yyyy-MM-dd hh:mm:ss" />
 		                </div>
 		                <div class="button-group">
-		                	<button class="btn" data-bs-toggle="modal" data-bs-target="#reviewModal" data-trans-no="${history.TRANS_NO}">후기 작성</button>
+		                	<button class="btn me-2" data-bs-toggle="modal" data-bs-target="#reviewModal" data-trans-no="${history.TRANS_NO}">후기 작성</button>
+		                	<button class="btn" onclick="paymentDetail();">상세 보기</button>
 		                </div>
 		            </div>
 		        </c:forEach>
@@ -117,6 +119,10 @@
 		</div>
 
 <script>
+const paymentDetail=()=>{
+	const paymentNo = $("#paymentNo").val();
+	location.assign('${path}/payment/paymentdetail.do?paymentNo='+paymentNo);
+}
 document.addEventListener('DOMContentLoaded', () => {
 	 /* 헤더 없애기 */
 	 document.querySelector(".ct-box").style.display = "none";

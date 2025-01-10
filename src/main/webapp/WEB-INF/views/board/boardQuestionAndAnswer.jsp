@@ -41,7 +41,7 @@
 		                        ${qna.qnaTitle}
 		                    </td>
 		                    <td>${qna.memberId}</td>
-		                    <td>${qna.createdAt}</td>
+		                    <td><fmt:formatDate value="${qna.createdAt}" pattern="yyyy-MM-dd hh:mm:ss" /></td>
 		                </tr>
 		            </c:forEach>
 	       		</tbody>

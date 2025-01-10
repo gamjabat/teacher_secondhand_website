@@ -5,7 +5,6 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 <link rel="stylesheet" href="${path}/resources/style.css">
-<%-- <link rel="stylesheet" href="${path}/resources/css/common/checkbox.css"> --%>
 <link rel="stylesheet" href="${path}/resources/css/member/cartList.css">
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
 
@@ -23,18 +22,9 @@
         </div>
         <table class="product-list">
             <tbody>
-                <%-- <tr>
-                    <td>
-	                    <div>
-	                    	<input type="checkbox" id="productCheckbox" class="checkbox" checked>
-				        </div>
-	                    <h5><a href="${path}/product/productdetail.do">교육용 사랑의매1</a></h5>
-	                    <h4>30,000원</h4>
-                    </td>
-                </tr> --%>
+            
             </tbody>
         </table>
-        
         
         <!-- 페이지 바 디자인. -->
         <div class="pagination">
@@ -66,7 +56,6 @@ const loadCartListProductList = (memberNo,cPage=1,numPerPage=5) => {
 	   .then(data => {
 	       const tbody = document.querySelector('.product-list tbody');
 	       const pagination = document.querySelector('.pagination');
-			console.log(data);
 	       // 기존 내용 초기화
 	       tbody.innerHTML = '';
 	       pagination.innerHTML = '';
@@ -94,9 +83,9 @@ const loadCartListProductList = (memberNo,cPage=1,numPerPage=5) => {
            row.appendChild(cell); // 행에 열 추가
        });
 
-       // 빈 열 추가 (5개 미만일 경우)
-       const remainingCells = 5 - (data.length % 5);
-       if (remainingCells < 5) {
+    	// 빈 열 추가 (5개 미만일 경우)
+       const remainingCells = 5 - (data.cartProducts.length % 5);
+       if (remainingCells > 0 && remainingCells < 5) { // 나머지가 0이 아니면서 5 미만일 경우에만 실행
            for (let i = 0; i < remainingCells; i++) {
                const emptyCell = document.createElement('td');
                row.appendChild(emptyCell);
@@ -124,10 +113,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const deletePromises = [];
 
-        console.log("memberNo:", memberNo);
-        console.log("checkboxes:", checkboxes); // 체크된 체크박스 NodeList 출력
-   
-
         if (checkboxes.length === 0) {
             alert("선택된 항목이 없습니다.");
             return;
@@ -135,8 +120,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         checkboxes.forEach((checkbox) => {
             const productNo = checkbox.value; // value 속성에서 productNo 가져오기
-            console.log("삭제 대상 productNo:", productNo);
-
+            
             deletePromises.push(
                 fetch("${path}/member/cartdelete.do?memberNo=" + memberNo + "&productNo=" + productNo)
                     .then((response) => response.text())

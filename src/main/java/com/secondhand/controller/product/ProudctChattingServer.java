@@ -17,14 +17,11 @@ import com.secondhand.moder.service.chatting.ChattingService;
 public class ProudctChattingServer {
 	@OnOpen
     public void open(Session session, EndpointConfig config) {
-        System.out.println("손님 접속: " + session.getId());
         session.getUserProperties().put("room", ""); // 초기 room 값 설정
     }
 
     @OnMessage
     public void message(Session session, String data) {
-        System.out.println("수신 데이터: " + data);
-
         ProductChattingMessage pcm = new Gson().fromJson(data, ProductChattingMessage.class);
         
         Message m = Message.builder()
@@ -37,7 +34,6 @@ public class ProudctChattingServer {
         switch (pcm.getType()) {
             case "open":
                 session.getUserProperties().put("room", pcm.getRoom());
-                System.out.println("클라이언트가 룸에 접속: " + pcm.getRoom());
                 initAlarm(session.getOpenSessions(), pcm);
                 break;
 
