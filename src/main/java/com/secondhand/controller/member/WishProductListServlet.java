@@ -35,11 +35,7 @@ public class WishProductListServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 1. request에서 memberNo를 String으로 가져옴
         String memberNo = request.getParameter("memberNo");
-        System.out.println("memberNo: " + memberNo); // 콘솔에 memberNo 출력
-        
-        
-       
-        
+      
         int cPage;
 		try {
 			cPage=Integer.parseInt(request.getParameter("cPage"));

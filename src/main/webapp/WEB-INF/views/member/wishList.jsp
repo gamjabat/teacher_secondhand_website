@@ -71,7 +71,7 @@
              		</button>
             		 <img src="${path}/resources/upload/product/\${product.FILERENAME}" class="product-img" alt="${product.FILEORIGINALNAME}">
             		</div>
-                 <h5><a href="${path}/product/productdetail.do?productNo=\${product.PRODUCTNO}">\${product.PRODUCTDESCRIPTION}</a></h5>
+                 <h5><a href="${path}/product/productdetail.do?productNo=\${product.PRODUCTNO}">\${product.PRODUCTNAME}</a></h5>
                  <h4>\${Number(product.PRICE).toLocaleString()}원</h4>
              `;
              row.appendChild(cell); // 행에 열 추가
