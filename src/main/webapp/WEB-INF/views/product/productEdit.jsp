@@ -211,6 +211,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // 기존 프리뷰 초기화
             previewContainer.html("");
+            
+         	// 파일 개수 제한 체크
+            if (files.length > 3) {
+                alert("이미지는 최대 3개까지 업로드할 수 있습니다.");
+                this.value = ""; // 선택된 파일 초기화
+                return;
+            }
+
 
             // 선택된 파일을 각각 처리
             Array.from(files).forEach((file) => {

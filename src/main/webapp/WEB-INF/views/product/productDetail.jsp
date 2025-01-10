@@ -101,7 +101,7 @@
             </a>
             <!-- 드롭다운 메뉴 -->
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                <c:if test="${sessionScope.loginMember.memberNo eq sellerInfo.MEMBERNO }">
+                <c:if test="${(sessionScope.loginMember.memberNo eq sellerInfo.MEMBERNO) or (sessionScope.loginMember.memberId eq 'admin1') }">
 	                <li><a class="dropdown-item" href="${path }/product/editproductpage.do?productNo=${product.productNo }">상품 수정</a></li>
 	                <li><a class="dropdown-item" href="${path }/product/delete.do?productNo=${product.productNo }" onclick="return confirm('이 상품을 삭제하시겠습니까?');">상품 삭제</a></li>
  				</c:if>
@@ -176,6 +176,11 @@
 	document.querySelectorAll(".like-btn").forEach(div => div.addEventListener("click", (e) => {
 	    const memberNo = '${loginMember.memberNo}'; 
 	    const productNo ='${product.productNo}'; 
+	    
+	    if (!memberNo) {
+            alert("로그인이 필요합니다. 로그인 후 이용해주세요.");
+            return;
+        }
 	
 	    likeElement = e.currentTarget;
 		
@@ -206,6 +211,11 @@
 	document.querySelectorAll(".cart-btn").forEach(div => div.addEventListener("click", (e) => {
 	    const memberNo = '${loginMember.memberNo}'; 
 	    const productNo ='${product.productNo}'; 
+	    
+	    if (!memberNo) {
+            alert("로그인이 필요합니다. 로그인 후 이용해주세요.");
+            return;
+        }
 	
 	    cartElement = e.currentTarget;
 		

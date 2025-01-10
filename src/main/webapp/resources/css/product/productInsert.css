@@ -21,7 +21,6 @@
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-
 }
 
 .main-box h2{
@@ -35,7 +34,12 @@
 	border-radius: 10px;
 	margin: 10px;
 	padding :20px;
-	
+	display: flex;
+    align-items: center;
+    justify-content: center;
+	display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .insert-upload-box span{
