@@ -93,13 +93,6 @@
                     </div>
                 </div>
 
-                <!-- 해시태그 -->
-                <div class="box8">
-                    <label for="product-hashtag"><span>해시태그</span></label>
-                    <input type="text" id="product-hashtag" name="productHashtag" class="form-control product-hashtag"
-                        value="${product.hashTags}" />
-                </div>
-
                 <div class="d-flex align-items-center">
                     <button type="button" id="upload-allbtn" class="upload-allbtn"><p>상품 수정</p></button>
                 </div>
